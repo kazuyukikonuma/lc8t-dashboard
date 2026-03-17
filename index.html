@@ -8,21 +8,16 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#f8f8f6;color:#2c2c2a;font-size:14px;}
 .wrap{max-width:1060px;margin:0 auto;padding:24px 16px;}
-
-/* Header */
 .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px;}
 .htitle{font-size:16px;font-weight:600;}
 .hdr-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .msel{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#2c2c2a;cursor:pointer;}
-
-/* Language toggle */
 .lang-toggle{display:flex;border:1px solid #e0e0dc;border-radius:8px;overflow:hidden;background:#f1efe8;}
 .lang-btn{font-size:11px;font-weight:600;padding:5px 10px;border:none;cursor:pointer;background:transparent;color:#888;transition:all .15s;white-space:nowrap;}
 .lang-btn.on{background:#fff;color:#2c2c2a;}
-
-/* Achievement banner */
+/* Achievement bar */
 .achievement-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;}
-.ach-card{background:#fff;border:1.5px solid #e0e0dc;border-radius:12px;padding:12px 14px;position:relative;overflow:hidden;}
+.ach-card{background:#fff;border:1.5px solid #e0e0dc;border-radius:12px;padding:12px 14px;}
 .ach-card.hit{border-color:#1D9E75;}
 .ach-card.miss{border-color:#E24B4A;}
 .ach-label{font-size:10px;color:#888;margin-bottom:4px;}
@@ -31,16 +26,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .ach-actual{font-size:18px;font-weight:700;}
 .ach-sep{font-size:11px;color:#bbb;}
 .ach-target{font-size:12px;color:#888;}
-.ach-pct{font-size:11px;font-weight:700;padding:2px 6px;border-radius:5px;}
+.ach-pct{font-size:11px;font-weight:700;padding:2px 6px;border-radius:5px;display:inline-block;margin-bottom:6px;}
 .ach-pct.hit{background:#EAF3DE;color:#3B6D11;}
 .ach-pct.miss{background:#FCEBEB;color:#A32D2D;}
-/* Progress bar */
-.prog-track{height:5px;background:#eee;border-radius:3px;margin-top:6px;overflow:hidden;}
-.prog-fill{height:100%;border-radius:3px;transition:width .4s ease;}
-.prog-fill.hit{background:#1D9E75;}
-.prog-fill.miss{background:#E24B4A;}
-.prog-fill.over{background:#185FA5;}
-
+.ach-pct.over{background:#E6F1FB;color:#185FA5;}
+.prog-track{height:5px;background:#eee;border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:3px;}
 /* Tabs */
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #e0e0dc;border-radius:12px;overflow:hidden;margin-bottom:24px;background:#f1efe8;}
 .tab{padding:0;cursor:pointer;background:transparent;border:none;border-right:1px solid #e0e0dc;transition:background .15s;}
@@ -51,31 +42,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .tl{font-size:12px;font-weight:500;color:#888;margin-bottom:7px;line-height:1.4;}
 .tab.on .tl{color:#2c2c2a;}
 .vd{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;display:inline-block;}
-.vg{background:#EAF3DE;color:#3B6D11;}
-.vw{background:#FAEEDA;color:#854F0B;}
-.vb{background:#FCEBEB;color:#A32D2D;}
+.vg{background:#EAF3DE;color:#3B6D11;}.vw{background:#FAEEDA;color:#854F0B;}.vb{background:#FCEBEB;color:#A32D2D;}
 .panel{display:none;}.panel.on{display:block;}
-
-/* KPI section */
+/* Summary */
+.ach-summary{background:#fff;border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.ach-sum-num{font-size:28px;font-weight:700;}
+.ach-sum-label{font-size:11px;color:#888;margin-left:4px;}
+.ach-summary-pills{display:flex;gap:6px;flex-wrap:wrap;}
+.ach-pill{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;}
+.ach-pill.hit{background:#EAF3DE;color:#3B6D11;}
+.ach-pill.miss{background:#FCEBEB;color:#A32D2D;}
+.ach-pill.na{background:#f1efe8;color:#888;}
+/* Labels */
 .slabel{font-size:10px;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;}
 .badge{font-size:10px;padding:2px 6px;border-radius:5px;font-weight:600;white-space:nowrap;}
 .bu{background:#EAF3DE;color:#3B6D11;}.bd{background:#FCEBEB;color:#A32D2D;}.bn{background:#F1EFE8;color:#5F5E5A;}
+/* KPI grid */
 .kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px;margin-bottom:12px;}
 .kc{border:1.5px solid #e0e0dc;border-radius:10px;padding:12px 14px;cursor:pointer;background:#fff;transition:border-color .15s;}
 .kc:hover{border-color:#888;}
 .kno{font-size:10px;color:#888;margin-bottom:3px;}
 .kv{font-size:18px;font-weight:600;margin-bottom:2px;}
 .kn{font-size:11px;color:#888;margin-bottom:4px;}
-/* KPI progress bar */
-.kprog-track{height:4px;background:#eee;border-radius:3px;margin-bottom:5px;overflow:hidden;}
+.kprog-track{height:4px;background:#eee;border-radius:3px;margin-bottom:4px;overflow:hidden;}
 .kprog-fill{height:100%;border-radius:3px;}
-.kprog-fill.hit{background:#1D9E75;}
-.kprog-fill.miss{background:#E24B4A;}
-.kprog-fill.over{background:#185FA5;}
-.kprog-fill.na{background:#ccc;}
+.kach{font-size:10px;color:#888;margin-bottom:4px;}
 .kbs{display:flex;gap:4px;flex-wrap:wrap;}
-.kach{font-size:10px;color:#888;}
-
 /* Drill */
 .dp{display:none;border:1px solid #e0e0dc;border-radius:12px;padding:16px;margin-bottom:16px;background:#f8f8f6;}
 .dp.on{display:block;}
@@ -85,7 +77,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .dnl{font-size:10px;color:#888;margin-bottom:3px;}
 .dnv{font-size:13px;font-weight:600;}
 .dnn{font-size:11px;color:#888;line-height:1.6;padding-top:8px;border-top:1px solid #e0e0dc;}
-
 /* Charts */
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 .cbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
@@ -94,8 +85,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .cs{font-size:10px;color:#888;margin-bottom:8px;}
 .lg{display:flex;gap:12px;margin-bottom:8px;font-size:10px;color:#888;flex-wrap:wrap;}
 .ld{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle;}
-
-/* Health cards */
+/* Health */
 .hrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 .hcard{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
 .hct{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
@@ -105,7 +95,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .hs{font-size:11px;color:#888;margin-bottom:4px;}
 .hcn{font-size:11px;color:#A32D2D;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
 .hgd{font-size:11px;color:#3B6D11;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
-
 /* Funnel */
 .fbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;margin-bottom:16px;overflow-x:auto;}
 .fr{display:flex;align-items:center;min-width:520px;}
@@ -115,7 +104,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .fnl{font-size:10px;color:#888;}
 .fa{font-size:16px;color:#ccc;padding:0 6px;flex-shrink:0;}
 .frt{font-size:9px;color:#aaa;text-align:center;}
-
 /* Actions */
 .alist{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
 .ac{border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;display:flex;gap:12px;background:#fff;}
@@ -125,36 +113,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .ar{font-size:11px;color:#666;line-height:1.7;}
 .aseg{font-size:10px;color:#aaa;margin-top:4px;}
 .me{font-size:11px;color:#aaa;padding:14px;text-align:center;background:#f8f8f6;border-radius:8px;margin-bottom:16px;border:1px dashed #ddd;}
-
-/* Achievement summary */
-.ach-summary{background:#fff;border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.ach-summary-main{display:flex;align-items:baseline;gap:6px;}
-.ach-sum-num{font-size:28px;font-weight:700;}
-.ach-sum-den{font-size:14px;color:#888;}
-.ach-sum-label{font-size:11px;color:#888;}
-.ach-summary-pills{display:flex;gap:6px;flex-wrap:wrap;}
-.ach-pill{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;}
-.ach-pill.hit{background:#EAF3DE;color:#3B6D11;}
-.ach-pill.miss{background:#FCEBEB;color:#A32D2D;}
-
 @media(max-width:600px){
-  .cgrid{grid-template-columns:1fr;}
+  .cgrid,.hrow{grid-template-columns:1fr;}
   .cbox.full{grid-column:1;}
-  .hrow{grid-template-columns:1fr;}
   .tabs{grid-template-columns:1fr;}
   .tab{border-right:none;border-bottom:1px solid #e0e0dc;}
   .tab:last-child{border-bottom:none;}
   .achievement-bar{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:400px){
-  .achievement-bar{grid-template-columns:1fr;}
-}
+@media(max-width:400px){.achievement-bar{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-<!-- Header -->
 <div class="hdr">
   <div class="htitle" id="txt-title">LC8T 儀表板</div>
   <div class="hdr-right">
@@ -176,73 +147,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     </select>
   </div>
 </div>
-
-<!-- Achievement bar (top 4 key KPIs) -->
 <div class="achievement-bar" id="achBar"></div>
-
-<!-- Tabs -->
 <div class="tabs">
   <button class="tab on" id="tb1" onclick="stab(1)">
-    <div class="ti">
-      <div class="tq" id="tab1-q">問題 ①</div>
-      <div class="tl" id="tab1-l">LC8T 有沒有在成長？</div>
-      <span class="vd" id="v1">—</span>
-    </div>
+    <div class="ti"><div class="tq" id="tab1q">問題 ①</div><div class="tl" id="tab1l">LC8T 有沒有在成長？</div><span class="vd" id="v1">—</span></div>
   </button>
   <button class="tab" id="tb2" onclick="stab(2)">
-    <div class="ti">
-      <div class="tq" id="tab2-q">問題 ②</div>
-      <div class="tl" id="tab2-l">BCL名單的能力・質量？</div>
-      <span class="vd" id="v2">—</span>
-    </div>
+    <div class="ti"><div class="tq" id="tab2q">問題 ②</div><div class="tl" id="tab2l">BCL名單的能力・質量？</div><span class="vd" id="v2">—</span></div>
   </button>
   <button class="tab" id="tb3" onclick="stab(3)">
-    <div class="ti">
-      <div class="tq" id="tab3-q">問題 ③</div>
-      <div class="tl" id="tab3-l">下一步該做什麼？</div>
-      <span class="vd" id="v3">—</span>
-    </div>
+    <div class="ti"><div class="tq" id="tab3q">問題 ③</div><div class="tl" id="tab3l">下一步該做什麼？</div><span class="vd" id="v3">—</span></div>
   </button>
 </div>
-
-<!-- Panel 1: Growth -->
 <div class="panel on" id="p1">
   <div class="ach-summary" id="achSummary"></div>
   <p class="slabel" id="lbl-kpi10">10大KPI 當月實績｜點擊展開下層分析</p>
   <div class="kgrid" id="kg"></div>
-  <div class="dp" id="dp">
-    <div class="dpt" id="dptitle"></div>
-    <div class="dpg" id="dpgrid"></div>
-    <div class="dnn" id="dpnote"></div>
-  </div>
+  <div class="dp" id="dp"><div class="dpt" id="dptitle"></div><div class="dpg" id="dpgrid"></div><div class="dnn" id="dpnote"></div></div>
   <p class="slabel" id="lbl-trend">趨勢圖｜12個月（綠=達標・紅=未達・虛線=目標）</p>
   <div class="cgrid">
-    <div class="cbox full">
-      <div class="ct" id="ch-gmv-t">① GMV 總成交金額</div>
-      <div class="cs" id="ch-gmv-s">WEB + TEL（NT$萬）</div>
+    <div class="cbox full"><div class="ct" id="ch-gmv-t">① GMV 總成交金額</div><div class="cs" id="ch-gmv-s">WEB + TEL（NT$萬）</div>
       <div class="lg"><span><span class="ld" style="background:#378ADD"></span><span id="lg-actual">實績（綠=達標/紅=未達）</span></span><span><span class="ld" style="background:#5DCAA5;opacity:.7"></span><span id="lg-target">目標線</span></span></div>
-      <canvas id="cGMV" style="width:100%;height:160px;display:block;"></canvas>
-    </div>
-    <div class="cbox">
-      <div class="ct" id="ch-ord-t">② 總簽約數</div>
-      <div class="cs" id="ch-ord-s">件（虛線=目標700件）</div>
-      <canvas id="cORD" style="width:100%;height:140px;display:block;"></canvas>
-    </div>
-    <div class="cbox">
-      <div class="ct" id="ch-aov-t">③ AOV 平均客單價</div>
-      <div class="cs" id="ch-aov-s">NT$（虛線=目標NT$4,000）</div>
-      <canvas id="cAOV" style="width:100%;height:140px;display:block;"></canvas>
-    </div>
-    <div class="cbox">
-      <div class="ct" id="ch-ch-t">⑧ TEL ＋ ④ EC 簽約數（堆疊）</div>
-      <div class="cs" id="ch-ch-s">件</div>
+      <canvas id="cGMV" style="width:100%;height:160px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct" id="ch-ord-t">② 總簽約數</div><div class="cs" id="ch-ord-s">件（虛線=目標700件）</div><canvas id="cORD" style="width:100%;height:140px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct" id="ch-aov-t">③ AOV 平均客單價</div><div class="cs" id="ch-aov-s">NT$（虛線=目標NT$4,000）</div><canvas id="cAOV" style="width:100%;height:140px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct" id="ch-ch-t">⑧ TEL ＋ ④ EC 簽約數（堆疊）</div><div class="cs" id="ch-ch-s">件</div>
       <div class="lg"><span><span class="ld" style="background:#7F77DD"></span><span id="lg-tel">TEL</span></span><span><span class="ld" style="background:#378ADD"></span><span id="lg-ec">EC</span></span></div>
-      <canvas id="cCH" style="width:100%;height:140px;display:block;"></canvas>
-    </div>
+      <canvas id="cCH" style="width:100%;height:140px;display:block;"></canvas></div>
   </div>
 </div>
-
-<!-- Panel 2: Quality -->
 <div class="panel" id="p2">
   <p class="slabel" id="lbl-health">BCL名單四段健康度</p>
   <div class="hrow" id="hrow"></div>
@@ -250,42 +183,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
   <div class="fbox"><div class="fr" id="frow"></div></div>
   <p class="slabel" id="lbl-kpi-trend">名單相關KPI 趨勢</p>
   <div class="cgrid">
-    <div class="cbox">
-      <div class="ct" id="ch-line-t">⑥ 新增LINE-ID</div>
-      <div class="cs" id="ch-line-s">L段入口（件，虛線=目標2,000）</div>
-      <canvas id="cLINE" style="width:100%;height:130px;display:block;"></canvas>
-    </div>
-    <div class="cbox">
-      <div class="ct" id="ch-list-t">⑨ 顧客名單數</div>
-      <div class="cs" id="ch-list-s">T段供給（件，虛線=目標4,000）</div>
-      <canvas id="cLIST" style="width:100%;height:130px;display:block;"></canvas>
-    </div>
-    <div class="cbox">
-      <div class="ct" id="ch-tr-t">⑩ 電銷轉化率</div>
-      <div class="cs" id="ch-tr-s">%（虛線=目標10%）</div>
-      <canvas id="cTR" style="width:100%;height:130px;display:block;"></canvas>
-    </div>
-    <div class="cbox">
-      <div class="ct" id="ch-cv-t">⑦ EC轉化率</div>
-      <div class="cs" id="ch-cv-s">%（虛線=目標10%）</div>
-      <canvas id="cCV" style="width:100%;height:130px;display:block;"></canvas>
-    </div>
+    <div class="cbox"><div class="ct" id="ch-line-t">⑥ 新增LINE-ID</div><div class="cs" id="ch-line-s">L段入口（件，虛線=目標2,000）</div><canvas id="cLINE" style="width:100%;height:130px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct" id="ch-list-t">⑨ 顧客名單數</div><div class="cs" id="ch-list-s">T段供給（件，虛線=目標4,000）</div><canvas id="cLIST" style="width:100%;height:130px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct" id="ch-tr-t">⑩ 電銷轉化率</div><div class="cs" id="ch-tr-s">%（虛線=目標10%）</div><canvas id="cTR" style="width:100%;height:130px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct" id="ch-cv-t">⑦ EC轉化率</div><div class="cs" id="ch-cv-s">%（虛線=目標10%）</div><canvas id="cCV" style="width:100%;height:130px;display:block;"></canvas></div>
   </div>
 </div>
-
-<!-- Panel 3: Actions -->
 <div class="panel" id="p3">
   <p class="slabel" id="lbl-action-rec">當月施策記錄（L3-2）</p>
   <div class="me" id="action-empty">本月施策尚未記錄。<br>請將執行的行銷活動補入 L3-2 施策日曆，建立行動→KPI因果關係資料庫。</div>
   <p class="slabel" id="lbl-next">⭐ 基於診斷的下一步行動</p>
   <div class="alist" id="alist"></div>
 </div>
-
-</div><!-- /wrap -->
+</div>
 
 <script>
-// ── Data ──
-const ALL={
+var ALL = {
   '202602':{gmv:2258293,orders:581,aov:3887,ec:372,tel:209,newLine:1844,list:2471,telRate:8.5,cvRate:20.2},
   '202601':{gmv:2956516,orders:769,aov:3845,ec:383,tel:386,newLine:3208,list:4110,telRate:9.4,cvRate:11.9},
   '202512':{gmv:2887317,orders:614,aov:4702,ec:314,tel:300,newLine:7483,list:3970,telRate:7.6,cvRate:4.2},
@@ -295,16 +208,15 @@ const ALL={
   '202508':{gmv:2404885,orders:654,aov:3674,ec:277,tel:377,newLine:1693,list:4556,telRate:8.3,cvRate:null},
   '202507':{gmv:2481698,orders:703,aov:3530,ec:286,tel:417,newLine:2193,list:4117,telRate:10.1,cvRate:null},
   '202506':{gmv:2769158,orders:842,aov:3289,ec:319,tel:523,newLine:1670,list:5001,telRate:10.5,cvRate:null},
-  '202505':{gmv:3644977,orders:1139,aov:3200,ec:543,tel:596,newLine:1208,list:4830,telRate:12.3,cvRate:null},
+  '202505':{gmv:3644977,orders:1139,aov:3200,ec:543,tel:596,newLine:1208,list:4830,telRate:12.3,cvRate:null}
 };
-const TGT={gmv:3000000,orders:700,aov:4000,telRate:10,cvRate:10,newLine:2000,list:4000,ec:350,tel:300};
-const KEYS=Object.keys(ALL);
-const RK=KEYS.slice().reverse();
-const RL=RK.map(k=>k.slice(4)+'月');
+var TGT = {gmv:3000000,orders:700,aov:4000,telRate:10,cvRate:10,newLine:2000,list:4000,ec:350,tel:300};
+var KEYS = Object.keys(ALL);
+var RK = KEYS.slice().reverse();
+var RL = RK.map(function(k){return k.slice(4)+'月';});
 
-// ── Language ──
-let LANG='zh';
-const T={
+var LANG = 'zh';
+var TX = {
   zh:{
     title:'LC8T 儀表板',
     tab1q:'問題 ①', tab1l:'LC8T 有沒有在成長？',
@@ -313,9 +225,9 @@ const T={
     v1hit:'成長中 ✓', v1miss:'需關注',
     v2hit:'名單健康', v2miss:'名單待改善',
     v3ok:'維持現況', v3iss:'項待改善',
-    achLabel:'目標達成',
-    achSumLabel:'項KPI達標',
-    achActual:'實績',achTarget:'目標',
+    achLabel:'目標達成', achSumLabel:'項KPI達標', achOver:'超標',
+    hit:'達標', miss:'未達', pending:'待補入',
+    mom:'前月比', vsTarget:'目標比',
     lbl_kpi10:'10大KPI 當月實績｜點擊展開下層分析',
     lbl_trend:'趨勢圖｜12個月（綠=達標・紅=未達・虛線=目標）',
     lbl_health:'BCL名單四段健康度',
@@ -325,10 +237,6 @@ const T={
     lbl_next:'⭐ 基於診斷的下一步行動',
     action_empty:'本月施策尚未記錄。<br>請將執行的行銷活動補入 L3-2 施策日曆，建立行動→KPI因果關係資料庫。',
     lgActual:'實績（綠=達標/紅=未達）', lgTarget:'目標線', lgTel:'TEL', lgEc:'EC',
-    hit:'達標', miss:'未達', pending:'待補入',
-    mom:'前月比', vsTarget:'目標比',
-    achOver:'超標',
-    // Chart subtitles
     gmvT:'① GMV 總成交金額', gmvS:'WEB + TEL（NT$萬）',
     ordT:'② 總簽約數', ordS:'件（虛線=目標700件）',
     aovT:'③ AOV 平均客單價', aovS:'NT$（虛線=目標NT$4,000）',
@@ -337,32 +245,45 @@ const T={
     listT:'⑨ 顧客名單數', listS:'T段供給（件，虛線=目標4,000）',
     trT:'⑩ 電銷轉化率', trS:'%（虛線=目標10%）',
     cvT:'⑦ EC轉化率', cvS:'%（虛線=目標10%）',
-    // Health
     lSeg:'L段｜LINE名單入口', cSeg:'C段｜社群互動・標籤', eSeg:'8段｜Super8自動化', tSeg:'T段｜TEL電話銷售',
-    // Funnel steps
     fAdd:'新增ID', fTag:'標籤人數', fCv:'EC CV率', fTel:'電銷轉化率', fGmv:'總成交',
     fNurture:'育成', fSeg:'分眾', fConvert:'成交', fResult:'結果',
-    // Actions
     priorityHigh:'最優先', priorityMid:'建議', priorityLow:'參考',
     actSeg:'對象段 →',
+    kpiNames:['GMV 總成交金額','總簽約數','AOV 平均客單價','EC簽約數','線上接觸顧客數','新增LINE-ID數','EC轉化率','TEL簽約數','顧客名單數','電銷轉化率'],
+    drillTitles:['① GMV = WEB銷售額 + TM銷售額','② 總簽約數 = ④EC + ⑧TEL','③ AOV 影響因素：商品組合','④ EC簽約數 = 觸及人數 × ⑦EC轉化率','⑤ 線上接觸顧客數（C/8段）','⑥ 新增LINE-ID 來源分解','⑦ EC轉化率 影響因素','⑧ TEL簽約數 = ⑨名單數 × ⑩轉化率','⑨ 顧客名單數 品質視角','⑩ 電銷轉化率 影響因素'],
+    drillNotes:[
+      'GMV口徑：WEB（Shopline）+ TEL兩管道。KOL・蝦皮不納入。',
+      '含新增＋續約。各細項待L2-D・L2-E補充後可分解。',
+      '英語進階版(NT$4,500)・語彙智育套組(NT$4,900)等高單價商品比例是AOV關鍵。',
+      '旅程完整性与訴求時機決定轉化率。L2-E・L2-J補充後可完整分解。',
+      '= 當月新增Super8標籤的人數。標籤是否有效驅動後續旅程是C段核心課題。',
+      '名單品質比量更重要。0～24月齡目標族群比例決定後続轉換潛力。',
+      'EC轉化率 = EC簽約數 ÷ LINE觸及人數（分母定義待確認）。',
+      '轉化率由名單品質與外撥時機決定。L2-D補充後可完整分解。',
+      '名單「量」≠「質」。同一名單重複外撥（DB疲勞）是轉化率低下的主因。',
+      '電銷轉化率 = TEL簽約數 ÷ 顧客名單數。名單品質と外撥タイミングが効率を左右。'
+    ],
+    drillLabels:[
+      ['TEL 貢獻額（估）','WEB 貢獻額（估）','TEL佔比','WEB佔比'],
+      ['EC簽約數（④）','TEL簽約數（⑧）','EC佔比','TEL佔比'],
+      ['核心主力商品均價','高單價商品佔比','LTV遞進路徑'],
+      ['④-1 新增簽約','④-2 續約','⑦ EC轉化率','Super8觸及人數'],
+      ['新增Super8標籤人數','標籤種類數','互動率'],
+      ['異業合作','SNS流量','0-1歲族群佔比','綁定完成率'],
+      ['Super8旅程完成率','購物車放棄率','推播開封率'],
+      ['⑧-1 新增成約','⑧-2 續約','外撥總量','應答率'],
+      ['Super8標籤累積數（⑤）','高意圖名單數','DB疲勞指標'],
+      ['⑨ 顧客名單數','應答率','名單月齡匹配度']
+    ],
+    segLabels:['L段｜LINE名單入口','C段｜社群互動・標籤','8段｜Super8自動化','T段｜TEL電話銷售'],
     act1t:'【T段】改善電銷名單品質・提升轉化率',
     act2t:'【8段】加速Super8標籤積累・補強名單供給',
     act3t:'【L段】重新投入名單獲取施策',
     act4t:'【8段】EC轉化率高・擴大觸及人數',
     act5t:'【T/8段】強化高單價商品訴求',
     act6t:'【全段】將本月施策記錄至 L3-2 施策日曆',
-    act6r:'記錄本月執行的施策，建立「行動→KPI因果關係」資料庫，讓未來AI分析更精準。',
-    // Drills
-    drillNote_gmv:'GMV口徑：WEB（Shopline）+ TEL兩管道。KOL・蝦皮不納入。',
-    drillNote_orders:'含新增＋續約。各細項待L2-D・L2-E補充後可分解。',
-    drillNote_aov:'英語進階版(NT$4,500)・語彙智育套組(NT$4,900)等高單價商品比例是AOV關鍵。',
-    drillNote_ec:'旅程完整性与訴求時機決定轉化率。L2-E・L2-J補充後可完整分解。',
-    drillNote_contact:'= 當月新增Super8標籤的人數。標籤是否有效驅動後續旅程是C段核心課題。',
-    drillNote_line:'名單品質比量更重要。0～24月齡目標族群比例決定後続轉換潛力。',
-    drillNote_cvRate:'EC轉化率 = EC簽約數 ÷ LINE觸及人數（分母定義待確認）。',
-    drillNote_tel:'轉化率由名單品質與外撥時機決定。L2-D補充後可完整分解。',
-    drillNote_list:'名單「量」≠「質」。同一名單重複外撥（DB疲勞）是轉化率低下的主因。',
-    drillNote_telRate:'電銷轉化率 = TEL簽約數 ÷ 顧客名單數。名單品質と外撥タイミングが効率を左右。',
+    act6r:'記錄本月執行的施策，建立「行動→KPI因果關係」資料庫，讓未來AI分析更精準。'
   },
   ja:{
     title:'LC8T ダッシュボード',
@@ -372,9 +293,9 @@ const T={
     v1hit:'成長中 ✓', v1miss:'要注意',
     v2hit:'名簿健全', v2miss:'名簿要改善',
     v3ok:'現状維持', v3iss:'項目要改善',
-    achLabel:'目標達成率',
-    achSumLabel:'項目達成',
-    achActual:'実績',achTarget:'目標',
+    achLabel:'目標達成率', achSumLabel:'項目達成', achOver:'超過達成',
+    hit:'達成', miss:'未達', pending:'未入力',
+    mom:'前月比', vsTarget:'目標比',
     lbl_kpi10:'10大KPI 当月実績｜クリックで詳細展開',
     lbl_trend:'トレンド｜12ヶ月（緑=達成・赤=未達・破線=目標）',
     lbl_health:'BCL名簿 4段階健全度',
@@ -384,443 +305,442 @@ const T={
     lbl_next:'⭐ 診断に基づく次のアクション',
     action_empty:'今月の施策はまだ記録されていません。<br>実施したマーケティング活動をL3-2施策カレンダーに入力し、行動→KPI因果関係データベースを構築してください。',
     lgActual:'実績（緑=達成/赤=未達）', lgTarget:'目標線', lgTel:'TEL', lgEc:'EC',
-    hit:'達成', miss:'未達', pending:'未入力',
-    mom:'前月比', vsTarget:'目標比',
-    achOver:'超過達成',
     gmvT:'① GMV 総成約金額', gmvS:'WEB + TEL（NT$万）',
     ordT:'② 総成約数', ordS:'件（破線=目標700件）',
     aovT:'③ AOV 平均客単価', aovS:'NT$（破線=目標NT$4,000）',
     chT:'⑧ TEL ＋ ④ EC 成約数（積み上げ）', chS:'件',
     lineT:'⑥ 新規LINE-ID', lineS:'L段入口（件、破線=目標2,000）',
     listT:'⑨ 顧客名簿数', listS:'T段供給（件、破線=目標4,000）',
-    trT:'⑩ 電話営業転換率', trS:'%（破線=目標10%）',
+    trT:'⑩ 電話転換率', trS:'%（破線=目標10%）',
     cvT:'⑦ EC転換率', cvS:'%（破線=目標10%）',
     lSeg:'L段｜LINE名簿入口', cSeg:'C段｜SNS交流・タグ', eSeg:'8段｜Super8自動化', tSeg:'T段｜TEL電話営業',
     fAdd:'新規ID', fTag:'タグ人数', fCv:'EC CV率', fTel:'電話転換率', fGmv:'総成約',
     fNurture:'育成', fSeg:'セグメント', fConvert:'成約', fResult:'結果',
     priorityHigh:'最優先', priorityMid:'推奨', priorityLow:'参考',
     actSeg:'対象段 →',
+    kpiNames:['GMV 総成約金額','総成約数','AOV 平均客単価','EC成約数','オンライン接触顧客数','新規LINE-ID数','EC転換率','TEL成約数','顧客名簿数','電話転換率'],
+    drillTitles:['① GMV = WEB売上 + TEL売上','② 総成約数 = ④EC + ⑧TEL','③ AOV 影響要因：商品構成','④ EC成約数 = リーチ人数 × ⑦EC転換率','⑤ オンライン接触顧客数（C/8段）','⑥ 新規LINE-ID 流入元分解','⑦ EC転換率 影響要因','⑧ TEL成約数 = ⑨名簿数 × ⑩転換率','⑨ 顧客名簿数 品質視点','⑩ 電話転換率 影響要因'],
+    drillNotes:[
+      'GMV口径：WEB（Shopline）+ TEL両チャネル。KOL・蝦皮は含まない。',
+      '新規＋更新を含む。各詳細はL2-D・L2-E入力後に分解可能。',
+      '英語上級版(NT$4,500)・語彙知育セット(NT$4,900)等の高単価商品比率がAOVの鍵。',
+      '旅程の完整性と訴求タイミングが転換率を決定。L2-E・L2-J入力後に完全分解可能。',
+      '= 当月新規Super8タグ付け人数。タグが後続旅程を有効に促進しているかがC段の核心課題。',
+      '名簿の質が量より重要。0～24ヶ月齢ターゲット層の比率が後続転換ポテンシャルを決定。',
+      'EC転換率 = EC成約数 ÷ LINEリーチ人数（分母定義要確認）。',
+      '転換率は名簿品質と外発タイミングで決まる。L2-D入力後に完全分解可能。',
+      '名簿の「量」≠「質」。同一名簿への繰り返し外発（DBファティーグ）が転換率低下の主因。',
+      '電話転換率 = TEL成約数 ÷ 顧客名簿数。名簿品質と外発タイミングが効率を左右。'
+    ],
+    drillLabels:[
+      ['TEL貢献額（推定）','WEB貢献額（推定）','TEL比率','WEB比率'],
+      ['EC成約数（④）','TEL成約数（⑧）','EC比率','TEL比率'],
+      ['主力商品平均単価','高単価商品比率','LTV進行パス'],
+      ['④-1 新規成約','④-2 更新','⑦ EC転換率','Super8リーチ人数'],
+      ['新規Super8タグ人数','タグ種別数','インタラクション率'],
+      ['異業種提携','SNS流入','0-1歳層比率','連携完了率'],
+      ['Super8旅程完了率','カート放棄率','プッシュ開封率'],
+      ['⑧-1 新規成約','⑧-2 更新','外発総数','応答率'],
+      ['Super8タグ累積数（⑤）','高意向名簿数','DBファティーグ指標'],
+      ['⑨ 顧客名簿数','応答率','名簿月齢マッチ度']
+    ],
+    segLabels:['L段｜LINE名簿入口','C段｜SNS交流・タグ','8段｜Super8自動化','T段｜TEL電話営業'],
     act1t:'【T段】電話営業名簿品質改善・転換率向上',
     act2t:'【8段】Super8タグ蓄積加速・名簿供給補強',
     act3t:'【L段】名簿獲得施策の再投入',
     act4t:'【8段】EC転換率高・リーチ人数を拡大',
     act5t:'【T/8段】高単価商品訴求の強化',
     act6t:'【全段】今月の施策をL3-2施策カレンダーに記録',
-    act6r:'今月実施した施策を記録し、「行動→KPI因果関係」データベースを構築することで、AIによる分析精度が向上します。',
-    drillNote_gmv:'GMV口径：WEB（Shopline）+ TEL両チャネル。KOL・蝦皮は含まない。',
-    drillNote_orders:'新規＋更新を含む。各詳細はL2-D・L2-E入力後に分解可能。',
-    drillNote_aov:'英語上級版(NT$4,500)・語彙知育セット(NT$4,900)等の高単価商品比率がAOVの鍵。',
-    drillNote_ec:'旅程の完整性と訴求タイミングが転換率を決定。L2-E・L2-J入力後に完全分解可能。',
-    drillNote_contact:'= 当月新規Super8タグ付け人数。タグが後続旅程を有効に促進しているかがC段の核心課題。',
-    drillNote_line:'名簿の質が量より重要。0～24ヶ月齢ターゲット層の比率が後続転換ポテンシャルを決定。',
-    drillNote_cvRate:'EC転換率 = EC成約数 ÷ LINEリーチ人数（分母定義要確認）。',
-    drillNote_tel:'転換率は名簿品質と外発タイミングで決まる。L2-D入力後に完全分解可能。',
-    drillNote_list:'名簿の「量」≠「質」。同一名簿への繰り返し外発（DBファティーグ）が転換率低下の主因。',
-    drillNote_telRate:'電話営業転換率 = TEL成約数 ÷ 顧客名簿数。名簿品質と外発タイミングが効率を左右。',
+    act6r:'今月実施した施策を記録し、「行動→KPI因果関係」データベースを構築することで、AIによる分析精度が向上します。'
   }
 };
 
-function t(key){ return T[LANG][key] || key; }
+function tx(key){ return TX[LANG][key] || key; }
+
+var ACH_KPIS = [
+  {no:'①', key:'gmv',     tgt:TGT.gmv,     fmt:function(v){return 'NT$'+(v/10000).toFixed(1)+'万';}, fmtTgt:'NT$'+(TGT.gmv/10000).toFixed(0)+'万'},
+  {no:'②', key:'orders',  tgt:TGT.orders,  fmt:function(v){return v.toLocaleString()+'件';},          fmtTgt:TGT.orders.toLocaleString()+'件'},
+  {no:'⑨', key:'list',    tgt:TGT.list,    fmt:function(v){return v.toLocaleString()+'件';},          fmtTgt:TGT.list.toLocaleString()+'件'},
+  {no:'⑩', key:'telRate', tgt:TGT.telRate, fmt:function(v){return v+'%';},                            fmtTgt:TGT.telRate+'%'}
+];
+
+var KPIS = [
+  {no:'①', key:'gmv',     tgt:TGT.gmv,     fmt:function(v){return 'NT$'+(v/10000).toFixed(1)+'万';}, dk:0},
+  {no:'②', key:'orders',  tgt:TGT.orders,  fmt:function(v){return v.toLocaleString()+'件';},          dk:1},
+  {no:'③', key:'aov',     tgt:TGT.aov,     fmt:function(v){return 'NT$'+v.toLocaleString();},         dk:2},
+  {no:'④', key:'ec',      tgt:TGT.ec,      fmt:function(v){return v+'件';},                           dk:3},
+  {no:'⑤', key:'contact', tgt:null,        fmt:function(v){return '—';},                              dk:4},
+  {no:'⑥', key:'newLine', tgt:TGT.newLine, fmt:function(v){return v.toLocaleString()+'件';},          dk:5},
+  {no:'⑦', key:'cvRate',  tgt:TGT.cvRate,  fmt:function(v){return v!=null?v+'%':'—';},                dk:6},
+  {no:'⑧', key:'tel',     tgt:TGT.tel,     fmt:function(v){return v+'件';},                           dk:7},
+  {no:'⑨', key:'list',    tgt:TGT.list,    fmt:function(v){return v.toLocaleString()+'件';},           dk:8},
+  {no:'⑩', key:'telRate', tgt:TGT.telRate, fmt:function(v){return v+'%';},                            dk:9}
+];
+
+var DRILL_VALS = [
+  function(d){return ['NT$'+(d.tel*d.aov/10000).toFixed(1)+'万','NT$'+((d.gmv-d.tel*d.aov)/10000).toFixed(1)+'万',Math.round(d.tel*d.aov/d.gmv*100)+'%',(100-Math.round(d.tel*d.aov/d.gmv*100))+'%'];},
+  function(d){return [d.ec+'件',d.tel+'件',Math.round(d.ec/(d.ec+d.tel)*100)+'%',Math.round(d.tel/(d.ec+d.tel)*100)+'%'];},
+  function(d){return ['NT$3,200～4,900','—','初階→進階 / 0~3歳'];},
+  function(d){return ['—','—',d.cvRate!=null?d.cvRate+'%':'—','—'];},
+  function(d){return ['—','—','—'];},
+  function(d){return ['—','—','—','—'];},
+  function(d){return ['—','—','—'];},
+  function(d){return ['—','—','—','—'];},
+  function(d){return ['—','—','—'];},
+  function(d){return [d.list.toLocaleString()+'件','—','—'];}
+];
+
+var activeKey = null;
 
 function setLang(lang){
-  LANG=lang;
-  document.getElementById('lang-ja').classList.toggle('on', lang==='ja');
-  document.getElementById('lang-zh').classList.toggle('on', lang==='zh');
+  LANG = lang;
+  document.getElementById('lang-ja').className = 'lang-btn' + (lang==='ja'?' on':'');
+  document.getElementById('lang-zh').className = 'lang-btn' + (lang==='zh'?' on':'');
   document.documentElement.lang = lang==='ja'?'ja':'zh-TW';
-  applyLangTexts();
   render();
 }
 
-function applyLangTexts(){
-  document.getElementById('txt-title').textContent=t('title');
-  document.getElementById('tab1-q').textContent=t('tab1q');
-  document.getElementById('tab1-l').textContent=t('tab1l');
-  document.getElementById('tab2-q').textContent=t('tab2q');
-  document.getElementById('tab2-l').textContent=t('tab2l');
-  document.getElementById('tab3-q').textContent=t('tab3q');
-  document.getElementById('tab3-l').textContent=t('tab3l');
-  document.getElementById('lbl-kpi10').textContent=t('lbl_kpi10');
-  document.getElementById('lbl-trend').textContent=t('lbl_trend');
-  document.getElementById('lbl-health').textContent=t('lbl_health');
-  document.getElementById('lbl-funnel').textContent=t('lbl_funnel');
-  document.getElementById('lbl-kpi-trend').textContent=t('lbl_kpi_trend');
-  document.getElementById('lbl-action-rec').textContent=t('lbl_action_rec');
-  document.getElementById('lbl-next').textContent=t('lbl_next');
-  document.getElementById('action-empty').innerHTML=t('action_empty');
-  document.getElementById('lg-actual').textContent=t('lgActual');
-  document.getElementById('lg-target').textContent=t('lgTarget');
-  document.getElementById('lg-tel').textContent=t('lgTel');
-  document.getElementById('lg-ec').textContent=t('lgEc');
-  document.getElementById('ch-gmv-t').textContent=t('gmvT');
-  document.getElementById('ch-gmv-s').textContent=t('gmvS');
-  document.getElementById('ch-ord-t').textContent=t('ordT');
-  document.getElementById('ch-ord-s').textContent=t('ordS');
-  document.getElementById('ch-aov-t').textContent=t('aovT');
-  document.getElementById('ch-aov-s').textContent=t('aovS');
-  document.getElementById('ch-ch-t').textContent=t('chT');
-  document.getElementById('ch-ch-s').textContent=t('chS');
-  document.getElementById('ch-line-t').textContent=t('lineT');
-  document.getElementById('ch-line-s').textContent=t('lineS');
-  document.getElementById('ch-list-t').textContent=t('listT');
-  document.getElementById('ch-list-s').textContent=t('listS');
-  document.getElementById('ch-tr-t').textContent=t('trT');
-  document.getElementById('ch-tr-s').textContent=t('trS');
-  document.getElementById('ch-cv-t').textContent=t('cvT');
-  document.getElementById('ch-cv-s').textContent=t('cvS');
+function applyTexts(){
+  document.getElementById('txt-title').textContent    = tx('title');
+  document.getElementById('tab1q').textContent        = tx('tab1q');
+  document.getElementById('tab1l').textContent        = tx('tab1l');
+  document.getElementById('tab2q').textContent        = tx('tab2q');
+  document.getElementById('tab2l').textContent        = tx('tab2l');
+  document.getElementById('tab3q').textContent        = tx('tab3q');
+  document.getElementById('tab3l').textContent        = tx('tab3l');
+  document.getElementById('lbl-kpi10').textContent    = tx('lbl_kpi10');
+  document.getElementById('lbl-trend').textContent    = tx('lbl_trend');
+  document.getElementById('lbl-health').textContent   = tx('lbl_health');
+  document.getElementById('lbl-funnel').textContent   = tx('lbl_funnel');
+  document.getElementById('lbl-kpi-trend').textContent= tx('lbl_kpi_trend');
+  document.getElementById('lbl-action-rec').textContent= tx('lbl_action_rec');
+  document.getElementById('lbl-next').textContent     = tx('lbl_next');
+  document.getElementById('action-empty').innerHTML   = tx('action_empty');
+  document.getElementById('lg-actual').textContent    = tx('lgActual');
+  document.getElementById('lg-target').textContent    = tx('lgTarget');
+  document.getElementById('lg-tel').textContent       = tx('lgTel');
+  document.getElementById('lg-ec').textContent        = tx('lgEc');
+  document.getElementById('ch-gmv-t').textContent     = tx('gmvT');
+  document.getElementById('ch-gmv-s').textContent     = tx('gmvS');
+  document.getElementById('ch-ord-t').textContent     = tx('ordT');
+  document.getElementById('ch-ord-s').textContent     = tx('ordS');
+  document.getElementById('ch-aov-t').textContent     = tx('aovT');
+  document.getElementById('ch-aov-s').textContent     = tx('aovS');
+  document.getElementById('ch-ch-t').textContent      = tx('chT');
+  document.getElementById('ch-ch-s').textContent      = tx('chS');
+  document.getElementById('ch-line-t').textContent    = tx('lineT');
+  document.getElementById('ch-line-s').textContent    = tx('lineS');
+  document.getElementById('ch-list-t').textContent    = tx('listT');
+  document.getElementById('ch-list-s').textContent    = tx('listS');
+  document.getElementById('ch-tr-t').textContent      = tx('trT');
+  document.getElementById('ch-tr-s').textContent      = tx('trS');
+  document.getElementById('ch-cv-t').textContent      = tx('cvT');
+  document.getElementById('ch-cv-s').textContent      = tx('cvS');
 }
 
-// ── Achievement bar ──
-const ACH_KPIS=[
-  {no:'①',key:'gmv',  name_zh:'GMV 總成交金額', name_ja:'GMV 総成約金額', fmt:v=>'NT$'+(v/10000).toFixed(1)+'万', tgt:TGT.gmv},
-  {no:'②',key:'orders',name_zh:'總簽約數',        name_ja:'総成約数',       fmt:v=>v.toLocaleString()+'件',         tgt:TGT.orders},
-  {no:'⑨',key:'list',  name_zh:'顧客名單數',       name_ja:'顧客名簿数',     fmt:v=>v.toLocaleString()+'件',         tgt:TGT.list},
-  {no:'⑩',key:'telRate',name_zh:'電銷轉化率',      name_ja:'電話転換率',     fmt:v=>v+'%',                           tgt:TGT.telRate},
-];
-
 function renderAchBar(d){
-  document.getElementById('achBar').innerHTML=ACH_KPIS.map(k=>{
-    const v=d[k.key];
-    const pct = v!=null && k.tgt ? Math.round(v/k.tgt*100) : null;
-    const hit = pct!=null && pct>=100;
-    const barW = pct!=null ? Math.min(pct,100) : 0;
-    const name = LANG==='ja' ? k.name_ja : k.name_zh;
-    const fmtTgt = k.key==='gmv' ? 'NT$'+(k.tgt/10000).toFixed(0)+'万' : k.key==='telRate' ? k.tgt+'%' : k.tgt.toLocaleString()+'件';
-    return `<div class="ach-card ${v==null?'':hit?'hit':'miss'}">
-      <div class="ach-label">${k.no} ${t('achLabel')}</div>
-      <div class="ach-kpi">${name}</div>
-      <div class="ach-vals">
-        <span class="ach-actual">${v!=null?k.fmt(v):'—'}</span>
-        <span class="ach-sep">/</span>
-        <span class="ach-target">${fmtTgt}</span>
-      </div>
-      ${pct!=null?`<span class="ach-pct ${hit?'hit':'miss'}">${pct>=100?t('achOver')+' ':''} ${pct}%</span>`:''}
-      <div class="prog-track"><div class="prog-fill ${pct==null?'':'pct>=100?over':hit?'hit':'miss'}" style="width:${barW}%;background:${pct==null?'#ccc':pct>=100?'#185FA5':hit?'#1D9E75':'#E24B4A'}"></div></div>
-    </div>`;
-  }).join('');
+  var html = '';
+  for(var i=0;i<ACH_KPIS.length;i++){
+    var k = ACH_KPIS[i];
+    var v = d[k.key];
+    var pct = (v!=null && k.tgt) ? Math.round(v/k.tgt*100) : null;
+    var hit = pct!=null && pct>=100;
+    var over = pct!=null && pct>100;
+    var barW = pct!=null ? Math.min(pct,100) : 0;
+    var barColor = pct==null ? '#ccc' : over ? '#185FA5' : hit ? '#1D9E75' : '#E24B4A';
+    var cardCls = v==null ? '' : hit ? ' hit' : ' miss';
+    var pctCls = over ? 'over' : hit ? 'hit' : 'miss';
+    var pctLabel = pct!=null ? ((over ? tx('achOver')+' ' : '') + pct + '%') : '';
+    var kpiName = tx('kpiNames')[i === 0 ? 0 : i === 1 ? 1 : i === 2 ? 8 : 9];
+    html += '<div class="ach-card'+cardCls+'">';
+    html += '<div class="ach-label">'+k.no+' '+tx('achLabel')+'</div>';
+    html += '<div class="ach-kpi">'+kpiName+'</div>';
+    html += '<div class="ach-vals"><span class="ach-actual">'+(v!=null?k.fmt(v):'—')+'</span><span class="ach-sep">/</span><span class="ach-target">'+k.fmtTgt+'</span></div>';
+    if(pct!=null) html += '<span class="ach-pct '+pctCls+'">'+pctLabel+'</span>';
+    html += '<div class="prog-track"><div class="prog-fill" style="width:'+barW+'%;background:'+barColor+'"></div></div>';
+    html += '</div>';
+  }
+  document.getElementById('achBar').innerHTML = html;
 }
 
 function renderAchSummary(d){
-  const measurable = ACH_KPIS.filter(k=>d[k.key]!=null&&k.tgt);
-  const hitCount = measurable.filter(k=>d[k.key]>=k.tgt).length;
-  const pills = ACH_KPIS.map(k=>{
-    if(d[k.key]==null||!k.tgt) return `<span class="ach-pill" style="background:#f1efe8;color:#888">${k.no} ${t('pending')}</span>`;
-    const hit=d[k.key]>=k.tgt;
-    return `<span class="ach-pill ${hit?'hit':'miss'}">${k.no} ${hit?t('hit'):t('miss')}</span>`;
-  }).join('');
-  document.getElementById('achSummary').innerHTML=`
-    <div class="ach-summary-main">
-      <span class="ach-sum-num" style="color:${hitCount===measurable.length?'#1D9E75':'#E24B4A'}">${hitCount}/${measurable.length}</span>
-      <span class="ach-sum-label">${t('achSumLabel')}</span>
-    </div>
-    <div class="ach-summary-pills">${pills}</div>`;
+  var measurable = ACH_KPIS.filter(function(k){return d[k.key]!=null&&k.tgt;});
+  var hitCount = measurable.filter(function(k){return d[k.key]>=k.tgt;}).length;
+  var color = hitCount===measurable.length ? '#1D9E75' : '#E24B4A';
+  var pills = '';
+  var kpiNos = ['①','②','⑨','⑩'];
+  var kpiKeys = ['gmv','orders','list','telRate'];
+  for(var i=0;i<kpiNos.length;i++){
+    var v = d[kpiKeys[i]];
+    if(v==null){ pills += '<span class="ach-pill na">'+kpiNos[i]+' '+tx('pending')+'</span>'; }
+    else {
+      var h = v>=ACH_KPIS[i].tgt;
+      pills += '<span class="ach-pill '+(h?'hit':'miss')+'">'+kpiNos[i]+' '+(h?tx('hit'):tx('miss'))+'</span>';
+    }
+  }
+  document.getElementById('achSummary').innerHTML =
+    '<div style="display:flex;align-items:baseline;gap:4px;"><span class="ach-sum-num" style="color:'+color+'">'+hitCount+'/'+measurable.length+'</span><span class="ach-sum-label">'+tx('achSumLabel')+'</span></div>'+
+    '<div class="ach-summary-pills">'+pills+'</div>';
 }
 
-// ── KPIs ──
-const KPIS=[
-  {no:'①',key:'gmv',    name_zh:'GMV 總成交金額',  name_ja:'GMV 総成約金額',  fmt:v=>'NT$'+(v/10000).toFixed(1)+'万', tgt:TGT.gmv,     dk:'gmv'},
-  {no:'②',key:'orders', name_zh:'總簽約數',          name_ja:'総成約数',         fmt:v=>v.toLocaleString()+'件',          tgt:TGT.orders,  dk:'orders'},
-  {no:'③',key:'aov',    name_zh:'AOV 平均客單價',   name_ja:'AOV 平均客単価',   fmt:v=>'NT$'+v.toLocaleString(),         tgt:TGT.aov,     dk:'aov'},
-  {no:'④',key:'ec',     name_zh:'EC簽約數',          name_ja:'EC成約数',         fmt:v=>v+'件',                           tgt:TGT.ec,      dk:'ec'},
-  {no:'⑤',key:'contact',name_zh:'線上接觸顧客數',   name_ja:'オンライン接触顧客数',fmt:_=>'—',                           tgt:null,        dk:'contact'},
-  {no:'⑥',key:'newLine',name_zh:'新增LINE-ID數',    name_ja:'新規LINE-ID数',    fmt:v=>v.toLocaleString()+'件',          tgt:TGT.newLine, dk:'line'},
-  {no:'⑦',key:'cvRate', name_zh:'EC轉化率',          name_ja:'EC転換率',         fmt:v=>v!=null?v+'%':'—',                tgt:TGT.cvRate,  dk:'cvRate'},
-  {no:'⑧',key:'tel',    name_zh:'TEL簽約數',         name_ja:'TEL成約数',        fmt:v=>v+'件',                           tgt:TGT.tel,     dk:'tel'},
-  {no:'⑨',key:'list',   name_zh:'顧客名單數',        name_ja:'顧客名簿数',       fmt:v=>v.toLocaleString()+'件',          tgt:TGT.list,    dk:'list'},
-  {no:'⑩',key:'telRate',name_zh:'電銷轉化率',        name_ja:'電話転換率',       fmt:v=>v+'%',                            tgt:TGT.telRate, dk:'telRate'},
-];
+function pctDiff(a,b){if(!b||a==null)return null;return Math.round((a-b)/b*100);}
+function badgeMom(p){if(p==null)return '<span class="badge bn">'+tx('mom')+' —</span>';return '<span class="badge '+(p>0?'bu':'bd')+'">'+(p>0?'+':'')+p+'%</span>';}
+function badgeTgt(v,tgt){if(!tgt||v==null)return '';var p=Math.round((v-tgt)/tgt*100);return '<span class="badge '+(p>=0?'bu':'bd')+'">'+tx('vsTarget')+' '+(p>0?'+':'')+p+'%</span>';}
 
-const DRILLS={
-  gmv:{t_zh:'① GMV = WEB銷售額 + TM銷售額',t_ja:'① GMV = WEB売上 + TEL売上',
-    ns:[{l_zh:'TEL 貢獻額（估）',l_ja:'TEL貢献額（推定）',v:d=>'NT$'+(d.tel*d.aov/10000).toFixed(1)+'万'},
-        {l_zh:'WEB 貢獻額（估）',l_ja:'WEB貢献額（推定）',v:d=>'NT$'+((d.gmv-d.tel*d.aov)/10000).toFixed(1)+'万'},
-        {l_zh:'TEL佔比',l_ja:'TEL比率',v:d=>Math.round(d.tel*d.aov/d.gmv*100)+'%'},
-        {l_zh:'WEB佔比',l_ja:'WEB比率',v:d=>(100-Math.round(d.tel*d.aov/d.gmv*100))+'%'}],
-    note:'drillNote_gmv'},
-  orders:{t_zh:'② 總簽約數 = ④EC + ⑧TEL',t_ja:'② 総成約数 = ④EC + ⑧TEL',
-    ns:[{l_zh:'EC簽約數（④）',l_ja:'EC成約数（④）',v:d=>d.ec+'件'},
-        {l_zh:'TEL簽約數（⑧）',l_ja:'TEL成約数（⑧）',v:d=>d.tel+'件'},
-        {l_zh:'EC佔比',l_ja:'EC比率',v:d=>Math.round(d.ec/(d.ec+d.tel)*100)+'%'},
-        {l_zh:'TEL佔比',l_ja:'TEL比率',v:d=>Math.round(d.tel/(d.ec+d.tel)*100)+'%'}],
-    note:'drillNote_orders'},
-  aov:{t_zh:'③ AOV 影響因素：商品組合',t_ja:'③ AOV 影響要因：商品構成',
-    ns:[{l_zh:'核心主力商品均價',l_ja:'主力商品平均単価',v:_=>'NT$3,200～4,900'},
-        {l_zh:'高單價商品佔比',l_ja:'高単価商品比率',v:_=>'—'},
-        {l_zh:'LTV遞進路徑',l_ja:'LTV進行パス',v:_=>'初階→進階 / 0~3歳→幼児期'}],
-    note:'drillNote_aov'},
-  ec:{t_zh:'④ EC簽約數 = 觸及人數 × ⑦EC轉化率',t_ja:'④ EC成約数 = リーチ人数 × ⑦EC転換率',
-    ns:[{l_zh:'④-1 新增簽約',l_ja:'④-1 新規成約',v:_=>'—'},
-        {l_zh:'④-2 續約',l_ja:'④-2 更新',v:_=>'—'},
-        {l_zh:'⑦ EC轉化率',l_ja:'⑦ EC転換率',v:d=>d.cvRate!=null?d.cvRate+'%':'—'},
-        {l_zh:'Super8觸及人數',l_ja:'Super8リーチ人数',v:_=>'—'}],
-    note:'drillNote_ec'},
-  contact:{t_zh:'⑤ 線上接觸顧客數（C/8段）',t_ja:'⑤ オンライン接触顧客数（C/8段）',
-    ns:[{l_zh:'新增Super8標籤人數',l_ja:'新規Super8タグ人数',v:_=>'—'},
-        {l_zh:'標籤種類數',l_ja:'タグ種別数',v:_=>'—'},
-        {l_zh:'互動率',l_ja:'インタラクション率',v:_=>'—'}],
-    note:'drillNote_contact'},
-  line:{t_zh:'⑥ 新增LINE-ID 來源分解',t_ja:'⑥ 新規LINE-ID 流入元分解',
-    ns:[{l_zh:'異業合作',l_ja:'異業種提携',v:_=>'—'},
-        {l_zh:'SNS流量',l_ja:'SNS流入',v:_=>'—'},
-        {l_zh:'0-1歲族群佔比',l_ja:'0-1歳層比率',v:_=>'—'},
-        {l_zh:'綁定完成率',l_ja:'連携完了率',v:_=>'—'}],
-    note:'drillNote_line'},
-  cvRate:{t_zh:'⑦ EC轉化率 影響因素',t_ja:'⑦ EC転換率 影響要因',
-    ns:[{l_zh:'Super8旅程完成率',l_ja:'Super8旅程完了率',v:_=>'—'},
-        {l_zh:'購物車放棄率',l_ja:'カート放棄率',v:_=>'—'},
-        {l_zh:'推播開封率',l_ja:'プッシュ開封率',v:_=>'—'}],
-    note:'drillNote_cvRate'},
-  tel:{t_zh:'⑧ TEL簽約數 = ⑨名單數 × ⑩轉化率',t_ja:'⑧ TEL成約数 = ⑨名簿数 × ⑩転換率',
-    ns:[{l_zh:'⑧-1 新增成約',l_ja:'⑧-1 新規成約',v:_=>'—'},
-        {l_zh:'⑧-2 續約',l_ja:'⑧-2 更新',v:_=>'—'},
-        {l_zh:'外撥總量',l_ja:'外発総数',v:_=>'—'},
-        {l_zh:'應答率',l_ja:'応答率',v:_=>'—'}],
-    note:'drillNote_tel'},
-  list:{t_zh:'⑨ 顧客名單數 品質視角',t_ja:'⑨ 顧客名簿数 品質視点',
-    ns:[{l_zh:'Super8標籤累積數（⑤）',l_ja:'Super8タグ累積数（⑤）',v:_=>'—'},
-        {l_zh:'高意圖名單數',l_ja:'高意向名簿数',v:_=>'—'},
-        {l_zh:'DB疲勞指標',l_ja:'DBファティーグ指標',v:_=>'—'}],
-    note:'drillNote_list'},
-  telRate:{t_zh:'⑩ 電銷轉化率 影響因素',t_ja:'⑩ 電話転換率 影響要因',
-    ns:[{l_zh:'⑨ 顧客名單數',l_ja:'⑨ 顧客名簿数',v:d=>d.list.toLocaleString()+'件'},
-        {l_zh:'應答率',l_ja:'応答率',v:_=>'—'},
-        {l_zh:'名單月齡匹配度',l_ja:'名簿月齢マッチ度',v:_=>'—'}],
-    note:'drillNote_telRate'},
-};
+function renderKPIs(d,prev){
+  var html = '';
+  var names = tx('kpiNames');
+  for(var i=0;i<KPIS.length;i++){
+    var k = KPIS[i];
+    var v = d[k.key];
+    var pv = prev ? prev[k.key] : null;
+    var p = pctDiff(v,pv);
+    var ok = k.tgt && v!=null ? v>=k.tgt : null;
+    var bc = ok===true ? '#1D9E75' : ok===false ? '#E24B4A' : '#e0e0dc';
+    var achPct = k.tgt && v!=null ? Math.round(v/k.tgt*100) : null;
+    var barW = achPct!=null ? Math.min(achPct,100) : 0;
+    var barColor = achPct==null ? '#ccc' : achPct>100 ? '#185FA5' : ok ? '#1D9E75' : '#E24B4A';
+    html += '<div class="kc" onclick="tDrill('+i+')" style="border-color:'+bc+'">';
+    html += '<div class="kno">'+k.no+'</div>';
+    html += '<div class="kv">'+k.fmt(v!=null?v:0)+'</div>';
+    html += '<div class="kn">'+names[i]+'</div>';
+    html += '<div class="kprog-track"><div class="kprog-fill" style="width:'+barW+'%;background:'+barColor+'"></div></div>';
+    if(achPct!=null) html += '<div class="kach">'+tx('achLabel')+' '+achPct+'%</div>';
+    html += '<div class="kbs">'+badgeMom(p)+badgeTgt(v,k.tgt)+'</div>';
+    html += '</div>';
+  }
+  document.getElementById('kg').innerHTML = html;
+}
 
-let activeKey=null;
+function tDrill(idx){
+  var dp = document.getElementById('dp');
+  if(activeKey===idx){ dp.classList.remove('on'); activeKey=null; return; }
+  activeKey = idx;
+  var d = ALL[document.getElementById('msel').value];
+  var titles = tx('drillTitles');
+  var notes  = tx('drillNotes');
+  var labels = tx('drillLabels');
+  var vals   = DRILL_VALS[idx](d);
+  document.getElementById('dptitle').textContent = titles[idx];
+  var gridHtml = '';
+  for(var i=0;i<vals.length;i++){
+    gridHtml += '<div class="dn"><div class="dnl">'+(labels[idx][i]||'')+'</div><div class="dnv">'+vals[i]+'</div></div>';
+  }
+  document.getElementById('dpgrid').innerHTML = gridHtml;
+  document.getElementById('dpnote').textContent = notes[idx];
+  dp.classList.add('on');
+  dp.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
 
-// ── Canvas utilities ──
+function renderHealth(d){
+  var segs = [
+    { s:'L', tc:'sl-l', lbl:tx('segLabels')[0],
+      items:[{lbl:LANG==='zh'?'新增LINE-ID（⑥）':'新規LINE-ID（⑥）', val:d.newLine.toLocaleString()+'件', ok:d.newLine>=TGT.newLine}],
+      cn: d.newLine<TGT.newLine ? (LANG==='zh'?'新增LINE-ID '+d.newLine.toLocaleString()+'件，未達目標。名單停滯將在3～6個月後影響轉換。':'新規LINE-ID '+d.newLine.toLocaleString()+'件、目標未達。3〜6ヶ月後の転換に影響。') : null,
+      gd: d.newLine>=TGT.newLine ? (LANG==='zh'?'名單獲取達標。注意維持目標族群（0～24月齡）佔比。':'名簿獲得達成。対象層（0〜24ヶ月）比率の維持に注意。') : null },
+    { s:'C', tc:'sl-c', lbl:tx('segLabels')[1],
+      items:[{lbl:LANG==='zh'?'線上接觸顧客數（⑤）':'オンライン接触顧客数（⑤）', val:'—', ok:null}],
+      cn: LANG==='zh'?'C段數據待補入（L2-B）。標籤是否有效驅動後續旅程尚無法評估。':'C段データ未入力（L2-B）。タグが後続旅程を有効促進しているか評価不可。',
+      gd: null },
+    { s:'8', tc:'sl-8', lbl:tx('segLabels')[2],
+      items:[
+        {lbl:LANG==='zh'?'EC簽約數（④）':'EC成約数（④）', val:d.ec+'件', ok:d.ec>=TGT.ec},
+        {lbl:LANG==='zh'?'EC轉化率（⑦）':'EC転換率（⑦）', val:d.cvRate!=null?d.cvRate+'%':'—', ok:d.cvRate!=null?d.cvRate>=TGT.cvRate:null}
+      ],
+      cn: d.ec<TGT.ec ? (LANG==='zh'?'EC簽約數'+d.ec+'件未達目標。旅程流失點需確認。':'EC成約数'+d.ec+'件、目標未達。旅程離脱点を確認。') : null,
+      gd: d.cvRate>=15 ? (LANG==='zh'?'EC轉化率'+d.cvRate+'%高水準。擴大觸及人數可直接拉升GMV。':'EC転換率'+d.cvRate+'%高水準。リーチ人数拡大でGMV直接向上可能。') : null },
+    { s:'T', tc:'sl-t', lbl:tx('segLabels')[3],
+      items:[
+        {lbl:LANG==='zh'?'顧客名單數（⑨）':'顧客名簿数（⑨）', val:d.list.toLocaleString()+'件', ok:d.list>=TGT.list},
+        {lbl:LANG==='zh'?'電銷轉化率（⑩）':'電話転換率（⑩）', val:d.telRate+'%', ok:d.telRate>=TGT.telRate}
+      ],
+      cn: d.telRate<TGT.telRate ? (LANG==='zh'?'電銷轉化率'+d.telRate+'%未達目標。名單品質・DB疲勞を確認。':'電話転換率'+d.telRate+'%、目標未達。名簿品質・DBファティーグを確認。') : null,
+      gd: d.telRate>=TGT.telRate ? (LANG==='zh'?'電銷轉化率達標。名單品質良好。':'電話転換率達成。名簿品質良好。') : null }
+  ];
+  var html = '';
+  for(var i=0;i<segs.length;i++){
+    var s = segs[i];
+    html += '<div class="hcard"><div class="hct">'+s.lbl+'<span class="stag '+s.tc+'">'+s.s+'段</span></div>';
+    for(var j=0;j<s.items.length;j++){
+      var it = s.items[j];
+      var okBadge = it.ok===true ? '<span class="badge bu">'+tx('hit')+'</span>' : it.ok===false ? '<span class="badge bd">'+tx('miss')+'</span>' : '<span class="badge bn">'+tx('pending')+'</span>';
+      html += '<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;"><span class="hv">'+it.val+'</span>'+okBadge+'</div><div class="hs">'+it.lbl+'</div>';
+    }
+    if(s.cn) html += '<div class="hcn">✕ '+s.cn+'</div>';
+    if(s.gd) html += '<div class="hgd">◎ '+s.gd+'</div>';
+    html += '</div>';
+  }
+  document.getElementById('hrow').innerHTML = html;
+
+  document.getElementById('frow').innerHTML =
+    '<div class="fn"><div class="fns" style="color:#0F6E56">L</div><div class="fnv">'+d.newLine.toLocaleString()+'</div><div class="fnl">'+tx('fAdd')+'</div></div>'+
+    '<div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">'+tx('fNurture')+'</span></div>'+
+    '<div class="fn"><div class="fns" style="color:#185FA5">C</div><div class="fnv">—</div><div class="fnl">'+tx('fTag')+'</div></div>'+
+    '<div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">'+tx('fSeg')+'</span></div>'+
+    '<div class="fn"><div class="fns" style="color:#534AB7">8</div><div class="fnv">'+(d.cvRate!=null?d.cvRate+'%':'—')+'</div><div class="fnl">'+tx('fCv')+'</div></div>'+
+    '<div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">'+tx('fConvert')+'</span></div>'+
+    '<div class="fn"><div class="fns" style="color:#854F0B">T</div><div class="fnv">'+d.telRate+'%</div><div class="fnl">'+tx('fTel')+'</div></div>'+
+    '<div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">'+tx('fResult')+'</span></div>'+
+    '<div class="fn" style="border-color:#1D9E75"><div class="fns" style="color:#1D9E75">GMV</div><div class="fnv">'+(d.gmv/10000).toFixed(1)+'万</div><div class="fnl">'+tx('fGmv')+'</div></div>';
+}
+
+function renderActions(d,prev){
+  var acts = [];
+  if(d.telRate<TGT.telRate) acts.push({p:'high',t:tx('act1t'),r:LANG==='zh'?'電銷轉化率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。確認DB疲勞狀況，將外撥聚焦於高意圖名單。':'電話転換率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。DBファティーグ状況を確認し、高意向名簿への外発を集中。',s:'T段'});
+  if(d.list<TGT.list) acts.push({p:'high',t:tx('act2t'),r:LANG==='zh'?'顧客名單數 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。確認旅程進入數vs完成數，找出流失點並補強再介入場景。':'顧客名簿数 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。旅程の進入数vs完了数を確認し、離脱点を補強。',s:'8段→T段'});
+  if(d.newLine<TGT.newLine) acts.push({p:'mid',t:tx('act3t'),r:LANG==='zh'?'新增LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。確認異業合作・SNS活動是否中斷。':'新規LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。異業種提携・SNS施策の継続状況を確認。',s:'L段'});
+  if(d.cvRate!=null&&d.cvRate>=15) acts.push({p:'mid',t:tx('act4t')+'（'+d.cvRate+'%）',r:LANG==='zh'?'轉化率高但觸及人數有限。擴大Super8廣播配信對象，可直接拉升EC簽約數與GMV。':'転換率高水準だがリーチ人数が限定的。Super8配信対象を拡大することでEC成約数とGMVを直接向上可能。',s:'8段→EC'});
+  if(d.aov<TGT.aov) acts.push({p:'low',t:tx('act5t'),r:LANG==='zh'?'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。確認英語進階版(NT$4,500)・語彙智育套組(NT$4,900)旅程訴求月齡是否精準。':'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。英語上級版(NT$4,500)・語彙知育セット(NT$4,900)旅程の月齢訴求精度を確認。',s:'8段・T段'});
+  acts.push({p:'low',t:tx('act6t'),r:tx('act6r'),s:LANG==='zh'?'全段':'全段'});
+  var html = '';
+  for(var i=0;i<acts.length;i++){
+    var a = acts[i];
+    var pCls = a.p==='high'?'ph':a.p==='mid'?'pm':'pl';
+    var pLbl = a.p==='high'?tx('priorityHigh'):a.p==='mid'?tx('priorityMid'):tx('priorityLow');
+    html += '<div class="ac"><span class="ap '+pCls+'">'+pLbl+'</span><div><div class="at">'+a.t+'</div><div class="ar">'+a.r+'</div><div class="aseg">'+tx('actSeg')+' '+a.s+'</div></div></div>';
+  }
+  document.getElementById('alist').innerHTML = html;
+}
+
+function setV(id,txt,cls){var el=document.getElementById(id);el.textContent=txt;el.className='vd '+cls;}
+function renderVerdicts(d){
+  var q1ok = d.gmv>=TGT.gmv && d.orders>=TGT.orders;
+  setV('v1', q1ok?tx('v1hit'):tx('v1miss'), q1ok?'vg':'vw');
+  var nmOk = d.newLine>=TGT.newLine && d.list>=TGT.list;
+  setV('v2', nmOk?tx('v2hit'):tx('v2miss'), nmOk?'vg':(d.telRate<TGT.telRate?'vb':'vw'));
+  var iss = [d.gmv<TGT.gmv,d.telRate<TGT.telRate,d.list<TGT.list,d.newLine<TGT.newLine].filter(Boolean).length;
+  setV('v3', iss?iss+tx('v3iss'):tx('v3ok'), iss>=3?'vb':iss>=1?'vw':'vg');
+}
+
+// ── Canvas ──
 function setupCanvas(id,hpx){
-  const c=document.getElementById(id); if(!c)return null;
-  const dpr=window.devicePixelRatio||1;
-  const W=c.parentElement.clientWidth-28, H=hpx;
+  var c=document.getElementById(id); if(!c)return null;
+  var dpr=window.devicePixelRatio||1;
+  var W=c.parentElement.clientWidth-28, H=hpx;
   c.width=W*dpr; c.height=H*dpr;
   c.style.width=W+'px'; c.style.height=H+'px';
-  const ctx=c.getContext('2d'); ctx.scale(dpr,dpr);
-  return{ctx,W,H};
+  var ctx=c.getContext('2d'); ctx.scale(dpr,dpr);
+  return{ctx:ctx,W:W,H:H};
 }
 function drawGrid(ctx,PAD,W,H,maxV,minV,xLabels){
   ctx.strokeStyle='rgba(0,0,0,0.07)'; ctx.lineWidth=0.5;
-  const cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
-  [0,.25,.5,.75,1].forEach(r=>{
-    const y=PAD.t+cH*(1-r);
+  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
+  var rs=[0,0.25,0.5,0.75,1];
+  for(var ri=0;ri<rs.length;ri++){
+    var r=rs[ri], y=PAD.t+cH*(1-r);
     ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
-    const val=minV+(maxV-minV)*r;
-    const label=val>=10000?(val/10000).toFixed(1)+'万':val>=1000?(val/1000).toFixed(0)+'k':val.toFixed(val<10?1:0);
+    var val=minV+(maxV-minV)*r;
+    var label=val>=10000?(val/10000).toFixed(1)+'万':val>=1000?(val/1000).toFixed(0)+'k':val.toFixed(val<10?1:0);
     ctx.fillStyle='rgba(0,0,0,0.35)'; ctx.font='9px sans-serif'; ctx.textAlign='right';
     ctx.fillText(label,PAD.l-3,y+3);
-  });
+  }
   ctx.fillStyle='rgba(0,0,0,0.4)'; ctx.font='9px sans-serif'; ctx.textAlign='center';
-  xLabels.forEach((l,i)=>{ctx.fillText(l,PAD.l+(i+0.5)*(cW/xLabels.length),H-6);});
+  for(var i=0;i<xLabels.length;i++){
+    ctx.fillText(xLabels[i],PAD.l+(i+0.5)*(cW/xLabels.length),H-6);
+  }
 }
 function drawTgtLine(ctx,PAD,W,H,maxV,minV,tgt){
-  const cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
-  const ty=PAD.t+cH*(1-(tgt-minV)/(maxV-minV));
+  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
+  var ty=PAD.t+cH*(1-(tgt-minV)/(maxV-minV));
   ctx.strokeStyle='#5DCAA5'; ctx.lineWidth=1.2; ctx.setLineDash([5,4]);
   ctx.beginPath(); ctx.moveTo(PAD.l,ty); ctx.lineTo(PAD.l+cW,ty); ctx.stroke();
   ctx.setLineDash([]);
 }
 function barChart(id,hpx,labels,values,colorFn,tgt){
-  const s=setupCanvas(id,hpx); if(!s)return;
-  const{ctx,W,H}=s;
-  const PAD={t:10,r:10,b:22,l:46};
-  const valid=values.filter(v=>v!=null);
-  const maxV=Math.max(...valid,tgt||0)*1.12, minV=0;
-  const cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
-  const n=labels.length, barW=cW/n*0.62;
+  var s=setupCanvas(id,hpx); if(!s)return;
+  var ctx=s.ctx, W=s.W, H=s.H;
+  var PAD={t:10,r:10,b:22,l:46};
+  var valid=values.filter(function(v){return v!=null;});
+  var maxV=Math.max.apply(null,valid.concat(tgt||0))*1.12, minV=0;
+  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
+  var n=labels.length, barW=cW/n*0.62;
   drawGrid(ctx,PAD,W,H,maxV,minV,labels);
   if(tgt)drawTgtLine(ctx,PAD,W,H,maxV,minV,tgt);
-  values.forEach((v,i)=>{
-    if(v==null)return;
-    const x=PAD.l+i*(cW/n)+(cW/n-barW)/2;
-    const h=(v-minV)/(maxV-minV)*cH, y=PAD.t+cH-h;
+  for(var i=0;i<values.length;i++){
+    var v=values[i]; if(v==null)continue;
+    var x=PAD.l+i*(cW/n)+(cW/n-barW)/2;
+    var h=(v-minV)/(maxV-minV)*cH, y=PAD.t+cH-h;
     ctx.fillStyle=colorFn(v,i);
     ctx.beginPath();
     if(ctx.roundRect)ctx.roundRect(x,y,barW,h,3); else ctx.rect(x,y,barW,h);
     ctx.fill();
-  });
+  }
 }
 function lineChart(id,hpx,labels,datasets,tgt){
-  const s=setupCanvas(id,hpx); if(!s)return;
-  const{ctx,W,H}=s;
-  const PAD={t:10,r:10,b:22,l:44};
-  const allVals=datasets.flatMap(d=>d.values.filter(v=>v!=null));
+  var s=setupCanvas(id,hpx); if(!s)return;
+  var ctx=s.ctx, W=s.W, H=s.H;
+  var PAD={t:10,r:10,b:22,l:44};
+  var allVals=[];
+  for(var di=0;di<datasets.length;di++){datasets[di].values.forEach(function(v){if(v!=null)allVals.push(v);});}
   if(tgt)allVals.push(tgt);
-  const maxV=Math.max(...allVals)*1.15, minV=Math.min(0,...allVals)*0.9;
-  const cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r, n=labels.length;
-  const xOf=i=>PAD.l+i*(cW/(n-1)), yOf=v=>PAD.t+cH*(1-(v-minV)/(maxV-minV));
+  var maxV=Math.max.apply(null,allVals)*1.15, minV=Math.min.apply(null,[0].concat(allVals))*0.9;
+  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r, n=labels.length;
+  var xOf=function(i){return PAD.l+i*(cW/(n-1));};
+  var yOf=function(v){return PAD.t+cH*(1-(v-minV)/(maxV-minV));};
   drawGrid(ctx,PAD,W,H,maxV,minV,labels);
   if(tgt)drawTgtLine(ctx,PAD,W,H,maxV,minV,tgt);
-  datasets.forEach(ds=>{
+  for(var di=0;di<datasets.length;di++){
+    var ds=datasets[di];
     ctx.strokeStyle=ds.color; ctx.lineWidth=2; ctx.lineJoin='round';
-    ctx.beginPath(); let started=false;
-    ds.values.forEach((v,i)=>{
-      if(v==null){started=false;return;}
-      if(!started){ctx.moveTo(xOf(i),yOf(v));started=true;}
-      else ctx.lineTo(xOf(i),yOf(v));
-    });
+    ctx.beginPath(); var started=false;
+    for(var i=0;i<ds.values.length;i++){
+      var v=ds.values[i]; if(v==null){started=false;continue;}
+      if(!started){ctx.moveTo(xOf(i),yOf(v));started=true;}else ctx.lineTo(xOf(i),yOf(v));
+    }
     ctx.stroke();
-    ds.values.forEach((v,i)=>{
-      if(v==null)return;
+    for(var i=0;i<ds.values.length;i++){
+      var v=ds.values[i]; if(v==null)continue;
       ctx.beginPath(); ctx.arc(xOf(i),yOf(v),3.5,0,Math.PI*2);
       ctx.fillStyle=ds.dotColor?ds.dotColor(v):ds.color; ctx.fill();
-    });
-  });
+    }
+  }
 }
 function stackBar(id,hpx,labels,d1,d2,c1,c2){
-  const s=setupCanvas(id,hpx); if(!s)return;
-  const{ctx,W,H}=s;
-  const PAD={t:10,r:10,b:22,l:42};
-  const totals=d1.map((v,i)=>(v||0)+(d2[i]||0));
-  const maxV=Math.max(...totals)*1.12;
-  const cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r, n=labels.length, barW=cW/n*0.62;
+  var s=setupCanvas(id,hpx); if(!s)return;
+  var ctx=s.ctx, W=s.W, H=s.H;
+  var PAD={t:10,r:10,b:22,l:42};
+  var totals=d1.map(function(v,i){return (v||0)+(d2[i]||0);});
+  var maxV=Math.max.apply(null,totals)*1.12;
+  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r, n=labels.length, barW=cW/n*0.62;
   drawGrid(ctx,PAD,W,H,maxV,0,labels);
-  labels.forEach((_,i)=>{
-    const x=PAD.l+i*(cW/n)+(cW/n-barW)/2;
-    const h1=(d1[i]||0)/maxV*cH, h2=(d2[i]||0)/maxV*cH;
-    ctx.fillStyle=c1;
-    ctx.beginPath();
+  for(var i=0;i<labels.length;i++){
+    var x=PAD.l+i*(cW/n)+(cW/n-barW)/2;
+    var h1=(d1[i]||0)/maxV*cH, h2=(d2[i]||0)/maxV*cH;
+    ctx.fillStyle=c1; ctx.beginPath();
     if(ctx.roundRect)ctx.roundRect(x,PAD.t+cH-h1-h2,barW,h1,2); else ctx.rect(x,PAD.t+cH-h1-h2,barW,h1);
     ctx.fill();
-    ctx.fillStyle=c2;
-    ctx.beginPath();
+    ctx.fillStyle=c2; ctx.beginPath();
     if(ctx.roundRect)ctx.roundRect(x,PAD.t+cH-h2,barW,h2,2); else ctx.rect(x,PAD.t+cH-h2,barW,h2);
     ctx.fill();
-  });
+  }
 }
 function drawAllCharts(){
-  const gmvD=RK.map(k=>+(ALL[k].gmv/10000).toFixed(1));
-  barChart('cGMV',160,RL,gmvD,v=>v>=(TGT.gmv/10000)?'#1D9E75':'#E24B4A',TGT.gmv/10000);
-  barChart('cORD',140,RL,RK.map(k=>ALL[k].orders),v=>v>=TGT.orders?'#1D9E75':'#E24B4A',TGT.orders);
-  barChart('cAOV',140,RL,RK.map(k=>ALL[k].aov),v=>v>=TGT.aov?'#1D9E75':'#E24B4A',TGT.aov);
-  stackBar('cCH',140,RL,RK.map(k=>ALL[k].tel),RK.map(k=>ALL[k].ec),'rgba(127,119,221,.8)','rgba(55,138,221,.8)');
-  lineChart('cLINE',130,RL,[{values:RK.map(k=>ALL[k].newLine),color:'#5DCAA5',dotColor:v=>v>=TGT.newLine?'#1D9E75':'#E24B4A'}],TGT.newLine);
-  lineChart('cLIST',130,RL,[{values:RK.map(k=>ALL[k].list),color:'#7F77DD',dotColor:v=>v>=TGT.list?'#1D9E75':'#E24B4A'}],TGT.list);
-  lineChart('cTR',130,RL,[{values:RK.map(k=>ALL[k].telRate),color:'#D85A30',dotColor:v=>v>=TGT.telRate?'#1D9E75':'#E24B4A'}],TGT.telRate);
-  lineChart('cCV',130,RL,[{values:RK.map(k=>ALL[k].cvRate),color:'#1D9E75',dotColor:v=>v!=null?(v>=TGT.cvRate?'#1D9E75':'#E24B4A'):'#ccc'}],TGT.cvRate);
-}
-
-function pct(a,b){if(!b||a==null)return null;return Math.round((a-b)/b*100);}
-function bb(p){if(p==null)return`<span class="badge bn">${t('mom')} —</span>`;return`<span class="badge ${p>0?'bu':'bd'}">${p>0?'+':''}${p}%</span>`;}
-function bt(v,tgt){if(!tgt||v==null)return'';const p=Math.round((v-tgt)/tgt*100);return`<span class="badge ${p>=0?'bu':'bd'}">${t('vsTarget')} ${p>0?'+':''}${p}%</span>`;}
-
-function renderKPIs(d,prev){
-  document.getElementById('kg').innerHTML=KPIS.map(k=>{
-    const v=d[k.key], pv=prev?.[k.key], p=pct(v,pv);
-    const ok=k.tgt&&v!=null?v>=k.tgt:null;
-    const bc=ok===true?'#1D9E75':ok===false?'#E24B4A':'#e0e0dc';
-    const achPct=k.tgt&&v!=null?Math.round(v/k.tgt*100):null;
-    const barW=achPct!=null?Math.min(achPct,100):0;
-    const barColor=achPct==null?'#ccc':achPct>=100?'#185FA5':ok?'#1D9E75':'#E24B4A';
-    const name=LANG==='ja'?k.name_ja:k.name_zh;
-    return`<div class="kc" onclick="tDrill('${k.dk}')" style="border-color:${bc}">
-      <div class="kno">${k.no}</div>
-      <div class="kv">${k.fmt(v??0)}</div>
-      <div class="kn">${name}</div>
-      <div class="kprog-track"><div class="kprog-fill" style="width:${barW}%;background:${barColor}"></div></div>
-      ${achPct!=null?`<div class="kach">${t('achLabel')} ${achPct}%</div>`:''}
-      <div class="kbs">${bb(p)}${bt(v,k.tgt)}</div>
-    </div>`;
-  }).join('');
-}
-
-function tDrill(key){
-  const dp=document.getElementById('dp');
-  const d=ALL[document.getElementById('msel').value];
-  if(activeKey===key){dp.classList.remove('on');activeKey=null;return;}
-  activeKey=key;
-  const info=DRILLS[key]; if(!info){dp.classList.remove('on');return;}
-  const titleKey=LANG==='ja'?'t_ja':'t_zh';
-  const labelKey=LANG==='ja'?'l_ja':'l_zh';
-  document.getElementById('dptitle').textContent=info[titleKey]||info.t_zh;
-  document.getElementById('dpgrid').innerHTML=info.ns.map(n=>`<div class="dn"><div class="dnl">${n[labelKey]||n.l_zh}</div><div class="dnv">${n.v(d)}</div></div>`).join('');
-  document.getElementById('dpnote').textContent=t(info.note);
-  dp.classList.add('on'); dp.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
-function renderHealth(d){
-  const segs=[
-    {s:'L',lbl:t('lSeg'),tc:'sl-l',
-      ms:[{lk:'newLine',l_zh:'新增LINE-ID（⑥）',l_ja:'新規LINE-ID（⑥）',v:d.newLine.toLocaleString()+'件',ok:d.newLine>=TGT.newLine}],
-      cn:d.newLine<TGT.newLine?`${LANG==='ja'?'新規LINE-ID ':'新增LINE-ID '}${d.newLine.toLocaleString()}${LANG==='ja'?'件、目標未達。3〜6ヶ月後の転換に影響。':'件，未達目標。名單停滯將在3～6個月後影響轉換。'}`:null,
-      gd:d.newLine>=TGT.newLine?(LANG==='ja'?'名簿獲得達成。対象層（0〜24ヶ月）比率の維持に注意。':'名單獲取達標。注意維持目標族群（0～24月齡）佔比。'):null},
-    {s:'C',lbl:t('cSeg'),tc:'sl-c',
-      ms:[{lk:'contact',l_zh:'線上接觸顧客數（⑤）',l_ja:'オンライン接触顧客数（⑤）',v:'—',ok:null}],
-      cn:LANG==='ja'?'C段データ未入力（L2-B）。タグが後続旅程を有効促進しているか評価不可。':'C段數據待補入（L2-B）。標籤是否有效驅動後續旅程尚無法評估。',gd:null},
-    {s:'8',lbl:t('eSeg'),tc:'sl-8',
-      ms:[{lk:'ec',l_zh:'EC簽約數（④）',l_ja:'EC成約数（④）',v:d.ec+'件',ok:d.ec>=TGT.ec},
-          {lk:'cvRate',l_zh:'EC轉化率（⑦）',l_ja:'EC転換率（⑦）',v:d.cvRate!=null?d.cvRate+'%':'—',ok:d.cvRate!=null?d.cvRate>=TGT.cvRate:null}],
-      cn:d.ec<TGT.ec?(LANG==='ja'?`EC成約数${d.ec}件、目標未達。旅程離脱点を確認。`:`EC簽約數${d.ec}件未達目標。旅程流失點需確認。`):null,
-      gd:d.cvRate>=15?(LANG==='ja'?`EC転換率${d.cvRate}%高水準。リーチ人数拡大でGMV直接向上可能。`:`EC轉化率${d.cvRate}%高水準。擴大觸及人數可直接拉升GMV。`):null},
-    {s:'T',lbl:t('tSeg'),tc:'sl-t',
-      ms:[{lk:'list',l_zh:'顧客名單數（⑨）',l_ja:'顧客名簿数（⑨）',v:d.list.toLocaleString()+'件',ok:d.list>=TGT.list},
-          {lk:'telRate',l_zh:'電銷轉化率（⑩）',l_ja:'電話転換率（⑩）',v:d.telRate+'%',ok:d.telRate>=TGT.telRate}],
-      cn:d.telRate<TGT.telRate?(LANG==='ja'?`電話転換率${d.telRate}%、目標未達。名簿品質・DBファティーグを確認。`:`電銷轉化率${d.telRate}%未達目標。名單品質・DB疲勞を確認。`):null,
-      gd:d.telRate>=TGT.telRate?(LANG==='ja'?'電話転換率達成。名簿品質良好。':'電銷轉化率達標。名單品質良好。'):null},
-  ];
-  const lKey=LANG==='ja'?'l_ja':'l_zh';
-  document.getElementById('hrow').innerHTML=segs.map(s=>`<div class="hcard">
-    <div class="hct">${s.lbl}<span class="stag ${s.tc}">${s.s}段</span></div>
-    ${s.ms.map(m=>`<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;">
-      <span class="hv">${m.v}</span>
-      ${m.ok===true?`<span class="badge bu">${t('hit')}</span>`:m.ok===false?`<span class="badge bd">${t('miss')}</span>`:`<span class="badge bn">${t('pending')}</span>`}
-    </div><div class="hs">${m[lKey]}</div>`).join('')}
-    ${s.cn?`<div class="hcn">✕ ${s.cn}</div>`:''}
-    ${s.gd?`<div class="hgd">◎ ${s.gd}</div>`:''}
-  </div>`).join('');
-
-  document.getElementById('frow').innerHTML=`
-    <div class="fn"><div class="fns" style="color:#0F6E56">L</div><div class="fnv">${d.newLine.toLocaleString()}</div><div class="fnl">${t('fAdd')}</div></div>
-    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">${t('fNurture')}</span></div>
-    <div class="fn"><div class="fns" style="color:#185FA5">C</div><div class="fnv">—</div><div class="fnl">${t('fTag')}</div></div>
-    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">${t('fSeg')}</span></div>
-    <div class="fn"><div class="fns" style="color:#534AB7">8</div><div class="fnv">${d.cvRate!=null?d.cvRate+'%':'—'}</div><div class="fnl">${t('fCv')}</div></div>
-    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">${t('fConvert')}</span></div>
-    <div class="fn"><div class="fns" style="color:#854F0B">T</div><div class="fnv">${d.telRate}%</div><div class="fnl">${t('fTel')}</div></div>
-    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">${t('fResult')}</span></div>
-    <div class="fn" style="border-color:#1D9E75"><div class="fns" style="color:#1D9E75">GMV</div><div class="fnv">${(d.gmv/10000).toFixed(1)}万</div><div class="fnl">${t('fGmv')}</div></div>`;
-}
-
-function renderActions(d,prev){
-  const acts=[];
-  if(d.telRate<TGT.telRate) acts.push({p:'high',t:t('act1t'),r:LANG==='ja'?`電話転換率 ${d.telRate}%（目標 ${TGT.telRate}%）。DBファティーグ状況を確認し、高意向名簿への外発を集中。Super8旅程が外発前に応答意欲を高めているか確認。`:`電銷轉化率 ${d.telRate}%（目標 ${TGT.telRate}%）。確認DB疲勞狀況，將外撥聚焦於高意圖名單。`,s:'T段'});
-  if(d.list<TGT.list) acts.push({p:'high',t:t('act2t'),r:LANG==='ja'?`顧客名簿数 ${d.list.toLocaleString()}件（目標 ${TGT.list.toLocaleString()}件）。旅程の進入数vs完了数を確認し、離脱点を補強。`:`顧客名單數 ${d.list.toLocaleString()}件（目標 ${TGT.list.toLocaleString()}件）。確認旅程進入數vs完成數。`,s:'8段→T段'});
-  if(d.newLine<TGT.newLine) acts.push({p:'mid',t:t('act3t'),r:LANG==='ja'?`新規LINE-ID ${d.newLine.toLocaleString()}件（目標 ${TGT.newLine.toLocaleString()}件）。異業種提携・SNS施策の継続状況を確認。`:`新增LINE-ID ${d.newLine.toLocaleString()}件（目標 ${TGT.newLine.toLocaleString()}件）。確認異業合作・SNS活動是否中斷。`,s:'L段'});
-  if(d.cvRate!=null&&d.cvRate>=15) acts.push({p:'mid',t:t('act4t')+'（'+d.cvRate+'%）',r:LANG==='ja'?'転換率高水準だがリーチ人数が限定的。Super8配信対象を拡大することでEC成約数とGMVを直接向上可能。':'轉化率高但觸及人數有限。擴大Super8廣播配信對象，可直接拉升EC簽約數與GMV。',s:'8段→EC'});
-  if(d.aov<TGT.aov) acts.push({p:'low',t:t('act5t'),r:LANG==='ja'?`AOV NT$${d.aov.toLocaleString()}（目標 NT$${TGT.aov.toLocaleString()}）。英語上級版(NT$4,500)・語彙知育セット(NT$4,900)旅程の月齢訴求精度を確認。`:`AOV NT$${d.aov.toLocaleString()}（目標 NT$${TGT.aov.toLocaleString()}）。確認英語進階版(NT$4,500)・語彙智育套組(NT$4,900)旅程訴求月齡是否精準。`,s:'8段・T段'});
-  acts.push({p:'low',t:t('act6t'),r:t('act6r'),s:LANG==='ja'?'全段':'全段'});
-  document.getElementById('alist').innerHTML=acts.map(a=>`<div class="ac">
-    <span class="ap ${a.p==='high'?'ph':a.p==='mid'?'pm':'pl'}">${a.p==='high'?t('priorityHigh'):a.p==='mid'?t('priorityMid'):t('priorityLow')}</span>
-    <div><div class="at">${a.t}</div><div class="ar">${a.r}</div><div class="aseg">${t('actSeg')} ${a.s}</div></div>
-  </div>`).join('');
-}
-
-function setV(id,txt,cls){const el=document.getElementById(id);el.textContent=txt;el.className='vd '+cls;}
-
-function renderVerdicts(d){
-  const q1ok=d.gmv>=TGT.gmv&&d.orders>=TGT.orders;
-  setV('v1',q1ok?t('v1hit'):t('v1miss'),q1ok?'vg':'vw');
-  const nmOk=d.newLine>=TGT.newLine&&d.list>=TGT.list;
-  setV('v2',nmOk?t('v2hit'):t('v2miss'),nmOk?'vg':(d.telRate<TGT.telRate?'vb':'vw'));
-  const iss=[d.gmv<TGT.gmv,d.telRate<TGT.telRate,d.list<TGT.list,d.newLine<TGT.newLine].filter(Boolean).length;
-  setV('v3',iss?iss+t('v3iss'):t('v3ok'),iss>=3?'vb':iss>=1?'vw':'vg');
+  var gmvD=RK.map(function(k){return +(ALL[k].gmv/10000).toFixed(1);});
+  barChart('cGMV',160,RL,gmvD,function(v){return v>=(TGT.gmv/10000)?'#1D9E75':'#E24B4A';},TGT.gmv/10000);
+  barChart('cORD',140,RL,RK.map(function(k){return ALL[k].orders;}),function(v){return v>=TGT.orders?'#1D9E75':'#E24B4A';},TGT.orders);
+  barChart('cAOV',140,RL,RK.map(function(k){return ALL[k].aov;}),function(v){return v>=TGT.aov?'#1D9E75':'#E24B4A';},TGT.aov);
+  stackBar('cCH',140,RL,RK.map(function(k){return ALL[k].tel;}),RK.map(function(k){return ALL[k].ec;}),'rgba(127,119,221,.8)','rgba(55,138,221,.8)');
+  lineChart('cLINE',130,RL,[{values:RK.map(function(k){return ALL[k].newLine;}),color:'#5DCAA5',dotColor:function(v){return v>=TGT.newLine?'#1D9E75':'#E24B4A';}}],TGT.newLine);
+  lineChart('cLIST',130,RL,[{values:RK.map(function(k){return ALL[k].list;}),color:'#7F77DD',dotColor:function(v){return v>=TGT.list?'#1D9E75':'#E24B4A';}}],TGT.list);
+  lineChart('cTR',130,RL,[{values:RK.map(function(k){return ALL[k].telRate;}),color:'#D85A30',dotColor:function(v){return v>=TGT.telRate?'#1D9E75':'#E24B4A';}}],TGT.telRate);
+  lineChart('cCV',130,RL,[{values:RK.map(function(k){return ALL[k].cvRate;}),color:'#1D9E75',dotColor:function(v){return v!=null?(v>=TGT.cvRate?'#1D9E75':'#E24B4A'):'#ccc';}}],TGT.cvRate);
 }
 
 function stab(n){
-  [1,2,3].forEach(i=>{
+  for(var i=1;i<=3;i++){
     document.getElementById('tb'+i).classList.toggle('on',i===n);
     document.getElementById('p'+i).classList.toggle('on',i===n);
-  });
+  }
   setTimeout(drawAllCharts,80);
 }
 
 function render(){
-  const key=document.getElementById('msel').value;
-  const d=ALL[key], idx=KEYS.indexOf(key);
-  const prev=KEYS[idx+1]?ALL[KEYS[idx+1]]:null;
+  var key=document.getElementById('msel').value;
+  var d=ALL[key], idx=KEYS.indexOf(key);
+  var prev=KEYS[idx+1]?ALL[KEYS[idx+1]]:null;
   activeKey=null;
   document.getElementById('dp').classList.remove('on');
-  applyLangTexts();
+  applyTexts();
   renderVerdicts(d);
   renderAchBar(d);
   renderAchSummary(d);
