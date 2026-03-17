@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC8T 儀表板</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#f8f8f6;color:#2c2c2a;font-size:14px;}
+.wrap{max-width:1000px;margin:0 auto;padding:24px 16px;}
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px;}
+.htitle{font-size:16px;font-weight:600;}
+.msel{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#2c2c2a;cursor:pointer;}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #e0e0dc;border-radius:12px;overflow:hidden;margin-bottom:24px;background:#f1efe8;}
+.tab{padding:0;cursor:pointer;background:transparent;border:none;border-right:1px solid #e0e0dc;transition:background .15s;}
+.tab:last-child{border-right:none;}
+.tab.on{background:#fff;}
+.ti{padding:14px 12px;text-align:left;}
+.tq{font-size:10px;color:#888;margin-bottom:4px;letter-spacing:.05em;}
+.tl{font-size:12px;font-weight:500;color:#888;margin-bottom:7px;line-height:1.4;}
+.tab.on .tl{color:#2c2c2a;}
+.vd{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;display:inline-block;}
+.vg{background:#EAF3DE;color:#3B6D11;}
+.vw{background:#FAEEDA;color:#854F0B;}
+.vb{background:#FCEBEB;color:#A32D2D;}
+.panel{display:none;}.panel.on{display:block;}
+.slabel{font-size:10px;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;}
+.badge{font-size:10px;padding:2px 6px;border-radius:5px;font-weight:600;white-space:nowrap;}
+.bu{background:#EAF3DE;color:#3B6D11;}.bd{background:#FCEBEB;color:#A32D2D;}.bn{background:#F1EFE8;color:#5F5E5A;}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:12px;}
+.kc{border:1.5px solid #e0e0dc;border-radius:10px;padding:12px 14px;cursor:pointer;background:#fff;transition:border-color .15s;}
+.kc:hover{border-color:#888;}
+.kno{font-size:10px;color:#888;margin-bottom:3px;}
+.kv{font-size:18px;font-weight:600;margin-bottom:3px;}
+.kn{font-size:11px;color:#888;margin-bottom:6px;}
+.kbs{display:flex;gap:4px;flex-wrap:wrap;}
+.dp{display:none;border:1px solid #e0e0dc;border-radius:12px;padding:16px;margin-bottom:16px;background:#f8f8f6;}
+.dp.on{display:block;}
+.dpt{font-size:13px;font-weight:600;margin-bottom:12px;}
+.dpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:10px;}
+.dn{background:#fff;border:1px solid #e0e0dc;border-radius:8px;padding:10px 12px;}
+.dnl{font-size:10px;color:#888;margin-bottom:3px;}
+.dnv{font-size:13px;font-weight:600;}
+.dnn{font-size:11px;color:#888;line-height:1.6;padding-top:8px;border-top:1px solid #e0e0dc;}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.cbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
+.cbox.full{grid-column:1/-1;}
+.ct{font-size:12px;font-weight:600;margin-bottom:2px;}
+.cs{font-size:10px;color:#888;margin-bottom:8px;}
+.lg{display:flex;gap:12px;margin-bottom:8px;font-size:10px;color:#888;flex-wrap:wrap;}
+.ld{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle;}
+.hrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.hcard{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
+.hct{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.stag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;}
+.sl-l{background:#E1F5EE;color:#0F6E56;}.sl-c{background:#E6F1FB;color:#185FA5;}.sl-8{background:#EEEDFE;color:#534AB7;}.sl-t{background:#FAEEDA;color:#854F0B;}
+.hv{font-size:20px;font-weight:600;}
+.hs{font-size:11px;color:#888;margin-bottom:4px;}
+.hcn{font-size:11px;color:#A32D2D;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
+.hgd{font-size:11px;color:#3B6D11;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
+.fbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;margin-bottom:16px;overflow-x:auto;}
+.fr{display:flex;align-items:center;min-width:520px;}
+.fn{flex-shrink:0;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #e0e0dc;min-width:82px;background:#f8f8f6;}
+.fns{font-size:10px;margin-bottom:3px;font-weight:600;}
+.fnv{font-size:14px;font-weight:700;}
+.fnl{font-size:10px;color:#888;}
+.fa{font-size:16px;color:#ccc;padding:0 6px;flex-shrink:0;}
+.frt{font-size:9px;color:#aaa;text-align:center;}
+.alist{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.ac{border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;display:flex;gap:12px;background:#fff;}
+.ap{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;flex-shrink:0;margin-top:2px;}
+.ph{background:#FCEBEB;color:#A32D2D;}.pm{background:#FAEEDA;color:#854F0B;}.pl{background:#E6F1FB;color:#185FA5;}
+.at{font-size:13px;font-weight:600;margin-bottom:4px;}
+.ar{font-size:11px;color:#666;line-height:1.7;}
+.aseg{font-size:10px;color:#aaa;margin-top:4px;}
+.me{font-size:11px;color:#aaa;padding:14px;text-align:center;background:#f8f8f6;border-radius:8px;margin-bottom:16px;border:1px dashed #ddd;}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr;}.cbox.full{grid-column:1;}.hrow{grid-template-columns:1fr;}.tabs{grid-template-columns:1fr;}.tab{border-right:none;border-bottom:1px solid #e0e0dc;}.tab:last-child{border-bottom:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <div class="htitle">LC8T 儀表板</div>
+  <select class="msel" id="msel" onchange="render()">
+    <option value="202602">2026年2月</option><option value="202601">2026年1月</option>
+    <option value="202512">2025年12月</option><option value="202511">2025年11月</option>
+    <option value="202510">2025年10月</option><option value="202509">2025年9月</option>
+    <option value="202508">2025年8月</option><option value="202507">2025年7月</option>
+    <option value="202506">2025年6月</option><option value="202505">2025年5月</option>
+  </select>
+</div>
+
+<div class="tabs">
+  <button class="tab on" id="tb1" onclick="stab(1)"><div class="ti"><div class="tq">問題 ①</div><div class="tl">LC8T 有沒有在成長？</div><span class="vd" id="v1">—</span></div></button>
+  <button class="tab" id="tb2" onclick="stab(2)"><div class="ti"><div class="tq">問題 ②</div><div class="tl">BCL名單的能力・質量？</div><span class="vd" id="v2">—</span></div></button>
+  <button class="tab" id="tb3" onclick="stab(3)"><div class="ti"><div class="tq">問題 ③</div><div class="tl">下一步該做什麼？</div><span class="vd" id="v3">—</span></div></button>
+</div>
+
+<div class="panel on" id="p1">
+  <p class="slabel">10大KPI 當月實績｜點擊展開下層分析</p>
+  <div class="kgrid" id="kg"></div>
+  <div class="dp" id="dp"><div class="dpt" id="dptitle"></div><div class="dpg" id="dpgrid"></div><div class="dnn" id="dpnote"></div></div>
+  <p class="slabel">趨勢圖｜12個月（綠=達標・紅=未達・虛線=目標）</p>
+  <div class="cgrid">
+    <div class="cbox full"><div class="ct">① GMV 總成交金額</div><div class="cs">WEB + TEL（NT$萬）</div><div class="lg"><span><span class="ld" style="background:#378ADD"></span>實績（綠=達標/紅=未達）</span><span><span class="ld" style="background:#5DCAA5;opacity:.7"></span>目標線</span></div><canvas id="cGMV" style="width:100%;height:160px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct">② 總簽約數</div><div class="cs">件（虛線=目標700件）</div><canvas id="cORD" style="width:100%;height:140px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct">③ AOV 平均客單價</div><div class="cs">NT$（虛線=目標NT$4,000）</div><canvas id="cAOV" style="width:100%;height:140px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct">⑧ TEL ＋ ④ EC 簽約數（堆疊）</div><div class="cs">件</div><div class="lg"><span><span class="ld" style="background:#7F77DD"></span>TEL</span><span><span class="ld" style="background:#378ADD"></span>EC</span></div><canvas id="cCH" style="width:100%;height:140px;display:block;"></canvas></div>
+  </div>
+</div>
+
+<div class="panel" id="p2">
+  <p class="slabel">BCL名單四段健康度</p>
+  <div class="hrow" id="hrow"></div>
+  <p class="slabel">名單育成漏斗｜L→C→8→T→GMV</p>
+  <div class="fbox"><div class="fr" id="frow"></div></div>
+  <p class="slabel">名單相關KPI 趨勢</p>
+  <div class="cgrid">
+    <div class="cbox"><div class="ct">⑥ 新增LINE-ID</div><div class="cs">L段入口（件，虛線=目標2,000）</div><canvas id="cLINE" style="width:100%;height:130px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct">⑨ 顧客名單數</div><div class="cs">T段供給（件，虛線=目標4,000）</div><canvas id="cLIST" style="width:100%;height:130px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct">⑩ 電銷轉化率</div><div class="cs">%（虛線=目標10%）</div><canvas id="cTR" style="width:100%;height:130px;display:block;"></canvas></div>
+    <div class="cbox"><div class="ct">⑦ EC轉化率</div><div class="cs">%（虛線=目標10%）</div><canvas id="cCV" style="width:100%;height:130px;display:block;"></canvas></div>
+  </div>
+</div>
+
+<div class="panel" id="p3">
+  <p class="slabel">當月施策記錄（L3-2）</p>
+  <div class="me">本月施策尚未記錄。<br>請將執行的行銷活動補入 L3-2 施策日曆，建立行動→KPI因果關係資料庫。</div>
+  <p class="slabel">⭐ 基於診斷的下一步行動</p>
+  <div class="alist" id="alist"></div>
+</div>
+</div>
+
+<script>
+const ALL={
+  '202602':{gmv:2258293,orders:581,aov:3887,ec:372,tel:209,newLine:1844,list:2471,telRate:8.5,cvRate:20.2},
+  '202601':{gmv:2956516,orders:769,aov:3845,ec:383,tel:386,newLine:3208,list:4110,telRate:9.4,cvRate:11.9},
+  '202512':{gmv:2887317,orders:614,aov:4702,ec:314,tel:300,newLine:7483,list:3970,telRate:7.6,cvRate:4.2},
+  '202511':{gmv:3183107,orders:725,aov:4391,ec:394,tel:331,newLine:3358,list:3220,telRate:10.3,cvRate:11.7},
+  '202510':{gmv:3457963,orders:843,aov:4102,ec:409,tel:434,newLine:6294,list:4146,telRate:10.5,cvRate:6.5},
+  '202509':{gmv:1560816,orders:420,aov:3716,ec:169,tel:251,newLine:1916,list:4565,telRate:5.5,cvRate:null},
+  '202508':{gmv:2404885,orders:654,aov:3674,ec:277,tel:377,newLine:1693,list:4556,telRate:8.3,cvRate:null},
+  '202507':{gmv:2481698,orders:703,aov:3530,ec:286,tel:417,newLine:2193,list:4117,telRate:10.1,cvRate:null},
+  '202506':{gmv:2769158,orders:842,aov:3289,ec:319,tel:523,newLine:1670,list:5001,telRate:10.5,cvRate:null},
+  '202505':{gmv:3644977,orders:1139,aov:3200,ec:543,tel:596,newLine:1208,list:4830,telRate:12.3,cvRate:null},
+};
+const TGT={gmv:3000000,orders:700,aov:4000,telRate:10,cvRate:10,newLine:2000,list:4000,ec:350,tel:300};
+const KEYS=Object.keys(ALL);
+const RK=KEYS.slice().reverse();
+const RL=RK.map(k=>k.slice(4)+'月');
+
+const KPIS=[
+  {no:'①',key:'gmv',name:'GMV 總成交金額',fmt:v=>'NT$'+(v/10000).toFixed(1)+'萬',tgt:TGT.gmv,dk:'gmv'},
+  {no:'②',key:'orders',name:'總簽約數',fmt:v=>v.toLocaleString()+'件',tgt:TGT.orders,dk:'orders'},
+  {no:'③',key:'aov',name:'AOV 平均客單價',fmt:v=>'NT$'+v.toLocaleString(),tgt:TGT.aov,dk:'aov'},
+  {no:'④',key:'ec',name:'EC簽約數',fmt:v=>v+'件',tgt:TGT.ec,dk:'ec'},
+  {no:'⑤',key:'contact',name:'線上接觸顧客數',fmt:_=>'待補入',tgt:null,dk:'contact'},
+  {no:'⑥',key:'newLine',name:'新增LINE-ID數',fmt:v=>v.toLocaleString()+'件',tgt:TGT.newLine,dk:'line'},
+  {no:'⑦',key:'cvRate',name:'EC轉化率',fmt:v=>v!=null?v+'%':'待補入',tgt:TGT.cvRate,dk:'cvRate'},
+  {no:'⑧',key:'tel',name:'TEL簽約數',fmt:v=>v+'件',tgt:TGT.tel,dk:'tel'},
+  {no:'⑨',key:'list',name:'顧客名單數',fmt:v=>v.toLocaleString()+'件',tgt:TGT.list,dk:'list'},
+  {no:'⑩',key:'telRate',name:'電銷轉化率',fmt:v=>v+'%',tgt:TGT.telRate,dk:'telRate'},
+];
+
+const DRILLS={
+  gmv:{t:'① GMV = WEB銷售額 + TM銷售額',ns:[{l:'TEL 貢獻額（估）',v:d=>'NT$'+(d.tel*d.aov/10000).toFixed(1)+'萬'},{l:'WEB 貢獻額（估）',v:d=>'NT$'+((d.gmv-d.tel*d.aov)/10000).toFixed(1)+'萬'},{l:'TEL佔比',v:d=>Math.round(d.tel*d.aov/d.gmv*100)+'%'},{l:'WEB佔比',v:d=>(100-Math.round(d.tel*d.aov/d.gmv*100))+'%'}],note:'GMV口徑：WEB（Shopline）+ TEL兩管道。KOL・蝦皮不納入。'},
+  orders:{t:'② 總簽約數 = ④EC + ⑧TEL',ns:[{l:'EC簽約數（④）',v:d=>d.ec+'件'},{l:'TEL簽約數（⑧）',v:d=>d.tel+'件'},{l:'EC佔比',v:d=>Math.round(d.ec/(d.ec+d.tel)*100)+'%'},{l:'TEL佔比',v:d=>Math.round(d.tel/(d.ec+d.tel)*100)+'%'}],note:'含新增＋續約。各細項待L2-D・L2-E補充後可分解。'},
+  aov:{t:'③ AOV 影響因素：商品組合',ns:[{l:'核心主力商品均價',v:_=>'NT$3,200～4,900'},{l:'高單價商品佔比',v:_=>'待補入（需SKU別數據）'},{l:'LTV遞進路徑',v:_=>'初階→進階 / 0~3歲→幼兒期'}],note:'英語進階版(NT$4,500)・語彙智育套組(NT$4,900)等高單價商品比例是AOV關鍵。'},
+  ec:{t:'④ EC簽約數 = 觸及人數 × ⑦EC轉化率',ns:[{l:'④-1 新增簽約',v:_=>'待補入'},{l:'④-2 續約',v:_=>'待補入'},{l:'⑦ EC轉化率',v:d=>d.cvRate!=null?d.cvRate+'%':'待補入'},{l:'Super8觸及人數',v:_=>'待補入'}],note:'旅程完整性与訴求時機決定轉化率。L2-E・L2-J補充後可完整分解。'},
+  contact:{t:'⑤ 線上接觸顧客數（C/8段）',ns:[{l:'新增Super8標籤人數',v:_=>'待補入'},{l:'標籤種類數',v:_=>'待補入（L2-B）'},{l:'互動率',v:_=>'待補入'}],note:'= 當月新增Super8標籤的人數。標籤是否有效驅動後續旅程是C段核心課題。'},
+  line:{t:'⑥ 新增LINE-ID 來源分解',ns:[{l:'異業合作',v:_=>'待補入（L2-A）'},{l:'SNS流量',v:_=>'待補入（L2-A）'},{l:'0-1歲族群佔比',v:_=>'待補入'},{l:'綁定完成率',v:_=>'待補入'}],note:'名單品質比量更重要。0～24月齡目標族群比例決定後続轉換潛力。'},
+  cvRate:{t:'⑦ EC轉化率 影響因素',ns:[{l:'Super8旅程完成率',v:_=>'待補入（L2-C）'},{l:'購物車放棄率',v:_=>'待補入'},{l:'推播開封率',v:_=>'待補入（L2-B）'}],note:'EC轉化率 = EC簽約數 ÷ LINE觸及人數（分母定義待確認）。'},
+  tel:{t:'⑧ TEL簽約數 = ⑨名單數 × ⑩轉化率',ns:[{l:'⑧-1 新增成約',v:_=>'待補入'},{l:'⑧-2 續約',v:_=>'待補入'},{l:'外撥總量',v:_=>'待補入（L2-D）'},{l:'應答率',v:_=>'待補入（L2-D）'}],note:'轉化率由名單品質與外撥時機決定。L2-D補充後可完整分解。'},
+  list:{t:'⑨ 顧客名單數 品質視角',ns:[{l:'Super8標籤累積數（⑤）',v:_=>'待補入'},{l:'高意圖名單數',v:_=>'待補入（L2-D）'},{l:'DB疲勞指標',v:_=>'待補入（重複外撥次數）'}],note:'名單「量」≠「質」。同一名單重複外撥（DB疲勞）是轉化率低下的主因。'},
+  telRate:{t:'⑩ 電銷轉化率 影響因素',ns:[{l:'⑨ 顧客名單數',v:d=>d.list.toLocaleString()+'件'},{l:'應答率',v:_=>'待補入（L2-D）'},{l:'名單月齡匹配度',v:_=>'待補入'}],note:'電銷轉化率 = TEL簽約數 ÷ 顧客名單數。名單品質と外撥タイミングが効率を左右。'},
+};
+
+let activeKey=null;
+
+// ─── Canvas chart utilities ───
+function setupCanvas(id, hpx) {
+  const c = document.getElementById(id);
+  if (!c) return null;
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.parentElement.clientWidth - 28;
+  const H = hpx;
+  c.width = W * dpr; c.height = H * dpr;
+  c.style.width = W + 'px'; c.style.height = H + 'px';
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return { ctx, W, H };
+}
+
+function drawGridAndLabels(ctx, PAD, W, H, maxV, minV, xLabels) {
+  ctx.strokeStyle = 'rgba(0,0,0,0.07)'; ctx.lineWidth = 0.5;
+  const cH = H - PAD.t - PAD.b;
+  const cW = W - PAD.l - PAD.r;
+  [0, 0.25, 0.5, 0.75, 1].forEach(r => {
+    const y = PAD.t + cH * (1 - r);
+    ctx.beginPath(); ctx.moveTo(PAD.l, y); ctx.lineTo(PAD.l + cW, y); ctx.stroke();
+    const val = minV + (maxV - minV) * r;
+    const label = val >= 10000 ? (val / 10000).toFixed(1) + '萬' : val >= 1000 ? (val / 1000).toFixed(0) + 'k' : val.toFixed(val < 10 ? 1 : 0);
+    ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.font = '9px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(label, PAD.l - 3, y + 3);
+  });
+  ctx.fillStyle = 'rgba(0,0,0,0.4)'; ctx.font = '9px sans-serif'; ctx.textAlign = 'center';
+  const n = xLabels.length;
+  xLabels.forEach((l, i) => {
+    ctx.fillText(l, PAD.l + (i + 0.5) * (cW / n), H - 6);
+  });
+}
+
+function drawTargetLine(ctx, PAD, W, H, maxV, minV, tgt, color) {
+  const cH = H - PAD.t - PAD.b;
+  const cW = W - PAD.l - PAD.r;
+  const ty = PAD.t + cH * (1 - (tgt - minV) / (maxV - minV));
+  ctx.strokeStyle = color || '#5DCAA5'; ctx.lineWidth = 1.2; ctx.setLineDash([5, 4]);
+  ctx.beginPath(); ctx.moveTo(PAD.l, ty); ctx.lineTo(PAD.l + cW, ty); ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function barChart(id, hpx, labels, values, colorFn, tgt) {
+  const s = setupCanvas(id, hpx); if (!s) return;
+  const { ctx, W, H } = s;
+  const PAD = { t: 10, r: 10, b: 22, l: 46 };
+  const valid = values.filter(v => v != null);
+  const maxV = Math.max(...valid, tgt || 0) * 1.12;
+  const minV = 0;
+  const cH = H - PAD.t - PAD.b, cW = W - PAD.l - PAD.r;
+  const n = labels.length, barW = cW / n * 0.62;
+  drawGridAndLabels(ctx, PAD, W, H, maxV, minV, labels);
+  if (tgt) drawTargetLine(ctx, PAD, W, H, maxV, minV, tgt, '#5DCAA5');
+  values.forEach((v, i) => {
+    if (v == null) return;
+    const x = PAD.l + i * (cW / n) + (cW / n - barW) / 2;
+    const h = (v - minV) / (maxV - minV) * cH;
+    const y = PAD.t + cH - h;
+    ctx.fillStyle = colorFn(v, i);
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(x, y, barW, h, 3); else ctx.rect(x, y, barW, h);
+    ctx.fill();
+  });
+}
+
+function lineChart(id, hpx, labels, datasets, tgt) {
+  const s = setupCanvas(id, hpx); if (!s) return;
+  const { ctx, W, H } = s;
+  const PAD = { t: 10, r: 10, b: 22, l: 44 };
+  const allVals = datasets.flatMap(d => d.values.filter(v => v != null));
+  if (tgt) allVals.push(tgt);
+  const maxV = Math.max(...allVals) * 1.15;
+  const minV = Math.min(0, ...allVals) * 0.9;
+  const cH = H - PAD.t - PAD.b, cW = W - PAD.l - PAD.r;
+  const n = labels.length;
+  const xOf = i => PAD.l + i * (cW / (n - 1));
+  const yOf = v => PAD.t + cH * (1 - (v - minV) / (maxV - minV));
+  drawGridAndLabels(ctx, PAD, W, H, maxV, minV, labels);
+  if (tgt) drawTargetLine(ctx, PAD, W, H, maxV, minV, tgt, '#5DCAA5');
+  datasets.forEach(ds => {
+    ctx.strokeStyle = ds.color; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+    ctx.beginPath(); let started = false;
+    ds.values.forEach((v, i) => {
+      if (v == null) { started = false; return; }
+      if (!started) { ctx.moveTo(xOf(i), yOf(v)); started = true; }
+      else ctx.lineTo(xOf(i), yOf(v));
+    });
+    ctx.stroke();
+    ds.values.forEach((v, i) => {
+      if (v == null) return;
+      ctx.beginPath(); ctx.arc(xOf(i), yOf(v), 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = ds.dotColor ? ds.dotColor(v) : ds.color;
+      ctx.fill();
+    });
+  });
+}
+
+function stackBar(id, hpx, labels, d1, d2, c1, c2) {
+  const s = setupCanvas(id, hpx); if (!s) return;
+  const { ctx, W, H } = s;
+  const PAD = { t: 10, r: 10, b: 22, l: 42 };
+  const totals = d1.map((v, i) => (v || 0) + (d2[i] || 0));
+  const maxV = Math.max(...totals) * 1.12;
+  const cH = H - PAD.t - PAD.b, cW = W - PAD.l - PAD.r;
+  const n = labels.length, barW = cW / n * 0.62;
+  drawGridAndLabels(ctx, PAD, W, H, maxV, 0, labels);
+  labels.forEach((l, i) => {
+    const x = PAD.l + i * (cW / n) + (cW / n - barW) / 2;
+    const h1 = (d1[i] || 0) / maxV * cH, h2 = (d2[i] || 0) / maxV * cH;
+    ctx.fillStyle = c1;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(x, PAD.t + cH - h1 - h2, barW, h1, 2); else ctx.rect(x, PAD.t + cH - h1 - h2, barW, h1);
+    ctx.fill();
+    ctx.fillStyle = c2;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(x, PAD.t + cH - h2, barW, h2, 2); else ctx.rect(x, PAD.t + cH - h2, barW, h2);
+    ctx.fill();
+  });
+}
+
+function drawAllCharts() {
+  const gmvD = RK.map(k => +(ALL[k].gmv / 10000).toFixed(1));
+  barChart('cGMV', 160, RL, gmvD, v => v >= (TGT.gmv / 10000) ? '#1D9E75' : '#E24B4A', TGT.gmv / 10000);
+  barChart('cORD', 140, RL, RK.map(k => ALL[k].orders), v => v >= TGT.orders ? '#1D9E75' : '#E24B4A', TGT.orders);
+  barChart('cAOV', 140, RL, RK.map(k => ALL[k].aov), v => v >= TGT.aov ? '#1D9E75' : '#E24B4A', TGT.aov);
+  stackBar('cCH', 140, RL, RK.map(k => ALL[k].tel), RK.map(k => ALL[k].ec), 'rgba(127,119,221,.8)', 'rgba(55,138,221,.8)');
+  lineChart('cLINE', 130, RL, [{ values: RK.map(k => ALL[k].newLine), color: '#5DCAA5', dotColor: v => v >= TGT.newLine ? '#1D9E75' : '#E24B4A' }], TGT.newLine);
+  lineChart('cLIST', 130, RL, [{ values: RK.map(k => ALL[k].list), color: '#7F77DD', dotColor: v => v >= TGT.list ? '#1D9E75' : '#E24B4A' }], TGT.list);
+  lineChart('cTR', 130, RL, [{ values: RK.map(k => ALL[k].telRate), color: '#D85A30', dotColor: v => v >= TGT.telRate ? '#1D9E75' : '#E24B4A' }], TGT.telRate);
+  lineChart('cCV', 130, RL, [{ values: RK.map(k => ALL[k].cvRate), color: '#1D9E75', dotColor: v => v != null ? (v >= TGT.cvRate ? '#1D9E75' : '#E24B4A') : '#ccc' }], TGT.cvRate);
+}
+
+function pct(a, b) { if (!b || a == null) return null; return Math.round((a - b) / b * 100); }
+function bb(p) { if (p == null) return `<span class="badge bn">前月比 —</span>`; return `<span class="badge ${p > 0 ? 'bu' : 'bd'}">${p > 0 ? '+' : ''}${p}%</span>`; }
+function bt(v, t) { if (!t || v == null) return ''; const p = Math.round((v - t) / t * 100); return `<span class="badge ${p >= 0 ? 'bu' : 'bd'}">目標比 ${p > 0 ? '+' : ''}${p}%</span>`; }
+
+function renderKPIs(d, prev) {
+  document.getElementById('kg').innerHTML = KPIS.map(k => {
+    const v = d[k.key], pv = prev?.[k.key], p = pct(v, pv);
+    const ok = k.tgt && v != null ? v >= k.tgt : null;
+    const bc = ok === true ? '#1D9E75' : ok === false ? '#E24B4A' : '#e0e0dc';
+    return `<div class="kc" onclick="tDrill('${k.dk}')" style="border-color:${bc}">
+      <div class="kno">${k.no}</div><div class="kv">${k.fmt(v ?? 0)}</div>
+      <div class="kn">${k.name}</div>
+      <div class="kbs">${bb(p)}${bt(v, k.tgt)}</div>
+    </div>`;
+  }).join('');
+}
+
+function tDrill(key) {
+  const dp = document.getElementById('dp');
+  const d = ALL[document.getElementById('msel').value];
+  if (activeKey === key) { dp.classList.remove('on'); activeKey = null; return; }
+  activeKey = key;
+  const info = DRILLS[key]; if (!info) { dp.classList.remove('on'); return; }
+  document.getElementById('dptitle').textContent = info.t;
+  document.getElementById('dpgrid').innerHTML = info.ns.map(n => `<div class="dn"><div class="dnl">${n.l}</div><div class="dnv">${n.v(d)}</div></div>`).join('');
+  document.getElementById('dpnote').textContent = info.note;
+  dp.classList.add('on'); dp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function renderHealth(d) {
+  document.getElementById('hrow').innerHTML = [
+    { s: 'L', lbl: 'L段｜LINE名單入口', tc: 'sl-l', ms: [{ l: '新增LINE-ID（⑥）', v: d.newLine.toLocaleString() + '件', ok: d.newLine >= TGT.newLine }], cn: d.newLine < TGT.newLine ? `新增LINE-ID ${d.newLine.toLocaleString()}件，未達目標。名單停滯將在3～6個月後影響轉換。` : null, gd: d.newLine >= TGT.newLine ? '名單獲取達標。注意維持目標族群（0～24月齡）佔比。' : null },
+    { s: 'C', lbl: 'C段｜社群互動・標籤', tc: 'sl-c', ms: [{ l: '線上接觸顧客數（⑤）', v: '待補入', ok: null }], cn: 'C段數據待補入（L2-B）。標籤是否有效驅動後續旅程尚無法評估。', gd: null },
+    { s: '8', lbl: '8段｜Super8自動化', tc: 'sl-8', ms: [{ l: 'EC簽約數（④）', v: d.ec + '件', ok: d.ec >= TGT.ec }, { l: 'EC轉化率（⑦）', v: d.cvRate != null ? d.cvRate + '%' : '待補入', ok: d.cvRate != null ? d.cvRate >= TGT.cvRate : null }], cn: d.ec < TGT.ec ? `EC簽約數${d.ec}件未達目標。旅程流失點需確認。` : null, gd: d.cvRate >= 15 ? `EC轉化率${d.cvRate}%高水準。擴大觸及人數可直接拉升GMV。` : null },
+    { s: 'T', lbl: 'T段｜TEL電話銷售', tc: 'sl-t', ms: [{ l: '顧客名單數（⑨）', v: d.list.toLocaleString() + '件', ok: d.list >= TGT.list }, { l: '電銷轉化率（⑩）', v: d.telRate + '%', ok: d.telRate >= TGT.telRate }], cn: d.telRate < TGT.telRate ? `電銷轉化率${d.telRate}%未達目標。名單品質・DB疲勞を確認。` : null, gd: d.telRate >= TGT.telRate ? '電銷轉化率達標。名單品質良好。' : null },
+  ].map(s => `<div class="hcard"><div class="hct">${s.lbl}<span class="stag ${s.tc}">${s.s}段</span></div>
+    ${s.ms.map(m => `<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;"><span class="hv">${m.v}</span>${m.ok === true ? '<span class="badge bu">達標</span>' : m.ok === false ? '<span class="badge bd">未達</span>' : '<span class="badge bn">待補入</span>'}</div><div class="hs">${m.l}</div>`).join('')}
+    ${s.cn ? `<div class="hcn">✕ ${s.cn}</div>` : ''}${s.gd ? `<div class="hgd">◎ ${s.gd}</div>` : ''}</div>`).join('');
+
+  document.getElementById('frow').innerHTML = `
+    <div class="fn"><div class="fns" style="color:#0F6E56">L段</div><div class="fnv">${d.newLine.toLocaleString()}</div><div class="fnl">新增ID</div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">育成</span></div>
+    <div class="fn"><div class="fns" style="color:#185FA5">C段</div><div class="fnv">待補入</div><div class="fnl">標籤人數</div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">分眾</span></div>
+    <div class="fn"><div class="fns" style="color:#534AB7">8段</div><div class="fnv">${d.cvRate != null ? d.cvRate + '%' : '待補'}</div><div class="fnl">EC CV率</div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">成交</span></div>
+    <div class="fn"><div class="fns" style="color:#854F0B">T段</div><div class="fnv">${d.telRate}%</div><div class="fnl">電銷轉化率</div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">結果</span></div>
+    <div class="fn" style="border-color:#1D9E75"><div class="fns" style="color:#1D9E75">GMV</div><div class="fnv">${(d.gmv / 10000).toFixed(1)}萬</div><div class="fnl">總成交</div></div>`;
+}
+
+function renderActions(d, prev) {
+  const acts = [];
+  if (d.telRate < TGT.telRate) acts.push({ p: 'high', t: '【T段】改善電銷名單品質・提升轉化率', r: `電銷轉化率 ${d.telRate}%（目標 ${TGT.telRate}%）。確認DB疲勞狀況，將外撥聚焦於高意圖名單。確認Super8旅程是否在外撥前有效提高應答意願。`, s: 'T段' });
+  if (d.list < TGT.list) acts.push({ p: 'high', t: '【8段】加速Super8標籤積累・補強名單供給', r: `顧客名單數 ${d.list.toLocaleString()}件（目標 ${TGT.list.toLocaleString()}件）。確認旅程進入數vs完成數，找出流失點並補強再介入場景。`, s: '8段→T段' });
+  if (d.newLine < TGT.newLine) acts.push({ p: 'mid', t: '【L段】重新投入名單獲取施策', r: `新增LINE-ID ${d.newLine.toLocaleString()}件（目標 ${TGT.newLine.toLocaleString()}件）${prev ? '，前月比' + pct(d.newLine, prev.newLine) + '%' : ''}。確認異業合作・SNS活動是否中斷。`, s: 'L段' });
+  if (d.cvRate != null && d.cvRate >= 15) acts.push({ p: 'mid', t: '【8段】EC轉化率高（' + d.cvRate + '%）・擴大觸及人數', r: '轉化率高但觸及人數有限。擴大Super8廣播配信對象，可直接拉升EC簽約數與GMV。', s: '8段→EC' });
+  if (d.aov < TGT.aov) acts.push({ p: 'low', t: '【T/8段】強化高單價商品訴求', r: `AOV NT$${d.aov.toLocaleString()}（目標 NT$${TGT.aov.toLocaleString()}）。確認英語進階版(NT$4,500)・語彙智育套組(NT$4,900)旅程訴求月齡是否精準。`, s: '8段・T段' });
+  acts.push({ p: 'low', t: '【全段】將本月施策記錄至 L3-2 施策日曆', r: '記錄本月執行的施策，建立「行動→KPI因果關係」資料庫，讓未來AI分析更精準。', s: '全段' });
+  document.getElementById('alist').innerHTML = acts.map(a => `<div class="ac"><span class="ap ${a.p === 'high' ? 'ph' : a.p === 'mid' ? 'pm' : 'pl'}">${a.p === 'high' ? '最優先' : a.p === 'mid' ? '建議' : '參考'}</span><div><div class="at">${a.t}</div><div class="ar">${a.r}</div><div class="aseg">對象段 → ${a.s}</div></div></div>`).join('');
+}
+
+function setV(id, txt, cls) { const el = document.getElementById(id); el.textContent = txt; el.className = 'vd ' + cls; }
+
+function renderVerdicts(d, prev) {
+  const q1ok = d.gmv >= TGT.gmv && d.orders >= TGT.orders;
+  setV('v1', q1ok ? '成長中 ✓' : '需關注', q1ok ? 'vg' : 'vw');
+  const nmOk = d.newLine >= TGT.newLine && d.list >= TGT.list;
+  setV('v2', nmOk ? '名單健康' : '名單待改善', nmOk ? 'vg' : (d.telRate < TGT.telRate ? 'vb' : 'vw'));
+  const iss = [d.gmv < TGT.gmv, d.telRate < TGT.telRate, d.list < TGT.list, d.newLine < TGT.newLine].filter(Boolean).length;
+  setV('v3', iss ? iss + '項待改善' : '維持現況', iss >= 3 ? 'vb' : iss >= 1 ? 'vw' : 'vg');
+}
+
+function stab(n) {
+  [1, 2, 3].forEach(i => {
+    document.getElementById('tb' + i).classList.toggle('on', i === n);
+    document.getElementById('p' + i).classList.toggle('on', i === n);
+  });
+  setTimeout(drawAllCharts, 80);
+}
+
+function render() {
+  const key = document.getElementById('msel').value;
+  const d = ALL[key], idx = KEYS.indexOf(key);
+  const prev = KEYS[idx + 1] ? ALL[KEYS[idx + 1]] : null;
+  activeKey = null;
+  document.getElementById('dp').classList.remove('on');
+  renderVerdicts(d, prev);
+  renderKPIs(d, prev);
+  renderHealth(d);
+  renderActions(d, prev);
+  setTimeout(drawAllCharts, 100);
+}
+
+window.addEventListener('load', render);
+</script>
+</body>
+</html>
