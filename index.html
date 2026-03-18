@@ -567,13 +567,14 @@ var aaOpen = true;
 
 // ── Summary Banner ──
 function buildAutoHeadline(d, key) {
-  var mon = key.slice(0,4)+'年'+key.slice(4)+'月';
+  var mon = key.slice(0,4)+'年'+parseInt(key.slice(4),10)+'月';
   var gmvPct = Math.round(d.gmv/TGT.gmv*100);
   var issues = [];
-  if(d.gmv < TGT.gmv) issues.push(tx('sbIssues').gmv);
-  if(d.telRate < TGT.telRate) issues.push(tx('sbIssues').telRate);
-  if(d.list < TGT.list) issues.push(tx('sbIssues').list);
-  if(d.newLine < TGT.newLine) issues.push(tx('sbIssues').newLine);
+  var si = TX[LANG] ? TX[LANG].sbIssues : TX.zh.sbIssues;
+  if(d.gmv < TGT.gmv) issues.push(si.gmv);
+  if(d.telRate < TGT.telRate) issues.push(si.telRate);
+  if(d.list < TGT.list) issues.push(si.list);
+  if(d.newLine < TGT.newLine) issues.push(si.newLine);
   if(issues.length === 0) return tx('sbGood');
   var issueStr = issues.join('・');
   if(issues.length >= 3) return tx('sbBad');
