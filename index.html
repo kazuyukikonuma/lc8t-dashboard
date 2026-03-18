@@ -7,114 +7,19 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;background:#f8f8f6;color:#2c2c2a;font-size:14px;}
-.wrap{max-width:1060px;margin:0 auto;padding:24px 16px;}
-.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px;}
+.wrap{max-width:1060px;margin:0 auto;padding:20px 16px;}
+
+/* ── Header ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
 .htitle{font-size:16px;font-weight:600;}
 .hdr-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .msel{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#2c2c2a;cursor:pointer;}
 .lang-toggle{display:flex;border:1px solid #e0e0dc;border-radius:8px;overflow:hidden;background:#f1efe8;}
 .lang-btn{font-size:11px;font-weight:600;padding:5px 10px;border:none;cursor:pointer;background:transparent;color:#888;transition:all .15s;white-space:nowrap;}
 .lang-btn.on{background:#fff;color:#2c2c2a;}
-/* Achievement bar */
-.achievement-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;}
-.ach-card{background:#fff;border:1.5px solid #e0e0dc;border-radius:12px;padding:12px 14px;}
-.ach-card.hit{border-color:#1D9E75;}
-.ach-card.miss{border-color:#E24B4A;}
-.ach-label{font-size:10px;color:#888;margin-bottom:4px;}
-.ach-kpi{font-size:11px;font-weight:600;margin-bottom:6px;color:#2c2c2a;}
-.ach-vals{display:flex;align-items:baseline;gap:5px;margin-bottom:6px;}
-.ach-actual{font-size:18px;font-weight:700;}
-.ach-sep{font-size:11px;color:#bbb;}
-.ach-target{font-size:12px;color:#888;}
-.ach-pct{font-size:11px;font-weight:700;padding:2px 6px;border-radius:5px;display:inline-block;margin-bottom:6px;}
-.ach-pct.hit{background:#EAF3DE;color:#3B6D11;}
-.ach-pct.miss{background:#FCEBEB;color:#A32D2D;}
-.ach-pct.over{background:#E6F1FB;color:#185FA5;}
-.prog-track{height:5px;background:#eee;border-radius:3px;overflow:hidden;}
-.prog-fill{height:100%;border-radius:3px;}
-/* Tabs */
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #e0e0dc;border-radius:12px;overflow:hidden;margin-bottom:24px;background:#f1efe8;}
-.tab{padding:0;cursor:pointer;background:transparent;border:none;border-right:1px solid #e0e0dc;transition:background .15s;}
-.tab:last-child{border-right:none;}
-.tab.on{background:#fff;}
-.ti{padding:14px 12px;text-align:left;}
-.tq{font-size:10px;color:#888;margin-bottom:4px;letter-spacing:.05em;}
-.tl{font-size:12px;font-weight:500;color:#888;margin-bottom:7px;line-height:1.4;}
-.tab.on .tl{color:#2c2c2a;}
-.vd{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;display:inline-block;}
-.vg{background:#EAF3DE;color:#3B6D11;}.vw{background:#FAEEDA;color:#854F0B;}.vb{background:#FCEBEB;color:#A32D2D;}
-.panel{display:none;}.panel.on{display:block;}
-/* Summary */
-.ach-summary{background:#fff;border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.ach-sum-num{font-size:28px;font-weight:700;}
-.ach-sum-label{font-size:11px;color:#888;margin-left:4px;}
-.ach-summary-pills{display:flex;gap:6px;flex-wrap:wrap;}
-.ach-pill{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;}
-.ach-pill.hit{background:#EAF3DE;color:#3B6D11;}
-.ach-pill.miss{background:#FCEBEB;color:#A32D2D;}
-.ach-pill.na{background:#f1efe8;color:#888;}
-/* Labels */
-.slabel{font-size:10px;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;}
-.badge{font-size:10px;padding:2px 6px;border-radius:5px;font-weight:600;white-space:nowrap;}
-.bu{background:#EAF3DE;color:#3B6D11;}.bd{background:#FCEBEB;color:#A32D2D;}.bn{background:#F1EFE8;color:#5F5E5A;}
-/* KPI grid */
-.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px;margin-bottom:12px;}
-.kc{border:1.5px solid #e0e0dc;border-radius:10px;padding:12px 14px;cursor:pointer;background:#fff;transition:border-color .15s;}
-.kc:hover{border-color:#888;}
-.kno{font-size:10px;color:#888;margin-bottom:3px;}
-.kv{font-size:18px;font-weight:600;margin-bottom:2px;}
-.kn{font-size:11px;color:#888;margin-bottom:4px;}
-.kprog-track{height:4px;background:#eee;border-radius:3px;margin-bottom:4px;overflow:hidden;}
-.kprog-fill{height:100%;border-radius:3px;}
-.kach{font-size:10px;color:#888;margin-bottom:4px;}
-.kbs{display:flex;gap:4px;flex-wrap:wrap;}
-/* Drill */
-.dp{display:none;border:1px solid #e0e0dc;border-radius:12px;padding:16px;margin-bottom:16px;background:#f8f8f6;}
-.dp.on{display:block;}
-.dpt{font-size:13px;font-weight:600;margin-bottom:12px;}
-.dpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:10px;}
-.dn{background:#fff;border:1px solid #e0e0dc;border-radius:8px;padding:10px 12px;}
-.dnl{font-size:10px;color:#888;margin-bottom:3px;}
-.dnv{font-size:13px;font-weight:600;}
-.dnn{font-size:11px;color:#888;line-height:1.6;padding-top:8px;border-top:1px solid #e0e0dc;}
-/* Charts */
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.cbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
-.cbox.full{grid-column:1/-1;}
-.ct{font-size:12px;font-weight:600;margin-bottom:2px;}
-.cs{font-size:10px;color:#888;margin-bottom:8px;}
-.lg{display:flex;gap:12px;margin-bottom:8px;font-size:10px;color:#888;flex-wrap:wrap;}
-.ld{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle;}
-/* Health */
-.hrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.hcard{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
-.hct{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
-.stag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;}
-.sl-l{background:#E1F5EE;color:#0F6E56;}.sl-c{background:#E6F1FB;color:#185FA5;}.sl-8{background:#EEEDFE;color:#534AB7;}.sl-t{background:#FAEEDA;color:#854F0B;}
-.hv{font-size:20px;font-weight:600;}
-.hs{font-size:11px;color:#888;margin-bottom:4px;}
-.hcn{font-size:11px;color:#A32D2D;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
-.hgd{font-size:11px;color:#3B6D11;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
-/* Funnel */
-.fbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;margin-bottom:16px;overflow-x:auto;}
-.fr{display:flex;align-items:center;min-width:520px;}
-.fn{flex-shrink:0;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #e0e0dc;min-width:82px;background:#f8f8f6;}
-.fns{font-size:10px;margin-bottom:3px;font-weight:600;}
-.fnv{font-size:14px;font-weight:700;}
-.fnl{font-size:10px;color:#888;}
-.fa{font-size:16px;color:#ccc;padding:0 6px;flex-shrink:0;}
-.frt{font-size:9px;color:#aaa;text-align:center;}
-/* Actions */
-.alist{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
-.ac{border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;display:flex;gap:12px;background:#fff;}
-.ap{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;flex-shrink:0;margin-top:2px;}
-.ph{background:#FCEBEB;color:#A32D2D;}.pm{background:#FAEEDA;color:#854F0B;}.pl{background:#E6F1FB;color:#185FA5;}
-.at{font-size:13px;font-weight:600;margin-bottom:4px;}
-.ar{font-size:11px;color:#666;line-height:1.7;}
-.aseg{font-size:10px;color:#aaa;margin-top:4px;}
-.me{font-size:11px;color:#aaa;padding:14px;text-align:center;background:#f8f8f6;border-radius:8px;margin-bottom:16px;border:1px dashed #ddd;}
-/* Version bar */
-.ver-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 12px;background:#f1efe8;border:1px solid #e0e0dc;border-radius:8px;margin-bottom:16px;flex-wrap:wrap;gap:6px;}
+
+/* ── Version bar ── */
+.ver-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 12px;background:#f1efe8;border:1px solid #e0e0dc;border-radius:8px;margin-bottom:12px;flex-wrap:wrap;gap:6px;}
 .ver-info{display:flex;align-items:center;gap:8px;}
 .ver-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:#EEEDFE;color:#534AB7;letter-spacing:.04em;}
 .ver-proto{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:#FAEEDA;color:#854F0B;}
@@ -124,8 +29,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .chg-btn:hover{color:#2c2c2a;}
 .chg-btn svg{width:11px;height:11px;transition:transform .2s;}
 .chg-btn.open svg{transform:rotate(180deg);}
-/* Changelog */
-.changelog{display:none;border:1px solid #e0e0dc;border-radius:10px;background:#fff;margin-bottom:16px;overflow:hidden;}
+.changelog{display:none;border:1px solid #e0e0dc;border-radius:10px;background:#fff;margin-bottom:12px;overflow:hidden;}
 .changelog.on{display:block;}
 .chg-header{padding:10px 14px;background:#f8f8f6;border-bottom:1px solid #e0e0dc;font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;}
 .chg-list{padding:10px 14px;display:flex;flex-direction:column;gap:8px;}
@@ -137,19 +41,169 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .chg-tag.new{background:#EAF3DE;color:#3B6D11;}
 .chg-tag.fix{background:#FCEBEB;color:#A32D2D;}
 .chg-tag.upd{background:#E6F1FB;color:#185FA5;}
+
+/* ── ① 今月の総括バナー ── */
+.summary-banner{border-radius:12px;padding:16px 20px;margin-bottom:12px;position:relative;}
+.summary-banner.ok{background:#EAF3DE;border:1.5px solid #A8D88A;}
+.summary-banner.warn{background:#FAEEDA;border:1.5px solid #F5C07A;}
+.summary-banner.ng{background:#FCEBEB;border:1.5px solid #F5A0A0;}
+.sb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.sb-left{flex:1;min-width:0;}
+.sb-month{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;opacity:.7;}
+.sb-text{font-size:14px;font-weight:600;line-height:1.6;word-break:break-all;}
+.sb-edit-btn{font-size:10px;padding:4px 10px;border-radius:6px;border:1px solid currentColor;background:transparent;cursor:pointer;white-space:nowrap;opacity:.6;transition:opacity .15s;flex-shrink:0;}
+.sb-edit-btn:hover{opacity:1;}
+.sb-edit-area{display:none;margin-top:10px;}
+.sb-edit-area.on{display:block;}
+.sb-textarea{width:100%;font-size:13px;padding:8px 10px;border-radius:8px;border:1px solid #ccc;background:#fff;resize:vertical;min-height:60px;font-family:inherit;}
+.sb-edit-actions{display:flex;gap:6px;margin-top:6px;}
+.sb-save-btn{font-size:11px;padding:4px 12px;border-radius:6px;border:none;background:#2c2c2a;color:#fff;cursor:pointer;}
+.sb-reset-btn{font-size:11px;padding:4px 12px;border-radius:6px;border:1px solid #ccc;background:#fff;color:#666;cursor:pointer;}
+.sb-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.sb-chip{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;}
+.sb-chip.hit{background:rgba(29,158,117,.15);color:#0F6E56;}
+.sb-chip.miss{background:rgba(226,75,74,.15);color:#A32D2D;}
+.sb-chip.info{background:rgba(24,95,165,.15);color:#185FA5;}
+
+/* ── ② 最優先アクション（常時表示） ── */
+.top-actions{background:#fff;border:1.5px solid #F5C07A;border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.top-actions-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.top-actions-title{font-size:12px;font-weight:700;color:#854F0B;}
+.top-actions-more{font-size:10px;color:#888;background:none;border:none;cursor:pointer;padding:0;}
+.top-actions-more:hover{color:#2c2c2a;}
+.top-act-list{display:flex;flex-direction:column;gap:6px;}
+.top-act-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:8px;background:#f8f8f6;}
+.top-act-pri{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.top-act-pri.ph{background:#FCEBEB;color:#A32D2D;}
+.top-act-pri.pm{background:#FAEEDA;color:#854F0B;}
+.top-act-text{font-size:12px;font-weight:600;flex:1;}
+.top-act-seg{font-size:10px;color:#aaa;margin-top:1px;}
+.top-actions-collapsed .top-act-item:nth-child(n+3){display:none;}
+
+/* ── ③ 経営3大KPI ── */
+.exec-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;}
+.exec-kpi{background:#fff;border:2px solid #e0e0dc;border-radius:14px;padding:16px 18px;position:relative;}
+.exec-kpi.hit{border-color:#1D9E75;}
+.exec-kpi.miss{border-color:#E24B4A;}
+.exec-kpi-no{font-size:10px;color:#888;margin-bottom:2px;}
+.exec-kpi-name{font-size:11px;color:#888;margin-bottom:8px;font-weight:500;}
+.exec-kpi-val{font-size:26px;font-weight:700;margin-bottom:2px;line-height:1.1;}
+.exec-kpi-tgt{font-size:11px;color:#aaa;margin-bottom:8px;}
+.exec-prog-track{height:6px;background:#eee;border-radius:3px;overflow:hidden;margin-bottom:6px;}
+.exec-prog-fill{height:100%;border-radius:3px;}
+.exec-kpi-meta{display:flex;gap:5px;flex-wrap:wrap;align-items:center;}
+.exec-pct-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;}
+.exec-pct-badge.hit{background:#EAF3DE;color:#3B6D11;}
+.exec-pct-badge.miss{background:#FCEBEB;color:#A32D2D;}
+.exec-pct-badge.over{background:#E6F1FB;color:#185FA5;}
+
+/* ── 詳細KPI（折りたたみ） ── */
+.detail-kpi-toggle{display:flex;align-items:center;gap:6px;background:none;border:1px solid #e0e0dc;border-radius:8px;padding:6px 12px;font-size:11px;color:#888;cursor:pointer;width:100%;margin-bottom:8px;transition:background .15s;}
+.detail-kpi-toggle:hover{background:#f1efe8;}
+.detail-kpi-toggle svg{width:11px;height:11px;transition:transform .2s;flex-shrink:0;}
+.detail-kpi-toggle.open svg{transform:rotate(180deg);}
+.detail-kpi-area{display:none;margin-bottom:16px;}
+.detail-kpi-area.on{display:block;}
+
+/* ── 既存のKPIグリッド流用 ── */
+.badge{font-size:10px;padding:2px 6px;border-radius:5px;font-weight:600;white-space:nowrap;}
+.bu{background:#EAF3DE;color:#3B6D11;}.bd{background:#FCEBEB;color:#A32D2D;}.bn{background:#F1EFE8;color:#5F5E5A;}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:8px;}
+.kc{border:1.5px solid #e0e0dc;border-radius:10px;padding:11px 13px;cursor:pointer;background:#fff;transition:border-color .15s;}
+.kc:hover{border-color:#888;}
+.kno{font-size:10px;color:#888;margin-bottom:3px;}
+.kv{font-size:17px;font-weight:600;margin-bottom:2px;}
+.kn{font-size:10px;color:#888;margin-bottom:4px;}
+.kprog-track{height:3px;background:#eee;border-radius:3px;margin-bottom:4px;overflow:hidden;}
+.kprog-fill{height:100%;border-radius:3px;}
+.kach{font-size:10px;color:#888;margin-bottom:3px;}
+.kbs{display:flex;gap:4px;flex-wrap:wrap;}
+
+/* ── Drill ── */
+.dp{display:none;border:1px solid #e0e0dc;border-radius:12px;padding:16px;margin-bottom:16px;background:#f8f8f6;}
+.dp.on{display:block;}
+.dpt{font-size:13px;font-weight:600;margin-bottom:12px;}
+.dpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:10px;}
+.dn{background:#fff;border:1px solid #e0e0dc;border-radius:8px;padding:10px 12px;}
+.dnl{font-size:10px;color:#888;margin-bottom:3px;}
+.dnv{font-size:13px;font-weight:600;}
+.dnn{font-size:11px;color:#888;line-height:1.6;padding-top:8px;border-top:1px solid #e0e0dc;}
+
+/* ── Tabs ── */
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #e0e0dc;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#f1efe8;}
+.tab{padding:0;cursor:pointer;background:transparent;border:none;border-right:1px solid #e0e0dc;transition:background .15s;}
+.tab:last-child{border-right:none;}
+.tab.on{background:#fff;}
+.ti{padding:13px 12px;text-align:left;}
+.tq{font-size:10px;color:#888;margin-bottom:3px;letter-spacing:.05em;}
+.tl{font-size:11px;font-weight:500;color:#888;margin-bottom:6px;line-height:1.4;}
+.tab.on .tl{color:#2c2c2a;}
+.vd{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;display:inline-block;}
+.vg{background:#EAF3DE;color:#3B6D11;}.vw{background:#FAEEDA;color:#854F0B;}.vb{background:#FCEBEB;color:#A32D2D;}
+.panel{display:none;}.panel.on{display:block;}
+
+/* ── Slabel ── */
+.slabel{font-size:10px;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;margin-top:20px;}
+
+/* ── Charts ── */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.cbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
+.cbox.full{grid-column:1/-1;}
+.ct{font-size:12px;font-weight:600;margin-bottom:2px;}
+.cs{font-size:10px;color:#888;margin-bottom:8px;}
+.lg{display:flex;gap:12px;margin-bottom:8px;font-size:10px;color:#888;flex-wrap:wrap;}
+.ld{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle;}
+
+/* ── Health ── */
+.hrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.hcard{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;}
+.hct{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.stag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;}
+.sl-l{background:#E1F5EE;color:#0F6E56;}.sl-c{background:#E6F1FB;color:#185FA5;}.sl-8{background:#EEEDFE;color:#534AB7;}.sl-t{background:#FAEEDA;color:#854F0B;}
+.hv{font-size:20px;font-weight:600;}
+.hs{font-size:11px;color:#888;margin-bottom:4px;}
+.hcn{font-size:11px;color:#A32D2D;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
+.hgd{font-size:11px;color:#3B6D11;margin-top:8px;padding-top:8px;border-top:1px solid #eee;line-height:1.6;}
+
+/* ── Funnel ── */
+.fbox{border:1px solid #e0e0dc;border-radius:12px;padding:14px;background:#fff;margin-bottom:16px;overflow-x:auto;}
+.fr{display:flex;align-items:center;min-width:520px;}
+.fn{flex-shrink:0;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #e0e0dc;min-width:82px;background:#f8f8f6;}
+.fns{font-size:10px;margin-bottom:3px;font-weight:600;}
+.fnv{font-size:14px;font-weight:700;}
+.fnl{font-size:10px;color:#888;}
+.fa{font-size:16px;color:#ccc;padding:0 6px;flex-shrink:0;}
+.frt{font-size:9px;color:#aaa;text-align:center;}
+
+/* ── Actions (tab3) ── */
+.alist{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.ac{border:1px solid #e0e0dc;border-radius:12px;padding:14px 16px;display:flex;gap:12px;background:#fff;}
+.ap{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;flex-shrink:0;margin-top:2px;}
+.ph{background:#FCEBEB;color:#A32D2D;}.pm{background:#FAEEDA;color:#854F0B;}.pl{background:#E6F1FB;color:#185FA5;}
+.at{font-size:13px;font-weight:600;margin-bottom:4px;}
+.ar{font-size:11px;color:#666;line-height:1.7;}
+.aseg{font-size:10px;color:#aaa;margin-top:4px;}
+.me{font-size:11px;color:#aaa;padding:14px;text-align:center;background:#f8f8f6;border-radius:8px;margin-bottom:16px;border:1px dashed #ddd;}
+
+@media(max-width:700px){
+  .exec-kpis{grid-template-columns:1fr 1fr;}
+  .exec-kpis .exec-kpi:last-child{grid-column:1/-1;}
+}
 @media(max-width:600px){
   .cgrid,.hrow{grid-template-columns:1fr;}
   .cbox.full{grid-column:1;}
   .tabs{grid-template-columns:1fr;}
   .tab{border-right:none;border-bottom:1px solid #e0e0dc;}
   .tab:last-child{border-bottom:none;}
-  .achievement-bar{grid-template-columns:1fr 1fr;}
+  .exec-kpis{grid-template-columns:1fr;}
+  .exec-kpis .exec-kpi:last-child{grid-column:1;}
 }
-@media(max-width:400px){.achievement-bar{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div class="wrap">
+
+<!-- Header -->
 <div class="hdr">
   <div class="htitle" id="txt-title">LC8T 儀表板</div>
   <div class="hdr-right">
@@ -171,10 +225,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     </select>
   </div>
 </div>
+
 <!-- Version bar -->
 <div class="ver-bar">
   <div class="ver-info">
-    <span class="ver-badge">v0.3</span>
+    <span class="ver-badge">v0.4</span>
     <span class="ver-proto">prototype</span>
     <span class="ver-sep">|</span>
     <span class="ver-date" id="ver-date-label">最終更新：2026-03-18</span>
@@ -184,10 +239,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     <span id="chg-btn-label">変更履歴</span>
   </button>
 </div>
-<!-- Changelog -->
 <div class="changelog" id="changelog">
   <div class="chg-header" id="chg-header-label">CHANGELOG</div>
   <div class="chg-list">
+    <div class="chg-item">
+      <span class="chg-ver">v0.4</span>
+      <span class="chg-dt">2026-03-18</span>
+      <span class="chg-desc"><span class="chg-tag new">NEW</span>今月の総括バナー（自動生成＋手動上書き）追加。<span class="chg-tag new">NEW</span>最優先アクションを常時表示に格上げ。<span class="chg-tag upd">UPD</span>経営3大KPIを大きく独立表示。詳細KPIは折りたたみ式に変更。</span>
+    </div>
     <div class="chg-item">
       <span class="chg-ver">v0.3</span>
       <span class="chg-dt">2026-03-18</span>
@@ -196,7 +255,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     <div class="chg-item">
       <span class="chg-ver">v0.2</span>
       <span class="chg-dt">2026-03-18</span>
-      <span class="chg-desc"><span class="chg-tag new">NEW</span>目標達成度バー・達成サマリー追加。KPIカードに達成率プログレスバー追加。<span class="chg-tag new">NEW</span>日本語/繁體中文 言語切替ボタン追加。</span>
+      <span class="chg-desc"><span class="chg-tag new">NEW</span>目標達成度バー・KPIプログレスバー追加。<span class="chg-tag new">NEW</span>日本語/繁體中文 言語切替追加。</span>
     </div>
     <div class="chg-item">
       <span class="chg-ver">v0.1</span>
@@ -205,7 +264,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     </div>
   </div>
 </div>
-<div class="achievement-bar" id="achBar"></div>
+
+<!-- ① 今月の総括バナー -->
+<div class="summary-banner" id="summaryBanner">
+  <div class="sb-top">
+    <div class="sb-left">
+      <div class="sb-month" id="sbMonth"></div>
+      <div class="sb-text" id="sbText"></div>
+      <div class="sb-chips" id="sbChips"></div>
+    </div>
+    <button class="sb-edit-btn" id="sbEditBtn" onclick="toggleSbEdit()"></button>
+  </div>
+  <div class="sb-edit-area" id="sbEditArea">
+    <textarea class="sb-textarea" id="sbTextarea" rows="2"></textarea>
+    <div class="sb-edit-actions">
+      <button class="sb-save-btn" onclick="saveSbText()">保存</button>
+      <button class="sb-reset-btn" onclick="resetSbText()">自動生成に戻す</button>
+    </div>
+  </div>
+</div>
+
+<!-- ② 最優先アクション（常時表示） -->
+<div class="top-actions">
+  <div class="top-actions-hdr">
+    <span class="top-actions-title" id="topActTitle">⭐ 最優先アクション</span>
+    <button class="top-actions-more" id="topActMoreBtn" onclick="toggleTopActions()"></button>
+  </div>
+  <div class="top-act-list top-actions-collapsed" id="topActList"></div>
+</div>
+
+<!-- ③ 経営3大KPI -->
+<div class="exec-kpis" id="execKpis"></div>
+
+<!-- 詳細KPI（折りたたみ） -->
+<button class="detail-kpi-toggle" id="detailToggle" onclick="toggleDetailKpi()">
+  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,4 6,8 10,4"/></svg>
+  <span id="detailToggleLabel">詳細KPI（7項目）を表示</span>
+</button>
+<div class="detail-kpi-area" id="detailKpiArea">
+  <div class="kgrid" id="kg"></div>
+  <div class="dp" id="dp"><div class="dpt" id="dptitle"></div><div class="dpg" id="dpgrid"></div><div class="dnn" id="dpnote"></div></div>
+</div>
+
+<!-- Tabs -->
 <div class="tabs">
   <button class="tab on" id="tb1" onclick="stab(1)">
     <div class="ti"><div class="tq" id="tab1q">問題 ①</div><div class="tl" id="tab1l">LC8T 有沒有在成長？</div><span class="vd" id="v1">—</span></div>
@@ -217,11 +318,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     <div class="ti"><div class="tq" id="tab3q">問題 ③</div><div class="tl" id="tab3l">下一步該做什麼？</div><span class="vd" id="v3">—</span></div>
   </button>
 </div>
+
+<!-- Panel 1 -->
 <div class="panel on" id="p1">
-  <div class="ach-summary" id="achSummary"></div>
-  <p class="slabel" id="lbl-kpi10">10大KPI 當月實績｜點擊展開下層分析</p>
-  <div class="kgrid" id="kg"></div>
-  <div class="dp" id="dp"><div class="dpt" id="dptitle"></div><div class="dpg" id="dpgrid"></div><div class="dnn" id="dpnote"></div></div>
   <p class="slabel" id="lbl-trend">趨勢圖｜12個月（綠=達標・紅=未達・虛線=目標）</p>
   <div class="cgrid">
     <div class="cbox full"><div class="ct" id="ch-gmv-t">① GMV 總成交金額</div><div class="cs" id="ch-gmv-s">WEB + TEL（NT$萬）</div>
@@ -234,6 +333,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
       <canvas id="cCH" style="width:100%;height:140px;display:block;"></canvas></div>
   </div>
 </div>
+
+<!-- Panel 2 -->
 <div class="panel" id="p2">
   <p class="slabel" id="lbl-health">BCL名單四段健康度</p>
   <div class="hrow" id="hrow"></div>
@@ -247,14 +348,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     <div class="cbox"><div class="ct" id="ch-cv-t">⑦ EC轉化率</div><div class="cs" id="ch-cv-s">%（虛線=目標10%）</div><canvas id="cCV" style="width:100%;height:130px;display:block;"></canvas></div>
   </div>
 </div>
+
+<!-- Panel 3 -->
 <div class="panel" id="p3">
   <p class="slabel" id="lbl-action-rec">當月施策記錄（L3-2）</p>
-  <div class="me" id="action-empty">本月施策尚未記錄。<br>請將執行的行銷活動補入 L3-2 施策日曆，建立行動→KPI因果關係資料庫。</div>
-  <p class="slabel" id="lbl-next">⭐ 基於診斷的下一步行動</p>
+  <div class="me" id="action-empty"></div>
+  <p class="slabel" id="lbl-next">⭐ 基於診斷的下一步行動（全件）</p>
   <div class="alist" id="alist"></div>
 </div>
-</div>
 
+</div><!-- /wrap -->
 <script>
 var ALL = {
   '202602':{gmv:2258293,orders:581,aov:3887,ec:372,tel:209,newLine:1844,list:2471,telRate:8.5,cvRate:20.2},
@@ -274,6 +377,8 @@ var RK = KEYS.slice().reverse();
 var RL = RK.map(function(k){return k.slice(4)+'月';});
 
 var LANG = 'zh';
+var sbOverride = {}; // 月別の手動上書きテキスト
+
 var TX = {
   zh:{
     title:'LC8T 儀表板',
@@ -283,16 +388,14 @@ var TX = {
     v1hit:'成長中 ✓', v1miss:'需關注',
     v2hit:'名單健康', v2miss:'名單待改善',
     v3ok:'維持現況', v3iss:'項待改善',
-    achLabel:'目標達成', achSumLabel:'項KPI達標', achOver:'超標',
     hit:'達標', miss:'未達', pending:'待補入',
     mom:'前月比', vsTarget:'目標比',
-    lbl_kpi10:'10大KPI 當月實績｜點擊展開下層分析',
     lbl_trend:'趨勢圖｜12個月（綠=達標・紅=未達・虛線=目標）',
     lbl_health:'BCL名單四段健康度',
     lbl_funnel:'名單育成漏斗｜L→C→8→T→GMV',
     lbl_kpi_trend:'名單相關KPI 趨勢',
     lbl_action_rec:'當月施策記錄（L3-2）',
-    lbl_next:'⭐ 基於診斷的下一步行動',
+    lbl_next:'⭐ 基於診斷的下一步行動（全件）',
     action_empty:'本月施策尚未記錄。<br>請將執行的行銷活動補入 L3-2 施策日曆，建立行動→KPI因果關係資料庫。',
     lgActual:'實績（綠=達標/紅=未達）', lgTarget:'目標線', lgTel:'TEL', lgEc:'EC',
     gmvT:'① GMV 總成交金額', gmvS:'WEB + TEL（NT$萬）',
@@ -308,39 +411,18 @@ var TX = {
     fNurture:'育成', fSeg:'分眾', fConvert:'成交', fResult:'結果',
     priorityHigh:'最優先', priorityMid:'建議', priorityLow:'參考',
     actSeg:'對象段 →',
-    kpiNames:['GMV 總成交金額','總簽約數','AOV 平均客單價','EC簽約數','線上接觸顧客數','新增LINE-ID數','EC轉化率','TEL簽約數','顧客名單數','電銷轉化率'],
-    drillTitles:['① GMV = WEB銷售額 + TM銷售額','② 總簽約數 = ④EC + ⑧TEL','③ AOV 影響因素：商品組合','④ EC簽約數 = 觸及人數 × ⑦EC轉化率','⑤ 線上接觸顧客數（C/8段）','⑥ 新增LINE-ID 來源分解','⑦ EC轉化率 影響因素','⑧ TEL簽約數 = ⑨名單數 × ⑩轉化率','⑨ 顧客名單數 品質視角','⑩ 電銷轉化率 影響因素'],
-    drillNotes:[
-      'GMV口徑：WEB（Shopline）+ TEL兩管道。KOL・蝦皮不納入。',
-      '含新增＋續約。各細項待L2-D・L2-E補充後可分解。',
-      '英語進階版(NT$4,500)・語彙智育套組(NT$4,900)等高單價商品比例是AOV關鍵。',
-      '旅程完整性与訴求時機決定轉化率。L2-E・L2-J補充後可完整分解。',
-      '= 當月新增Super8標籤的人數。標籤是否有效驅動後續旅程是C段核心課題。',
-      '名單品質比量更重要。0～24月齡目標族群比例決定後続轉換潛力。',
-      'EC轉化率 = EC簽約數 ÷ LINE觸及人數（分母定義待確認）。',
-      '轉化率由名單品質與外撥時機決定。L2-D補充後可完整分解。',
-      '名單「量」≠「質」。同一名單重複外撥（DB疲勞）是轉化率低下的主因。',
-      '電銷轉化率 = TEL簽約數 ÷ 顧客名單數。名單品質と外撥タイミングが効率を左右。'
-    ],
-    drillLabels:[
-      ['TEL 貢獻額（估）','WEB 貢獻額（估）','TEL佔比','WEB佔比'],
-      ['EC簽約數（④）','TEL簽約數（⑧）','EC佔比','TEL佔比'],
-      ['核心主力商品均價','高單價商品佔比','LTV遞進路徑'],
-      ['④-1 新增簽約','④-2 續約','⑦ EC轉化率','Super8觸及人數'],
-      ['新增Super8標籤人數','標籤種類數','互動率'],
-      ['異業合作','SNS流量','0-1歲族群佔比','綁定完成率'],
-      ['Super8旅程完成率','購物車放棄率','推播開封率'],
-      ['⑧-1 新增成約','⑧-2 續約','外撥總量','應答率'],
-      ['Super8標籤累積數（⑤）','高意圖名單數','DB疲勞指標'],
-      ['⑨ 顧客名單數','應答率','名單月齡匹配度']
-    ],
+    topActTitle:'⭐ 最優先行動',
+    topActMore:'全部展開', topActLess:'折疊',
+    detailShow:'詳細KPI（7項目）展開', detailHide:'詳細KPI 收起',
+    sbEditBtn:'編輯', sbSave:'保存', sbReset:'還原自動生成',
+    verDate:'最後更新：2026-03-18', chgLog:'更新記錄',
+    execKpiNames:['GMV 總成交金額','總簽約數','電銷轉化率'],
+    kpiNames:['AOV 平均客單價','EC簽約數','線上接觸顧客數','新增LINE-ID數','EC轉化率','TEL簽約數','顧客名單數'],
+    drillTitles:['③ AOV 影響因素：商品組合','④ EC簽約數 = 觸及人數 × ⑦EC轉化率','⑤ 線上接觸顧客數（C/8段）','⑥ 新增LINE-ID 來源分解','⑦ EC轉化率 影響因素','⑧ TEL簽約數 = ⑨名單數 × ⑩轉化率','⑨ 顧客名單數 品質視角'],
+    drillNotes:['英語進階版(NT$4,500)・語彙智育套組(NT$4,900)等高單價商品比例是AOV關鍵。','旅程完整性与訴求時機決定轉化率。L2-E・L2-J補充後可完整分解。','= 當月新增Super8標籤的人數。','名單品質比量更重要。0～24月齡目標族群比例決定後続轉換潛力。','EC轉化率 = EC簽約數 ÷ LINE觸及人數（分母定義待確認）。','轉化率由名單品質與外撥時機決定。','名單「量」≠「質」。DB疲勞是轉化率低下主因。'],
+    drillLabels:[['核心主力商品均價','高單價商品佔比','LTV遞進路徑'],['④-1 新增簽約','④-2 續約','⑦ EC轉化率','Super8觸及人數'],['新增Super8標籤人數','標籤種類數','互動率'],['異業合作','SNS流量','0-1歲族群佔比','綁定完成率'],['Super8旅程完成率','購物車放棄率','推播開封率'],['⑧-1 新增成約','⑧-2 續約','外撥總量','應答率'],['Super8標籤累積數（⑤）','高意圖名單數','DB疲勞指標']],
     segLabels:['L段｜LINE名單入口','C段｜社群互動・標籤','8段｜Super8自動化','T段｜TEL電話銷售'],
-    act1t:'【T段】改善電銷名單品質・提升轉化率',
-    act2t:'【8段】加速Super8標籤積累・補強名單供給',
-    act3t:'【L段】重新投入名單獲取施策',
-    act4t:'【8段】EC轉化率高・擴大觸及人數',
-    act5t:'【T/8段】強化高單價商品訴求',
-    act6t:'【全段】將本月施策記錄至 L3-2 施策日曆',
+    act1t:'【T段】改善電銷名單品質・提升轉化率',act2t:'【8段】加速Super8標籤積累・補強名單供給',act3t:'【L段】重新投入名單獲取施策',act4t:'【8段】EC轉化率高・擴大觸及人數',act5t:'【T/8段】強化高單價商品訴求',act6t:'【全段】將本月施策記錄至 L3-2 施策日曆',
     act6r:'記錄本月執行的施策，建立「行動→KPI因果關係」資料庫，讓未來AI分析更精準。'
   },
   ja:{
@@ -351,16 +433,14 @@ var TX = {
     v1hit:'成長中 ✓', v1miss:'要注意',
     v2hit:'名簿健全', v2miss:'名簿要改善',
     v3ok:'現状維持', v3iss:'項目要改善',
-    achLabel:'目標達成率', achSumLabel:'項目達成', achOver:'超過達成',
     hit:'達成', miss:'未達', pending:'未入力',
     mom:'前月比', vsTarget:'目標比',
-    lbl_kpi10:'10大KPI 当月実績｜クリックで詳細展開',
     lbl_trend:'トレンド｜12ヶ月（緑=達成・赤=未達・破線=目標）',
     lbl_health:'BCL名簿 4段階健全度',
     lbl_funnel:'名簿育成ファネル｜L→C→8→T→GMV',
     lbl_kpi_trend:'名簿関連KPI トレンド',
     lbl_action_rec:'当月施策記録（L3-2）',
-    lbl_next:'⭐ 診断に基づく次のアクション',
+    lbl_next:'⭐ 診断に基づく次のアクション（全件）',
     action_empty:'今月の施策はまだ記録されていません。<br>実施したマーケティング活動をL3-2施策カレンダーに入力し、行動→KPI因果関係データベースを構築してください。',
     lgActual:'実績（緑=達成/赤=未達）', lgTarget:'目標線', lgTel:'TEL', lgEc:'EC',
     gmvT:'① GMV 総成約金額', gmvS:'WEB + TEL（NT$万）',
@@ -376,275 +456,301 @@ var TX = {
     fNurture:'育成', fSeg:'セグメント', fConvert:'成約', fResult:'結果',
     priorityHigh:'最優先', priorityMid:'推奨', priorityLow:'参考',
     actSeg:'対象段 →',
-    kpiNames:['GMV 総成約金額','総成約数','AOV 平均客単価','EC成約数','オンライン接触顧客数','新規LINE-ID数','EC転換率','TEL成約数','顧客名簿数','電話転換率'],
-    drillTitles:['① GMV = WEB売上 + TEL売上','② 総成約数 = ④EC + ⑧TEL','③ AOV 影響要因：商品構成','④ EC成約数 = リーチ人数 × ⑦EC転換率','⑤ オンライン接触顧客数（C/8段）','⑥ 新規LINE-ID 流入元分解','⑦ EC転換率 影響要因','⑧ TEL成約数 = ⑨名簿数 × ⑩転換率','⑨ 顧客名簿数 品質視点','⑩ 電話転換率 影響要因'],
-    drillNotes:[
-      'GMV口径：WEB（Shopline）+ TEL両チャネル。KOL・蝦皮は含まない。',
-      '新規＋更新を含む。各詳細はL2-D・L2-E入力後に分解可能。',
-      '英語上級版(NT$4,500)・語彙知育セット(NT$4,900)等の高単価商品比率がAOVの鍵。',
-      '旅程の完整性と訴求タイミングが転換率を決定。L2-E・L2-J入力後に完全分解可能。',
-      '= 当月新規Super8タグ付け人数。タグが後続旅程を有効に促進しているかがC段の核心課題。',
-      '名簿の質が量より重要。0～24ヶ月齢ターゲット層の比率が後続転換ポテンシャルを決定。',
-      'EC転換率 = EC成約数 ÷ LINEリーチ人数（分母定義要確認）。',
-      '転換率は名簿品質と外発タイミングで決まる。L2-D入力後に完全分解可能。',
-      '名簿の「量」≠「質」。同一名簿への繰り返し外発（DBファティーグ）が転換率低下の主因。',
-      '電話転換率 = TEL成約数 ÷ 顧客名簿数。名簿品質と外発タイミングが効率を左右。'
-    ],
-    drillLabels:[
-      ['TEL貢献額（推定）','WEB貢献額（推定）','TEL比率','WEB比率'],
-      ['EC成約数（④）','TEL成約数（⑧）','EC比率','TEL比率'],
-      ['主力商品平均単価','高単価商品比率','LTV進行パス'],
-      ['④-1 新規成約','④-2 更新','⑦ EC転換率','Super8リーチ人数'],
-      ['新規Super8タグ人数','タグ種別数','インタラクション率'],
-      ['異業種提携','SNS流入','0-1歳層比率','連携完了率'],
-      ['Super8旅程完了率','カート放棄率','プッシュ開封率'],
-      ['⑧-1 新規成約','⑧-2 更新','外発総数','応答率'],
-      ['Super8タグ累積数（⑤）','高意向名簿数','DBファティーグ指標'],
-      ['⑨ 顧客名簿数','応答率','名簿月齢マッチ度']
-    ],
+    topActTitle:'⭐ 最優先アクション',
+    topActMore:'全件表示', topActLess:'折りたたむ',
+    detailShow:'詳細KPI（7項目）を表示', detailHide:'詳細KPI を閉じる',
+    sbEditBtn:'編集', sbSave:'保存', sbReset:'自動生成に戻す',
+    verDate:'最終更新：2026-03-18', chgLog:'変更履歴',
+    execKpiNames:['GMV 総成約金額','総成約数','電話転換率'],
+    kpiNames:['AOV 平均客単価','EC成約数','オンライン接触顧客数','新規LINE-ID数','EC転換率','TEL成約数','顧客名簿数'],
+    drillTitles:['③ AOV 影響要因：商品構成','④ EC成約数 = リーチ人数 × ⑦EC転換率','⑤ オンライン接触顧客数（C/8段）','⑥ 新規LINE-ID 流入元分解','⑦ EC転換率 影響要因','⑧ TEL成約数 = ⑨名簿数 × ⑩転換率','⑨ 顧客名簿数 品質視点'],
+    drillNotes:['英語上級版(NT$4,500)・語彙知育セット(NT$4,900)等の高単価商品比率がAOVの鍵。','旅程の完整性と訴求タイミングが転換率を決定。','= 当月新規Super8タグ付け人数。','名簿の質が量より重要。0～24ヶ月齢ターゲット層の比率が転換ポテンシャルを決定。','EC転換率 = EC成約数 ÷ LINEリーチ人数（分母定義要確認）。','転換率は名簿品質と外発タイミングで決まる。','名簿の「量」≠「質」。DBファティーグが転換率低下の主因。'],
+    drillLabels:[['主力商品平均単価','高単価商品比率','LTV進行パス'],['④-1 新規成約','④-2 更新','⑦ EC転換率','Super8リーチ人数'],['新規Super8タグ人数','タグ種別数','インタラクション率'],['異業種提携','SNS流入','0-1歳層比率','連携完了率'],['Super8旅程完了率','カート放棄率','プッシュ開封率'],['⑧-1 新規成約','⑧-2 更新','外発総数','応答率'],['Super8タグ累積数（⑤）','高意向名簿数','DBファティーグ指標']],
     segLabels:['L段｜LINE名簿入口','C段｜SNS交流・タグ','8段｜Super8自動化','T段｜TEL電話営業'],
-    act1t:'【T段】電話営業名簿品質改善・転換率向上',
-    act2t:'【8段】Super8タグ蓄積加速・名簿供給補強',
-    act3t:'【L段】名簿獲得施策の再投入',
-    act4t:'【8段】EC転換率高・リーチ人数を拡大',
-    act5t:'【T/8段】高単価商品訴求の強化',
-    act6t:'【全段】今月の施策をL3-2施策カレンダーに記録',
+    act1t:'【T段】電話営業名簿品質改善・転換率向上',act2t:'【8段】Super8タグ蓄積加速・名簿供給補強',act3t:'【L段】名簿獲得施策の再投入',act4t:'【8段】EC転換率高・リーチ人数を拡大',act5t:'【T/8段】高単価商品訴求の強化',act6t:'【全段】今月の施策をL3-2施策カレンダーに記録',
     act6r:'今月実施した施策を記録し、「行動→KPI因果関係」データベースを構築することで、AIによる分析精度が向上します。'
   }
 };
+function tx(k){return TX[LANG][k]||k;}
 
-function tx(key){ return TX[LANG][key] || key; }
-
-var ACH_KPIS = [
-  {no:'①', key:'gmv',     tgt:TGT.gmv,     fmt:function(v){return 'NT$'+(v/10000).toFixed(1)+'万';}, fmtTgt:'NT$'+(TGT.gmv/10000).toFixed(0)+'万'},
-  {no:'②', key:'orders',  tgt:TGT.orders,  fmt:function(v){return v.toLocaleString()+'件';},          fmtTgt:TGT.orders.toLocaleString()+'件'},
-  {no:'⑨', key:'list',    tgt:TGT.list,    fmt:function(v){return v.toLocaleString()+'件';},          fmtTgt:TGT.list.toLocaleString()+'件'},
-  {no:'⑩', key:'telRate', tgt:TGT.telRate, fmt:function(v){return v+'%';},                            fmtTgt:TGT.telRate+'%'}
+// 経営3大KPI定義
+var EXEC_KPI_DEFS = [
+  {no:'①',key:'gmv',    tgt:TGT.gmv,     fmt:function(v){return 'NT$'+(v/10000).toFixed(1)+'万';}, fmtTgt:function(){return 'NT$'+(TGT.gmv/10000).toFixed(0)+'万';}},
+  {no:'②',key:'orders', tgt:TGT.orders,  fmt:function(v){return v.toLocaleString()+'件';},          fmtTgt:function(){return TGT.orders+'件';}},
+  {no:'⑩',key:'telRate',tgt:TGT.telRate, fmt:function(v){return v+'%';},                            fmtTgt:function(){return TGT.telRate+'%';}}
 ];
-
-var KPIS = [
-  {no:'①', key:'gmv',     tgt:TGT.gmv,     fmt:function(v){return 'NT$'+(v/10000).toFixed(1)+'万';}, dk:0},
-  {no:'②', key:'orders',  tgt:TGT.orders,  fmt:function(v){return v.toLocaleString()+'件';},          dk:1},
-  {no:'③', key:'aov',     tgt:TGT.aov,     fmt:function(v){return 'NT$'+v.toLocaleString();},         dk:2},
-  {no:'④', key:'ec',      tgt:TGT.ec,      fmt:function(v){return v+'件';},                           dk:3},
-  {no:'⑤', key:'contact', tgt:null,        fmt:function(v){return '—';},                              dk:4},
-  {no:'⑥', key:'newLine', tgt:TGT.newLine, fmt:function(v){return v.toLocaleString()+'件';},          dk:5},
-  {no:'⑦', key:'cvRate',  tgt:TGT.cvRate,  fmt:function(v){return v!=null?v+'%':'—';},                dk:6},
-  {no:'⑧', key:'tel',     tgt:TGT.tel,     fmt:function(v){return v+'件';},                           dk:7},
-  {no:'⑨', key:'list',    tgt:TGT.list,    fmt:function(v){return v.toLocaleString()+'件';},           dk:8},
-  {no:'⑩', key:'telRate', tgt:TGT.telRate, fmt:function(v){return v+'%';},                            dk:9}
+// 詳細KPI（残り7つ）
+var DETAIL_KPI_DEFS = [
+  {no:'③',key:'aov',    tgt:TGT.aov,    fmt:function(v){return 'NT$'+v.toLocaleString();},   dk:0},
+  {no:'④',key:'ec',     tgt:TGT.ec,     fmt:function(v){return v+'件';},                     dk:1},
+  {no:'⑤',key:'contact',tgt:null,       fmt:function(v){return '—';},                        dk:2},
+  {no:'⑥',key:'newLine',tgt:TGT.newLine,fmt:function(v){return v.toLocaleString()+'件';},    dk:3},
+  {no:'⑦',key:'cvRate', tgt:TGT.cvRate, fmt:function(v){return v!=null?v+'%':'—';},          dk:4},
+  {no:'⑧',key:'tel',    tgt:TGT.tel,    fmt:function(v){return v+'件';},                     dk:5},
+  {no:'⑨',key:'list',   tgt:TGT.list,   fmt:function(v){return v.toLocaleString()+'件';},    dk:6}
 ];
-
 var DRILL_VALS = [
-  function(d){return ['NT$'+(d.tel*d.aov/10000).toFixed(1)+'万','NT$'+((d.gmv-d.tel*d.aov)/10000).toFixed(1)+'万',Math.round(d.tel*d.aov/d.gmv*100)+'%',(100-Math.round(d.tel*d.aov/d.gmv*100))+'%'];},
-  function(d){return [d.ec+'件',d.tel+'件',Math.round(d.ec/(d.ec+d.tel)*100)+'%',Math.round(d.tel/(d.ec+d.tel)*100)+'%'];},
   function(d){return ['NT$3,200～4,900','—','初階→進階 / 0~3歳'];},
   function(d){return ['—','—',d.cvRate!=null?d.cvRate+'%':'—','—'];},
   function(d){return ['—','—','—'];},
   function(d){return ['—','—','—','—'];},
   function(d){return ['—','—','—'];},
   function(d){return ['—','—','—','—'];},
-  function(d){return ['—','—','—'];},
-  function(d){return [d.list.toLocaleString()+'件','—','—'];}
+  function(d){return ['—','—','—'];}
 ];
 
 var activeKey = null;
+var topActExpanded = false;
+var detailOpen = false;
+var sbEditing = false;
 
-function setLang(lang){
-  LANG = lang;
-  document.getElementById('lang-ja').className = 'lang-btn' + (lang==='ja'?' on':'');
-  document.getElementById('lang-zh').className = 'lang-btn' + (lang==='zh'?' on':'');
-  document.documentElement.lang = lang==='ja'?'ja':'zh-TW';
-  render();
-}
-
-function toggleChangelog(){
-  var cl = document.getElementById('changelog');
-  var btn = document.getElementById('chg-btn');
-  var isOpen = cl.classList.contains('on');
-  cl.classList.toggle('on', !isOpen);
-  btn.classList.toggle('open', !isOpen);
-}
-
-function applyTexts(){
-  // タイトル（prototype表記固定）
-  document.getElementById('txt-title').innerHTML =
-    'LC8T 儀表板 <span style="font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;background:#FAEEDA;color:#854F0B;vertical-align:middle;">prototype</span>';
-  // バージョンバー言語切替
-  document.getElementById('ver-date-label').textContent  = LANG==='ja' ? '最終更新：2026-03-18' : '最後更新：2026-03-18';
-  document.getElementById('chg-btn-label').textContent   = LANG==='ja' ? '変更履歴' : '更新記錄';
-  document.getElementById('chg-header-label').textContent= 'CHANGELOG';
-  document.getElementById('tab1q').textContent        = tx('tab1q');
-  document.getElementById('tab1l').textContent        = tx('tab1l');
-  document.getElementById('tab2q').textContent        = tx('tab2q');
-  document.getElementById('tab2l').textContent        = tx('tab2l');
-  document.getElementById('tab3q').textContent        = tx('tab3q');
-  document.getElementById('tab3l').textContent        = tx('tab3l');
-  document.getElementById('lbl-kpi10').textContent    = tx('lbl_kpi10');
-  document.getElementById('lbl-trend').textContent    = tx('lbl_trend');
-  document.getElementById('lbl-health').textContent   = tx('lbl_health');
-  document.getElementById('lbl-funnel').textContent   = tx('lbl_funnel');
-  document.getElementById('lbl-kpi-trend').textContent= tx('lbl_kpi_trend');
-  document.getElementById('lbl-action-rec').textContent= tx('lbl_action_rec');
-  document.getElementById('lbl-next').textContent     = tx('lbl_next');
-  document.getElementById('action-empty').innerHTML   = tx('action_empty');
-  document.getElementById('lg-actual').textContent    = tx('lgActual');
-  document.getElementById('lg-target').textContent    = tx('lgTarget');
-  document.getElementById('lg-tel').textContent       = tx('lgTel');
-  document.getElementById('lg-ec').textContent        = tx('lgEc');
-  document.getElementById('ch-gmv-t').textContent     = tx('gmvT');
-  document.getElementById('ch-gmv-s').textContent     = tx('gmvS');
-  document.getElementById('ch-ord-t').textContent     = tx('ordT');
-  document.getElementById('ch-ord-s').textContent     = tx('ordS');
-  document.getElementById('ch-aov-t').textContent     = tx('aovT');
-  document.getElementById('ch-aov-s').textContent     = tx('aovS');
-  document.getElementById('ch-ch-t').textContent      = tx('chT');
-  document.getElementById('ch-ch-s').textContent      = tx('chS');
-  document.getElementById('ch-line-t').textContent    = tx('lineT');
-  document.getElementById('ch-line-s').textContent    = tx('lineS');
-  document.getElementById('ch-list-t').textContent    = tx('listT');
-  document.getElementById('ch-list-s').textContent    = tx('listS');
-  document.getElementById('ch-tr-t').textContent      = tx('trT');
-  document.getElementById('ch-tr-s').textContent      = tx('trS');
-  document.getElementById('ch-cv-t').textContent      = tx('cvT');
-  document.getElementById('ch-cv-s').textContent      = tx('cvS');
-}
-
-function renderAchBar(d){
-  var html = '';
-  for(var i=0;i<ACH_KPIS.length;i++){
-    var k = ACH_KPIS[i];
-    var v = d[k.key];
-    var pct = (v!=null && k.tgt) ? Math.round(v/k.tgt*100) : null;
-    var hit = pct!=null && pct>=100;
-    var over = pct!=null && pct>100;
-    var barW = pct!=null ? Math.min(pct,100) : 0;
-    var barColor = pct==null ? '#ccc' : over ? '#185FA5' : hit ? '#1D9E75' : '#E24B4A';
-    var cardCls = v==null ? '' : hit ? ' hit' : ' miss';
-    var pctCls = over ? 'over' : hit ? 'hit' : 'miss';
-    var pctLabel = pct!=null ? ((over ? tx('achOver')+' ' : '') + pct + '%') : '';
-    var kpiName = tx('kpiNames')[i === 0 ? 0 : i === 1 ? 1 : i === 2 ? 8 : 9];
-    html += '<div class="ach-card'+cardCls+'">';
-    html += '<div class="ach-label">'+k.no+' '+tx('achLabel')+'</div>';
-    html += '<div class="ach-kpi">'+kpiName+'</div>';
-    html += '<div class="ach-vals"><span class="ach-actual">'+(v!=null?k.fmt(v):'—')+'</span><span class="ach-sep">/</span><span class="ach-target">'+k.fmtTgt+'</span></div>';
-    if(pct!=null) html += '<span class="ach-pct '+pctCls+'">'+pctLabel+'</span>';
-    html += '<div class="prog-track"><div class="prog-fill" style="width:'+barW+'%;background:'+barColor+'"></div></div>';
-    html += '</div>';
-  }
-  document.getElementById('achBar').innerHTML = html;
-}
-
-function renderAchSummary(d){
-  var measurable = ACH_KPIS.filter(function(k){return d[k.key]!=null&&k.tgt;});
-  var hitCount = measurable.filter(function(k){return d[k.key]>=k.tgt;}).length;
-  var color = hitCount===measurable.length ? '#1D9E75' : '#E24B4A';
-  var pills = '';
-  var kpiNos = ['①','②','⑨','⑩'];
-  var kpiKeys = ['gmv','orders','list','telRate'];
-  for(var i=0;i<kpiNos.length;i++){
-    var v = d[kpiKeys[i]];
-    if(v==null){ pills += '<span class="ach-pill na">'+kpiNos[i]+' '+tx('pending')+'</span>'; }
-    else {
-      var h = v>=ACH_KPIS[i].tgt;
-      pills += '<span class="ach-pill '+(h?'hit':'miss')+'">'+kpiNos[i]+' '+(h?tx('hit'):tx('miss'))+'</span>';
+// ── 総括バナー自動生成 ──
+function genSbText(d, key) {
+  var yr = key.slice(0,4), mo = parseInt(key.slice(4),10);
+  var monthLabel = LANG==='ja' ? yr+'年'+mo+'月' : yr+'年'+mo+'月';
+  var issues = [];
+  var goods  = [];
+  var gmvPct  = Math.round(d.gmv/TGT.gmv*100);
+  var ordPct  = Math.round(d.orders/TGT.orders*100);
+  var telPct  = Math.round(d.telRate/TGT.telRate*100);
+  var linePct = Math.round(d.newLine/TGT.newLine*100);
+  var listPct = Math.round(d.list/TGT.list*100);
+  if(d.gmv<TGT.gmv)      issues.push(LANG==='ja'?'GMV未達('+gmvPct+'%)':'GMV未達('+gmvPct+'%)');
+  else                    goods.push(LANG==='ja'?'GMV達成('+gmvPct+'%)':'GMV達標('+gmvPct+'%)');
+  if(d.telRate<TGT.telRate) issues.push(LANG==='ja'?'電話転換率低下':'電銷轉化率偏低');
+  else                      goods.push(LANG==='ja'?'電話転換率良好':'電銷轉化率良好');
+  if(d.list<TGT.list)     issues.push(LANG==='ja'?'名簿不足':'名單不足');
+  if(d.newLine<TGT.newLine) issues.push(LANG==='ja'?'LINE獲得不足':'新增LINE-ID不足');
+  if(d.cvRate!=null&&d.cvRate>=15) goods.push(LANG==='ja'?'EC転換率高水準('+d.cvRate+'%)':'EC轉化率高水準('+d.cvRate+'%)');
+  var totalIss = issues.length;
+  var urgent = [];
+  if(d.telRate<TGT.telRate) urgent.push(LANG==='ja'?'T段名簿品質改善':'T段名單品質改善');
+  if(d.list<TGT.list)       urgent.push(LANG==='ja'?'8段Super8補強':'8段Super8補強');
+  var txt = '';
+  if(totalIss===0){
+    txt = LANG==='ja' ? '全主要KPI達成。現状維持・更なる拡大フェーズ。' : '主要KPI全數達標。維持現況・進入擴大階段。';
+  } else {
+    if(LANG==='ja'){
+      txt = monthLabel + ' → GMV '+(d.gmv>=TGT.gmv?'達成':'未達')+'('+gmvPct+'%) / '+totalIss+'項目要対策';
+      if(urgent.length) txt += ' / 最優先：'+urgent.join('・');
+    } else {
+      txt = monthLabel + ' → GMV '+(d.gmv>=TGT.gmv?'達標':'未達')+'('+gmvPct+'%) / '+totalIss+'項待改善';
+      if(urgent.length) txt += ' / 最優先：'+urgent.join('・');
     }
   }
-  document.getElementById('achSummary').innerHTML =
-    '<div style="display:flex;align-items:baseline;gap:4px;"><span class="ach-sum-num" style="color:'+color+'">'+hitCount+'/'+measurable.length+'</span><span class="ach-sum-label">'+tx('achSumLabel')+'</span></div>'+
-    '<div class="ach-summary-pills">'+pills+'</div>';
+  return txt;
+}
+function genSbChips(d) {
+  var chips = [];
+  chips.push({cls:d.gmv>=TGT.gmv?'hit':'miss', txt:'GMV '+(d.gmv>=TGT.gmv?(LANG==='ja'?'達成':'達標'):(LANG==='ja'?'未達':'未達'))});
+  chips.push({cls:d.orders>=TGT.orders?'hit':'miss', txt:(LANG==='ja'?'成約数 ':'簽約數 ')+(d.orders>=TGT.orders?(LANG==='ja'?'達成':'達標'):(LANG==='ja'?'未達':'未達'))});
+  chips.push({cls:d.telRate>=TGT.telRate?'hit':'miss', txt:(LANG==='ja'?'電話転換 ':'電銷轉化 ')+(d.telRate>=TGT.telRate?(LANG==='ja'?'達成':'達標'):(LANG==='ja'?'未達':'未達'))});
+  if(d.cvRate!=null&&d.cvRate>=15) chips.push({cls:'info', txt:'EC CV '+d.cvRate+'%'+(LANG==='ja'?' 高水準':' 高水準')});
+  return chips;
+}
+function renderSummaryBanner(d, key) {
+  var issues = [d.gmv<TGT.gmv, d.telRate<TGT.telRate, d.list<TGT.list, d.newLine<TGT.newLine].filter(Boolean).length;
+  var cls = issues===0 ? 'ok' : issues<=2 ? 'warn' : 'ng';
+  var banner = document.getElementById('summaryBanner');
+  banner.className = 'summary-banner ' + cls;
+  var yr = key.slice(0,4), mo = parseInt(key.slice(4),10);
+  document.getElementById('sbMonth').textContent = LANG==='ja' ? yr+'年'+mo+'月 月次レポート' : yr+'年'+mo+'月 月報';
+  var txt = (sbOverride[key] != null) ? sbOverride[key] : genSbText(d, key);
+  document.getElementById('sbText').textContent = txt;
+  document.getElementById('sbEditBtn').textContent = tx('sbEditBtn');
+  // chips
+  var chips = genSbChips(d);
+  var chipsHtml = '';
+  for(var i=0;i<chips.length;i++) chipsHtml += '<span class="sb-chip '+chips[i].cls+'">'+chips[i].txt+'</span>';
+  document.getElementById('sbChips').innerHTML = chipsHtml;
+  // edit area
+  document.getElementById('sbTextarea').value = txt;
+}
+function toggleSbEdit(){
+  sbEditing = !sbEditing;
+  document.getElementById('sbEditArea').className = 'sb-edit-area' + (sbEditing?' on':'');
+  document.getElementById('sbEditBtn').textContent = sbEditing ? '×' : tx('sbEditBtn');
+}
+function saveSbText(){
+  var key = document.getElementById('msel').value;
+  sbOverride[key] = document.getElementById('sbTextarea').value;
+  document.getElementById('sbText').textContent = sbOverride[key];
+  sbEditing=false;
+  document.getElementById('sbEditArea').className='sb-edit-area';
+  document.getElementById('sbEditBtn').textContent=tx('sbEditBtn');
+}
+function resetSbText(){
+  var key = document.getElementById('msel').value;
+  delete sbOverride[key];
+  var d = ALL[key];
+  var txt = genSbText(d,key);
+  document.getElementById('sbTextarea').value = txt;
+  document.getElementById('sbText').textContent = txt;
 }
 
+// ── ② 最優先アクション（常時表示） ──
+function buildActions(d,prev){
+  var acts=[];
+  if(d.telRate<TGT.telRate) acts.push({p:'high',t:tx('act1t'),r:LANG==='ja'?'電話転換率 '+d.telRate+'%（目標'+TGT.telRate+'%）。DBファティーグ確認・高意向名簿に集中。':'電銷轉化率 '+d.telRate+'%（目標'+TGT.telRate+'%）。確認DB疲勞，聚焦高意圖名單。',s:'T段'});
+  if(d.list<TGT.list)       acts.push({p:'high',t:tx('act2t'),r:LANG==='ja'?'顧客名簿数 '+d.list.toLocaleString()+'件（目標'+TGT.list.toLocaleString()+'件）。旅程離脱点を補強。':'顧客名單數 '+d.list.toLocaleString()+'件（目標'+TGT.list.toLocaleString()+'件）。確認旅程流失點並補強。',s:'8段→T段'});
+  if(d.newLine<TGT.newLine) acts.push({p:'mid',t:tx('act3t'),r:LANG==='ja'?'新規LINE-ID '+d.newLine.toLocaleString()+'件（目標'+TGT.newLine.toLocaleString()+'件）。異業種提携・SNS施策を確認。':'新增LINE-ID '+d.newLine.toLocaleString()+'件（目標'+TGT.newLine.toLocaleString()+'件）。確認異業合作・SNS活動。',s:'L段'});
+  if(d.cvRate!=null&&d.cvRate>=15) acts.push({p:'mid',t:tx('act4t')+'（'+d.cvRate+'%）',r:LANG==='ja'?'転換率高水準。Super8配信対象を拡大してEC成約数・GMVを向上。':'轉化率高水準。擴大Super8配信對象，直接提升EC簽約數與GMV。',s:'8段→EC'});
+  if(d.aov<TGT.aov)         acts.push({p:'low',t:tx('act5t'),r:LANG==='ja'?'AOV NT$'+d.aov.toLocaleString()+'（目標NT$'+TGT.aov.toLocaleString()+'）。高単価商品の月齢訴求精度を確認。':'AOV NT$'+d.aov.toLocaleString()+'（目標NT$'+TGT.aov.toLocaleString()+'）。確認高單價商品月齡訴求精準度。',s:'8段・T段'});
+  acts.push({p:'low',t:tx('act6t'),r:tx('act6r'),s:LANG==='ja'?'全段':'全段'});
+  return acts;
+}
+function renderTopActions(d,prev){
+  var acts = buildActions(d,prev);
+  var html = '';
+  for(var i=0;i<acts.length;i++){
+    var a=acts[i];
+    var pCls=a.p==='high'?'ph':a.p==='mid'?'pm':'pl';
+    var pLbl=a.p==='high'?tx('priorityHigh'):a.p==='mid'?tx('priorityMid'):tx('priorityLow');
+    html += '<div class="top-act-item"><span class="top-act-pri '+pCls+'">'+pLbl+'</span><div><div class="top-act-text">'+a.t+'</div><div class="top-act-seg">'+tx('actSeg')+' '+a.s+'</div></div></div>';
+  }
+  var listEl = document.getElementById('topActList');
+  listEl.innerHTML = html;
+  listEl.className = 'top-act-list' + (topActExpanded?'':' top-actions-collapsed');
+  document.getElementById('topActTitle').textContent = tx('topActTitle');
+  var highCount = acts.filter(function(a){return a.p==='high';}).length;
+  var moreBtn = document.getElementById('topActMoreBtn');
+  if(acts.length>2){
+    moreBtn.textContent = topActExpanded ? tx('topActLess') : tx('topActMore')+' ('+acts.length+')';
+    moreBtn.style.display='';
+  } else {
+    moreBtn.style.display='none';
+  }
+  // Tab3にも全件表示
+  var alistHtml='';
+  for(var i=0;i<acts.length;i++){
+    var a=acts[i];
+    var pCls=a.p==='high'?'ph':a.p==='mid'?'pm':'pl';
+    var pLbl=a.p==='high'?tx('priorityHigh'):a.p==='mid'?tx('priorityMid'):tx('priorityLow');
+    alistHtml += '<div class="ac"><span class="ap '+pCls+'">'+pLbl+'</span><div><div class="at">'+a.t+'</div><div class="ar">'+a.r+'</div><div class="aseg">'+tx('actSeg')+' '+a.s+'</div></div></div>';
+  }
+  document.getElementById('alist').innerHTML = alistHtml;
+}
+function toggleTopActions(){
+  topActExpanded=!topActExpanded;
+  var listEl=document.getElementById('topActList');
+  listEl.className='top-act-list'+(topActExpanded?'':' top-actions-collapsed');
+  var acts=listEl.querySelectorAll('.top-act-item');
+  document.getElementById('topActMoreBtn').textContent=topActExpanded?tx('topActLess'):tx('topActMore')+' ('+acts.length+')';
+}
+
+// ── ③ 経営3大KPI ──
+function renderExecKpis(d,prev){
+  var names=tx('execKpiNames');
+  var html='';
+  for(var i=0;i<EXEC_KPI_DEFS.length;i++){
+    var k=EXEC_KPI_DEFS[i];
+    var v=d[k.key], pv=prev?prev[k.key]:null;
+    var achPct=k.tgt&&v!=null?Math.round(v/k.tgt*100):null;
+    var hit=achPct!=null&&achPct>=100;
+    var over=achPct!=null&&achPct>100;
+    var barW=achPct!=null?Math.min(achPct,100):0;
+    var barColor=achPct==null?'#ccc':over?'#185FA5':hit?'#1D9E75':'#E24B4A';
+    var cardCls=hit?'hit':achPct!=null?'miss':'';
+    var pctCls=over?'over':hit?'hit':'miss';
+    var momP=pv!=null&&v!=null?Math.round((v-pv)/pv*100):null;
+    html+='<div class="exec-kpi '+cardCls+'">';
+    html+='<div class="exec-kpi-no">'+k.no+'</div>';
+    html+='<div class="exec-kpi-name">'+names[i]+'</div>';
+    html+='<div class="exec-kpi-val">'+k.fmt(v!=null?v:0)+'</div>';
+    html+='<div class="exec-kpi-tgt">/ '+k.fmtTgt()+'</div>';
+    html+='<div class="exec-prog-track"><div class="exec-prog-fill" style="width:'+barW+'%;background:'+barColor+'"></div></div>';
+    html+='<div class="exec-kpi-meta">';
+    if(achPct!=null) html+='<span class="exec-pct-badge '+pctCls+'">'+(over?tx('hit')+' ':'')+achPct+'%</span>';
+    if(momP!=null) html+='<span class="badge '+(momP>0?'bu':'bd')+'">'+tx('mom')+' '+(momP>0?'+':'')+momP+'%</span>';
+    html+='</div></div>';
+  }
+  document.getElementById('execKpis').innerHTML=html;
+}
+
+// ── 詳細KPI ──
+function toggleDetailKpi(){
+  detailOpen=!detailOpen;
+  document.getElementById('detailKpiArea').className='detail-kpi-area'+(detailOpen?' on':'');
+  var btn=document.getElementById('detailToggle');
+  btn.className='detail-kpi-toggle'+(detailOpen?' open':'');
+  document.getElementById('detailToggleLabel').textContent=detailOpen?tx('detailHide'):tx('detailShow');
+  if(detailOpen) setTimeout(drawAllCharts,80);
+}
 function pctDiff(a,b){if(!b||a==null)return null;return Math.round((a-b)/b*100);}
 function badgeMom(p){if(p==null)return '<span class="badge bn">'+tx('mom')+' —</span>';return '<span class="badge '+(p>0?'bu':'bd')+'">'+(p>0?'+':'')+p+'%</span>';}
 function badgeTgt(v,tgt){if(!tgt||v==null)return '';var p=Math.round((v-tgt)/tgt*100);return '<span class="badge '+(p>=0?'bu':'bd')+'">'+tx('vsTarget')+' '+(p>0?'+':'')+p+'%</span>';}
-
-function renderKPIs(d,prev){
-  var html = '';
-  var names = tx('kpiNames');
-  for(var i=0;i<KPIS.length;i++){
-    var k = KPIS[i];
-    var v = d[k.key];
-    var pv = prev ? prev[k.key] : null;
-    var p = pctDiff(v,pv);
-    var ok = k.tgt && v!=null ? v>=k.tgt : null;
-    var bc = ok===true ? '#1D9E75' : ok===false ? '#E24B4A' : '#e0e0dc';
-    var achPct = k.tgt && v!=null ? Math.round(v/k.tgt*100) : null;
-    var barW = achPct!=null ? Math.min(achPct,100) : 0;
-    var barColor = achPct==null ? '#ccc' : achPct>100 ? '#185FA5' : ok ? '#1D9E75' : '#E24B4A';
-    html += '<div class="kc" onclick="tDrill('+i+')" style="border-color:'+bc+'">';
-    html += '<div class="kno">'+k.no+'</div>';
-    html += '<div class="kv">'+k.fmt(v!=null?v:0)+'</div>';
-    html += '<div class="kn">'+names[i]+'</div>';
-    html += '<div class="kprog-track"><div class="kprog-fill" style="width:'+barW+'%;background:'+barColor+'"></div></div>';
-    if(achPct!=null) html += '<div class="kach">'+tx('achLabel')+' '+achPct+'%</div>';
-    html += '<div class="kbs">'+badgeMom(p)+badgeTgt(v,k.tgt)+'</div>';
-    html += '</div>';
+function renderDetailKpis(d,prev){
+  var names=tx('kpiNames');
+  var html='';
+  for(var i=0;i<DETAIL_KPI_DEFS.length;i++){
+    var k=DETAIL_KPI_DEFS[i];
+    var v=d[k.key], pv=prev?prev[k.key]:null;
+    var p=pctDiff(v,pv);
+    var ok=k.tgt&&v!=null?v>=k.tgt:null;
+    var bc=ok===true?'#1D9E75':ok===false?'#E24B4A':'#e0e0dc';
+    var achPct=k.tgt&&v!=null?Math.round(v/k.tgt*100):null;
+    var barW=achPct!=null?Math.min(achPct,100):0;
+    var barColor=achPct==null?'#ccc':achPct>100?'#185FA5':ok?'#1D9E75':'#E24B4A';
+    html+='<div class="kc" onclick="tDrill('+i+')" style="border-color:'+bc+'">';
+    html+='<div class="kno">'+k.no+'</div><div class="kv">'+k.fmt(v!=null?v:0)+'</div>';
+    html+='<div class="kn">'+names[i]+'</div>';
+    html+='<div class="kprog-track"><div class="kprog-fill" style="width:'+barW+'%;background:'+barColor+'"></div></div>';
+    if(achPct!=null) html+='<div class="kach">'+tx('vsTarget')+' '+achPct+'%</div>';
+    html+='<div class="kbs">'+badgeMom(p)+badgeTgt(v,k.tgt)+'</div>';
+    html+='</div>';
   }
-  document.getElementById('kg').innerHTML = html;
+  document.getElementById('kg').innerHTML=html;
 }
-
 function tDrill(idx){
-  var dp = document.getElementById('dp');
-  if(activeKey===idx){ dp.classList.remove('on'); activeKey=null; return; }
-  activeKey = idx;
-  var d = ALL[document.getElementById('msel').value];
-  var titles = tx('drillTitles');
-  var notes  = tx('drillNotes');
-  var labels = tx('drillLabels');
-  var vals   = DRILL_VALS[idx](d);
-  document.getElementById('dptitle').textContent = titles[idx];
-  var gridHtml = '';
-  for(var i=0;i<vals.length;i++){
-    gridHtml += '<div class="dn"><div class="dnl">'+(labels[idx][i]||'')+'</div><div class="dnv">'+vals[i]+'</div></div>';
-  }
-  document.getElementById('dpgrid').innerHTML = gridHtml;
-  document.getElementById('dpnote').textContent = notes[idx];
+  var dp=document.getElementById('dp');
+  if(activeKey===idx){dp.classList.remove('on');activeKey=null;return;}
+  activeKey=idx;
+  var d=ALL[document.getElementById('msel').value];
+  var titles=tx('drillTitles'), notes=tx('drillNotes'), labels=tx('drillLabels');
+  var vals=DRILL_VALS[idx](d);
+  document.getElementById('dptitle').textContent=titles[idx];
+  var gh='';
+  for(var i=0;i<vals.length;i++) gh+='<div class="dn"><div class="dnl">'+(labels[idx][i]||'')+'</div><div class="dnv">'+vals[i]+'</div></div>';
+  document.getElementById('dpgrid').innerHTML=gh;
+  document.getElementById('dpnote').textContent=notes[idx];
   dp.classList.add('on');
   dp.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
+// ── Health / Funnel ──
 function renderHealth(d){
-  var segs = [
-    { s:'L', tc:'sl-l', lbl:tx('segLabels')[0],
-      items:[{lbl:LANG==='zh'?'新增LINE-ID（⑥）':'新規LINE-ID（⑥）', val:d.newLine.toLocaleString()+'件', ok:d.newLine>=TGT.newLine}],
-      cn: d.newLine<TGT.newLine ? (LANG==='zh'?'新增LINE-ID '+d.newLine.toLocaleString()+'件，未達目標。名單停滯將在3～6個月後影響轉換。':'新規LINE-ID '+d.newLine.toLocaleString()+'件、目標未達。3〜6ヶ月後の転換に影響。') : null,
-      gd: d.newLine>=TGT.newLine ? (LANG==='zh'?'名單獲取達標。注意維持目標族群（0～24月齡）佔比。':'名簿獲得達成。対象層（0〜24ヶ月）比率の維持に注意。') : null },
-    { s:'C', tc:'sl-c', lbl:tx('segLabels')[1],
-      items:[{lbl:LANG==='zh'?'線上接觸顧客數（⑤）':'オンライン接触顧客数（⑤）', val:'—', ok:null}],
-      cn: LANG==='zh'?'C段數據待補入（L2-B）。標籤是否有效驅動後續旅程尚無法評估。':'C段データ未入力（L2-B）。タグが後続旅程を有効促進しているか評価不可。',
-      gd: null },
-    { s:'8', tc:'sl-8', lbl:tx('segLabels')[2],
-      items:[
-        {lbl:LANG==='zh'?'EC簽約數（④）':'EC成約数（④）', val:d.ec+'件', ok:d.ec>=TGT.ec},
-        {lbl:LANG==='zh'?'EC轉化率（⑦）':'EC転換率（⑦）', val:d.cvRate!=null?d.cvRate+'%':'—', ok:d.cvRate!=null?d.cvRate>=TGT.cvRate:null}
-      ],
-      cn: d.ec<TGT.ec ? (LANG==='zh'?'EC簽約數'+d.ec+'件未達目標。旅程流失點需確認。':'EC成約数'+d.ec+'件、目標未達。旅程離脱点を確認。') : null,
-      gd: d.cvRate>=15 ? (LANG==='zh'?'EC轉化率'+d.cvRate+'%高水準。擴大觸及人數可直接拉升GMV。':'EC転換率'+d.cvRate+'%高水準。リーチ人数拡大でGMV直接向上可能。') : null },
-    { s:'T', tc:'sl-t', lbl:tx('segLabels')[3],
-      items:[
-        {lbl:LANG==='zh'?'顧客名單數（⑨）':'顧客名簿数（⑨）', val:d.list.toLocaleString()+'件', ok:d.list>=TGT.list},
-        {lbl:LANG==='zh'?'電銷轉化率（⑩）':'電話転換率（⑩）', val:d.telRate+'%', ok:d.telRate>=TGT.telRate}
-      ],
-      cn: d.telRate<TGT.telRate ? (LANG==='zh'?'電銷轉化率'+d.telRate+'%未達目標。名單品質・DB疲勞を確認。':'電話転換率'+d.telRate+'%、目標未達。名簿品質・DBファティーグを確認。') : null,
-      gd: d.telRate>=TGT.telRate ? (LANG==='zh'?'電銷轉化率達標。名單品質良好。':'電話転換率達成。名簿品質良好。') : null }
+  var segs=[
+    {s:'L',tc:'sl-l',lbl:tx('segLabels')[0],
+     items:[{lbl:LANG==='zh'?'新增LINE-ID（⑥）':'新規LINE-ID（⑥）',val:d.newLine.toLocaleString()+'件',ok:d.newLine>=TGT.newLine}],
+     cn:d.newLine<TGT.newLine?(LANG==='zh'?'新增LINE-ID '+d.newLine.toLocaleString()+'件，未達目標。':'新規LINE-ID '+d.newLine.toLocaleString()+'件、目標未達。'):null,
+     gd:d.newLine>=TGT.newLine?(LANG==='zh'?'名單獲取達標。注意維持目標族群佔比。':'名簿獲得達成。対象層比率を維持。'):null},
+    {s:'C',tc:'sl-c',lbl:tx('segLabels')[1],
+     items:[{lbl:LANG==='zh'?'線上接觸顧客數（⑤）':'オンライン接触顧客数（⑤）',val:'—',ok:null}],
+     cn:LANG==='zh'?'C段數據待補入（L2-B）。':'C段データ未入力（L2-B）。',gd:null},
+    {s:'8',tc:'sl-8',lbl:tx('segLabels')[2],
+     items:[{lbl:LANG==='zh'?'EC簽約數（④）':'EC成約数（④）',val:d.ec+'件',ok:d.ec>=TGT.ec},{lbl:LANG==='zh'?'EC轉化率（⑦）':'EC転換率（⑦）',val:d.cvRate!=null?d.cvRate+'%':'—',ok:d.cvRate!=null?d.cvRate>=TGT.cvRate:null}],
+     cn:d.ec<TGT.ec?(LANG==='zh'?'EC簽約數'+d.ec+'件未達目標。':'EC成約数'+d.ec+'件、目標未達。'):null,
+     gd:d.cvRate>=15?(LANG==='zh'?'EC轉化率'+d.cvRate+'%高水準。':'EC転換率'+d.cvRate+'%高水準。'):null},
+    {s:'T',tc:'sl-t',lbl:tx('segLabels')[3],
+     items:[{lbl:LANG==='zh'?'顧客名單數（⑨）':'顧客名簿数（⑨）',val:d.list.toLocaleString()+'件',ok:d.list>=TGT.list},{lbl:LANG==='zh'?'電銷轉化率（⑩）':'電話転換率（⑩）',val:d.telRate+'%',ok:d.telRate>=TGT.telRate}],
+     cn:d.telRate<TGT.telRate?(LANG==='zh'?'電銷轉化率'+d.telRate+'%未達目標。':'電話転換率'+d.telRate+'%、目標未達。'):null,
+     gd:d.telRate>=TGT.telRate?(LANG==='zh'?'電銷轉化率達標。':'電話転換率達成。'):null}
   ];
-  var html = '';
+  var html='';
   for(var i=0;i<segs.length;i++){
-    var s = segs[i];
-    html += '<div class="hcard"><div class="hct">'+s.lbl+'<span class="stag '+s.tc+'">'+s.s+'段</span></div>';
+    var s=segs[i];
+    html+='<div class="hcard"><div class="hct">'+s.lbl+'<span class="stag '+s.tc+'">'+s.s+'段</span></div>';
     for(var j=0;j<s.items.length;j++){
-      var it = s.items[j];
-      var okBadge = it.ok===true ? '<span class="badge bu">'+tx('hit')+'</span>' : it.ok===false ? '<span class="badge bd">'+tx('miss')+'</span>' : '<span class="badge bn">'+tx('pending')+'</span>';
-      html += '<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;"><span class="hv">'+it.val+'</span>'+okBadge+'</div><div class="hs">'+it.lbl+'</div>';
+      var it=s.items[j];
+      var ob=it.ok===true?'<span class="badge bu">'+tx('hit')+'</span>':it.ok===false?'<span class="badge bd">'+tx('miss')+'</span>':'<span class="badge bn">'+tx('pending')+'</span>';
+      html+='<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px;"><span class="hv">'+it.val+'</span>'+ob+'</div><div class="hs">'+it.lbl+'</div>';
     }
-    if(s.cn) html += '<div class="hcn">✕ '+s.cn+'</div>';
-    if(s.gd) html += '<div class="hgd">◎ '+s.gd+'</div>';
-    html += '</div>';
+    if(s.cn) html+='<div class="hcn">✕ '+s.cn+'</div>';
+    if(s.gd) html+='<div class="hgd">◎ '+s.gd+'</div>';
+    html+='</div>';
   }
-  document.getElementById('hrow').innerHTML = html;
-
-  document.getElementById('frow').innerHTML =
+  document.getElementById('hrow').innerHTML=html;
+  document.getElementById('frow').innerHTML=
     '<div class="fn"><div class="fns" style="color:#0F6E56">L</div><div class="fnv">'+d.newLine.toLocaleString()+'</div><div class="fnl">'+tx('fAdd')+'</div></div>'+
     '<div style="display:flex;flex-direction:column;align-items:center;padding:0 5px;"><span class="fa">→</span><span class="frt">'+tx('fNurture')+'</span></div>'+
     '<div class="fn"><div class="fns" style="color:#185FA5">C</div><div class="fnv">—</div><div class="fnl">'+tx('fTag')+'</div></div>'+
@@ -656,136 +762,53 @@ function renderHealth(d){
     '<div class="fn" style="border-color:#1D9E75"><div class="fns" style="color:#1D9E75">GMV</div><div class="fnv">'+(d.gmv/10000).toFixed(1)+'万</div><div class="fnl">'+tx('fGmv')+'</div></div>';
 }
 
-function renderActions(d,prev){
-  var acts = [];
-  if(d.telRate<TGT.telRate) acts.push({p:'high',t:tx('act1t'),r:LANG==='zh'?'電銷轉化率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。確認DB疲勞狀況，將外撥聚焦於高意圖名單。':'電話転換率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。DBファティーグ状況を確認し、高意向名簿への外発を集中。',s:'T段'});
-  if(d.list<TGT.list) acts.push({p:'high',t:tx('act2t'),r:LANG==='zh'?'顧客名單數 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。確認旅程進入數vs完成數，找出流失點並補強再介入場景。':'顧客名簿数 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。旅程の進入数vs完了数を確認し、離脱点を補強。',s:'8段→T段'});
-  if(d.newLine<TGT.newLine) acts.push({p:'mid',t:tx('act3t'),r:LANG==='zh'?'新增LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。確認異業合作・SNS活動是否中斷。':'新規LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。異業種提携・SNS施策の継続状況を確認。',s:'L段'});
-  if(d.cvRate!=null&&d.cvRate>=15) acts.push({p:'mid',t:tx('act4t')+'（'+d.cvRate+'%）',r:LANG==='zh'?'轉化率高但觸及人數有限。擴大Super8廣播配信對象，可直接拉升EC簽約數與GMV。':'転換率高水準だがリーチ人数が限定的。Super8配信対象を拡大することでEC成約数とGMVを直接向上可能。',s:'8段→EC'});
-  if(d.aov<TGT.aov) acts.push({p:'low',t:tx('act5t'),r:LANG==='zh'?'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。確認英語進階版(NT$4,500)・語彙智育套組(NT$4,900)旅程訴求月齡是否精準。':'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。英語上級版(NT$4,500)・語彙知育セット(NT$4,900)旅程の月齢訴求精度を確認。',s:'8段・T段'});
-  acts.push({p:'low',t:tx('act6t'),r:tx('act6r'),s:LANG==='zh'?'全段':'全段'});
-  var html = '';
-  for(var i=0;i<acts.length;i++){
-    var a = acts[i];
-    var pCls = a.p==='high'?'ph':a.p==='mid'?'pm':'pl';
-    var pLbl = a.p==='high'?tx('priorityHigh'):a.p==='mid'?tx('priorityMid'):tx('priorityLow');
-    html += '<div class="ac"><span class="ap '+pCls+'">'+pLbl+'</span><div><div class="at">'+a.t+'</div><div class="ar">'+a.r+'</div><div class="aseg">'+tx('actSeg')+' '+a.s+'</div></div></div>';
-  }
-  document.getElementById('alist').innerHTML = html;
-}
-
+// ── Verdicts ──
 function setV(id,txt,cls){var el=document.getElementById(id);el.textContent=txt;el.className='vd '+cls;}
 function renderVerdicts(d){
-  var q1ok = d.gmv>=TGT.gmv && d.orders>=TGT.orders;
-  setV('v1', q1ok?tx('v1hit'):tx('v1miss'), q1ok?'vg':'vw');
-  var nmOk = d.newLine>=TGT.newLine && d.list>=TGT.list;
-  setV('v2', nmOk?tx('v2hit'):tx('v2miss'), nmOk?'vg':(d.telRate<TGT.telRate?'vb':'vw'));
-  var iss = [d.gmv<TGT.gmv,d.telRate<TGT.telRate,d.list<TGT.list,d.newLine<TGT.newLine].filter(Boolean).length;
-  setV('v3', iss?iss+tx('v3iss'):tx('v3ok'), iss>=3?'vb':iss>=1?'vw':'vg');
+  var q1ok=d.gmv>=TGT.gmv&&d.orders>=TGT.orders;
+  setV('v1',q1ok?tx('v1hit'):tx('v1miss'),q1ok?'vg':'vw');
+  var nmOk=d.newLine>=TGT.newLine&&d.list>=TGT.list;
+  setV('v2',nmOk?tx('v2hit'):tx('v2miss'),nmOk?'vg':(d.telRate<TGT.telRate?'vb':'vw'));
+  var iss=[d.gmv<TGT.gmv,d.telRate<TGT.telRate,d.list<TGT.list,d.newLine<TGT.newLine].filter(Boolean).length;
+  setV('v3',iss?iss+tx('v3iss'):tx('v3ok'),iss>=3?'vb':iss>=1?'vw':'vg');
+}
+
+// ── applyTexts ──
+function applyTexts(){
+  document.getElementById('txt-title').innerHTML='LC8T 儀表板 <span style="font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;background:#FAEEDA;color:#854F0B;vertical-align:middle;">prototype</span>';
+  document.getElementById('ver-date-label').textContent=tx('verDate');
+  document.getElementById('chg-btn-label').textContent=tx('chgLog');
+  document.getElementById('chg-header-label').textContent='CHANGELOG';
+  document.getElementById('tab1q').textContent=tx('tab1q');document.getElementById('tab1l').textContent=tx('tab1l');
+  document.getElementById('tab2q').textContent=tx('tab2q');document.getElementById('tab2l').textContent=tx('tab2l');
+  document.getElementById('tab3q').textContent=tx('tab3q');document.getElementById('tab3l').textContent=tx('tab3l');
+  document.getElementById('lbl-trend').textContent=tx('lbl_trend');
+  document.getElementById('lbl-health').textContent=tx('lbl_health');
+  document.getElementById('lbl-funnel').textContent=tx('lbl_funnel');
+  document.getElementById('lbl-kpi-trend').textContent=tx('lbl_kpi_trend');
+  document.getElementById('lbl-action-rec').textContent=tx('lbl_action_rec');
+  document.getElementById('lbl-next').textContent=tx('lbl_next');
+  document.getElementById('action-empty').innerHTML=tx('action_empty');
+  document.getElementById('lg-actual').textContent=tx('lgActual');document.getElementById('lg-target').textContent=tx('lgTarget');
+  document.getElementById('lg-tel').textContent=tx('lgTel');document.getElementById('lg-ec').textContent=tx('lgEc');
+  document.getElementById('ch-gmv-t').textContent=tx('gmvT');document.getElementById('ch-gmv-s').textContent=tx('gmvS');
+  document.getElementById('ch-ord-t').textContent=tx('ordT');document.getElementById('ch-ord-s').textContent=tx('ordS');
+  document.getElementById('ch-aov-t').textContent=tx('aovT');document.getElementById('ch-aov-s').textContent=tx('aovS');
+  document.getElementById('ch-ch-t').textContent=tx('chT');document.getElementById('ch-ch-s').textContent=tx('chS');
+  document.getElementById('ch-line-t').textContent=tx('lineT');document.getElementById('ch-line-s').textContent=tx('lineS');
+  document.getElementById('ch-list-t').textContent=tx('listT');document.getElementById('ch-list-s').textContent=tx('listS');
+  document.getElementById('ch-tr-t').textContent=tx('trT');document.getElementById('ch-tr-s').textContent=tx('trS');
+  document.getElementById('ch-cv-t').textContent=tx('cvT');document.getElementById('ch-cv-s').textContent=tx('cvS');
+  document.getElementById('detailToggleLabel').textContent=detailOpen?tx('detailHide'):tx('detailShow');
 }
 
 // ── Canvas ──
-function setupCanvas(id,hpx){
-  var c=document.getElementById(id); if(!c)return null;
-  var dpr=window.devicePixelRatio||1;
-  var W=c.parentElement.clientWidth-28, H=hpx;
-  c.width=W*dpr; c.height=H*dpr;
-  c.style.width=W+'px'; c.style.height=H+'px';
-  var ctx=c.getContext('2d'); ctx.scale(dpr,dpr);
-  return{ctx:ctx,W:W,H:H};
-}
-function drawGrid(ctx,PAD,W,H,maxV,minV,xLabels){
-  ctx.strokeStyle='rgba(0,0,0,0.07)'; ctx.lineWidth=0.5;
-  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
-  var rs=[0,0.25,0.5,0.75,1];
-  for(var ri=0;ri<rs.length;ri++){
-    var r=rs[ri], y=PAD.t+cH*(1-r);
-    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
-    var val=minV+(maxV-minV)*r;
-    var label=val>=10000?(val/10000).toFixed(1)+'万':val>=1000?(val/1000).toFixed(0)+'k':val.toFixed(val<10?1:0);
-    ctx.fillStyle='rgba(0,0,0,0.35)'; ctx.font='9px sans-serif'; ctx.textAlign='right';
-    ctx.fillText(label,PAD.l-3,y+3);
-  }
-  ctx.fillStyle='rgba(0,0,0,0.4)'; ctx.font='9px sans-serif'; ctx.textAlign='center';
-  for(var i=0;i<xLabels.length;i++){
-    ctx.fillText(xLabels[i],PAD.l+(i+0.5)*(cW/xLabels.length),H-6);
-  }
-}
-function drawTgtLine(ctx,PAD,W,H,maxV,minV,tgt){
-  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
-  var ty=PAD.t+cH*(1-(tgt-minV)/(maxV-minV));
-  ctx.strokeStyle='#5DCAA5'; ctx.lineWidth=1.2; ctx.setLineDash([5,4]);
-  ctx.beginPath(); ctx.moveTo(PAD.l,ty); ctx.lineTo(PAD.l+cW,ty); ctx.stroke();
-  ctx.setLineDash([]);
-}
-function barChart(id,hpx,labels,values,colorFn,tgt){
-  var s=setupCanvas(id,hpx); if(!s)return;
-  var ctx=s.ctx, W=s.W, H=s.H;
-  var PAD={t:10,r:10,b:22,l:46};
-  var valid=values.filter(function(v){return v!=null;});
-  var maxV=Math.max.apply(null,valid.concat(tgt||0))*1.12, minV=0;
-  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r;
-  var n=labels.length, barW=cW/n*0.62;
-  drawGrid(ctx,PAD,W,H,maxV,minV,labels);
-  if(tgt)drawTgtLine(ctx,PAD,W,H,maxV,minV,tgt);
-  for(var i=0;i<values.length;i++){
-    var v=values[i]; if(v==null)continue;
-    var x=PAD.l+i*(cW/n)+(cW/n-barW)/2;
-    var h=(v-minV)/(maxV-minV)*cH, y=PAD.t+cH-h;
-    ctx.fillStyle=colorFn(v,i);
-    ctx.beginPath();
-    if(ctx.roundRect)ctx.roundRect(x,y,barW,h,3); else ctx.rect(x,y,barW,h);
-    ctx.fill();
-  }
-}
-function lineChart(id,hpx,labels,datasets,tgt){
-  var s=setupCanvas(id,hpx); if(!s)return;
-  var ctx=s.ctx, W=s.W, H=s.H;
-  var PAD={t:10,r:10,b:22,l:44};
-  var allVals=[];
-  for(var di=0;di<datasets.length;di++){datasets[di].values.forEach(function(v){if(v!=null)allVals.push(v);});}
-  if(tgt)allVals.push(tgt);
-  var maxV=Math.max.apply(null,allVals)*1.15, minV=Math.min.apply(null,[0].concat(allVals))*0.9;
-  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r, n=labels.length;
-  var xOf=function(i){return PAD.l+i*(cW/(n-1));};
-  var yOf=function(v){return PAD.t+cH*(1-(v-minV)/(maxV-minV));};
-  drawGrid(ctx,PAD,W,H,maxV,minV,labels);
-  if(tgt)drawTgtLine(ctx,PAD,W,H,maxV,minV,tgt);
-  for(var di=0;di<datasets.length;di++){
-    var ds=datasets[di];
-    ctx.strokeStyle=ds.color; ctx.lineWidth=2; ctx.lineJoin='round';
-    ctx.beginPath(); var started=false;
-    for(var i=0;i<ds.values.length;i++){
-      var v=ds.values[i]; if(v==null){started=false;continue;}
-      if(!started){ctx.moveTo(xOf(i),yOf(v));started=true;}else ctx.lineTo(xOf(i),yOf(v));
-    }
-    ctx.stroke();
-    for(var i=0;i<ds.values.length;i++){
-      var v=ds.values[i]; if(v==null)continue;
-      ctx.beginPath(); ctx.arc(xOf(i),yOf(v),3.5,0,Math.PI*2);
-      ctx.fillStyle=ds.dotColor?ds.dotColor(v):ds.color; ctx.fill();
-    }
-  }
-}
-function stackBar(id,hpx,labels,d1,d2,c1,c2){
-  var s=setupCanvas(id,hpx); if(!s)return;
-  var ctx=s.ctx, W=s.W, H=s.H;
-  var PAD={t:10,r:10,b:22,l:42};
-  var totals=d1.map(function(v,i){return (v||0)+(d2[i]||0);});
-  var maxV=Math.max.apply(null,totals)*1.12;
-  var cH=H-PAD.t-PAD.b, cW=W-PAD.l-PAD.r, n=labels.length, barW=cW/n*0.62;
-  drawGrid(ctx,PAD,W,H,maxV,0,labels);
-  for(var i=0;i<labels.length;i++){
-    var x=PAD.l+i*(cW/n)+(cW/n-barW)/2;
-    var h1=(d1[i]||0)/maxV*cH, h2=(d2[i]||0)/maxV*cH;
-    ctx.fillStyle=c1; ctx.beginPath();
-    if(ctx.roundRect)ctx.roundRect(x,PAD.t+cH-h1-h2,barW,h1,2); else ctx.rect(x,PAD.t+cH-h1-h2,barW,h1);
-    ctx.fill();
-    ctx.fillStyle=c2; ctx.beginPath();
-    if(ctx.roundRect)ctx.roundRect(x,PAD.t+cH-h2,barW,h2,2); else ctx.rect(x,PAD.t+cH-h2,barW,h2);
-    ctx.fill();
-  }
-}
+function setupCanvas(id,hpx){var c=document.getElementById(id);if(!c)return null;var dpr=window.devicePixelRatio||1;var W=c.parentElement.clientWidth-28,H=hpx;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';var ctx=c.getContext('2d');ctx.scale(dpr,dpr);return{ctx:ctx,W:W,H:H};}
+function drawGrid(ctx,PAD,W,H,maxV,minV,xLabels){ctx.strokeStyle='rgba(0,0,0,0.07)';ctx.lineWidth=0.5;var cH=H-PAD.t-PAD.b,cW=W-PAD.l-PAD.r;[0,.25,.5,.75,1].forEach(function(r){var y=PAD.t+cH*(1-r);ctx.beginPath();ctx.moveTo(PAD.l,y);ctx.lineTo(PAD.l+cW,y);ctx.stroke();var val=minV+(maxV-minV)*r;var label=val>=10000?(val/10000).toFixed(1)+'万':val>=1000?(val/1000).toFixed(0)+'k':val.toFixed(val<10?1:0);ctx.fillStyle='rgba(0,0,0,0.35)';ctx.font='9px sans-serif';ctx.textAlign='right';ctx.fillText(label,PAD.l-3,y+3);});ctx.fillStyle='rgba(0,0,0,0.4)';ctx.font='9px sans-serif';ctx.textAlign='center';xLabels.forEach(function(l,i){ctx.fillText(l,PAD.l+(i+0.5)*(cW/xLabels.length),H-6);});}
+function drawTgt(ctx,PAD,W,H,maxV,minV,tgt){var cH=H-PAD.t-PAD.b,cW=W-PAD.l-PAD.r;var ty=PAD.t+cH*(1-(tgt-minV)/(maxV-minV));ctx.strokeStyle='#5DCAA5';ctx.lineWidth=1.2;ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(PAD.l,ty);ctx.lineTo(PAD.l+cW,ty);ctx.stroke();ctx.setLineDash([]);}
+function barChart(id,hpx,labels,values,colorFn,tgt){var s=setupCanvas(id,hpx);if(!s)return;var ctx=s.ctx,W=s.W,H=s.H;var PAD={t:10,r:10,b:22,l:46};var valid=values.filter(function(v){return v!=null;});var maxV=Math.max.apply(null,valid.concat(tgt||0))*1.12,minV=0;var cH=H-PAD.t-PAD.b,cW=W-PAD.l-PAD.r;var n=labels.length,barW=cW/n*0.62;drawGrid(ctx,PAD,W,H,maxV,minV,labels);if(tgt)drawTgt(ctx,PAD,W,H,maxV,minV,tgt);for(var i=0;i<values.length;i++){var v=values[i];if(v==null)continue;var x=PAD.l+i*(cW/n)+(cW/n-barW)/2;var h=(v-minV)/(maxV-minV)*cH,y=PAD.t+cH-h;ctx.fillStyle=colorFn(v);ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,barW,h,3);else ctx.rect(x,y,barW,h);ctx.fill();}}
+function lineChart(id,hpx,labels,datasets,tgt){var s=setupCanvas(id,hpx);if(!s)return;var ctx=s.ctx,W=s.W,H=s.H;var PAD={t:10,r:10,b:22,l:44};var allVals=[];datasets.forEach(function(d){d.values.forEach(function(v){if(v!=null)allVals.push(v);});});if(tgt)allVals.push(tgt);var maxV=Math.max.apply(null,allVals)*1.15,minV=Math.min.apply(null,[0].concat(allVals))*0.9;var cH=H-PAD.t-PAD.b,cW=W-PAD.l-PAD.r,n=labels.length;var xOf=function(i){return PAD.l+i*(cW/(n-1));};var yOf=function(v){return PAD.t+cH*(1-(v-minV)/(maxV-minV));};drawGrid(ctx,PAD,W,H,maxV,minV,labels);if(tgt)drawTgt(ctx,PAD,W,H,maxV,minV,tgt);datasets.forEach(function(ds){ctx.strokeStyle=ds.color;ctx.lineWidth=2;ctx.lineJoin='round';ctx.beginPath();var started=false;ds.values.forEach(function(v,i){if(v==null){started=false;return;}if(!started){ctx.moveTo(xOf(i),yOf(v));started=true;}else ctx.lineTo(xOf(i),yOf(v));});ctx.stroke();ds.values.forEach(function(v,i){if(v==null)return;ctx.beginPath();ctx.arc(xOf(i),yOf(v),3.5,0,Math.PI*2);ctx.fillStyle=ds.dotColor?ds.dotColor(v):ds.color;ctx.fill();});});}
+function stackBar(id,hpx,labels,d1,d2,c1,c2){var s=setupCanvas(id,hpx);if(!s)return;var ctx=s.ctx,W=s.W,H=s.H;var PAD={t:10,r:10,b:22,l:42};var totals=d1.map(function(v,i){return (v||0)+(d2[i]||0);});var maxV=Math.max.apply(null,totals)*1.12;var cH=H-PAD.t-PAD.b,cW=W-PAD.l-PAD.r,n=labels.length,barW=cW/n*0.62;drawGrid(ctx,PAD,W,H,maxV,0,labels);for(var i=0;i<n;i++){var x=PAD.l+i*(cW/n)+(cW/n-barW)/2;var h1=(d1[i]||0)/maxV*cH,h2=(d2[i]||0)/maxV*cH;ctx.fillStyle=c1;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,PAD.t+cH-h1-h2,barW,h1,2);else ctx.rect(x,PAD.t+cH-h1-h2,barW,h1);ctx.fill();ctx.fillStyle=c2;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,PAD.t+cH-h2,barW,h2,2);else ctx.rect(x,PAD.t+cH-h2,barW,h2);ctx.fill();}}
 function drawAllCharts(){
   var gmvD=RK.map(function(k){return +(ALL[k].gmv/10000).toFixed(1);});
   barChart('cGMV',160,RL,gmvD,function(v){return v>=(TGT.gmv/10000)?'#1D9E75':'#E24B4A';},TGT.gmv/10000);
@@ -798,27 +821,25 @@ function drawAllCharts(){
   lineChart('cCV',130,RL,[{values:RK.map(function(k){return ALL[k].cvRate;}),color:'#1D9E75',dotColor:function(v){return v!=null?(v>=TGT.cvRate?'#1D9E75':'#E24B4A'):'#ccc';}}],TGT.cvRate);
 }
 
-function stab(n){
-  for(var i=1;i<=3;i++){
-    document.getElementById('tb'+i).classList.toggle('on',i===n);
-    document.getElementById('p'+i).classList.toggle('on',i===n);
-  }
-  setTimeout(drawAllCharts,80);
-}
+function toggleChangelog(){var cl=document.getElementById('changelog');var btn=document.getElementById('chg-btn');var open=cl.classList.contains('on');cl.classList.toggle('on',!open);btn.classList.toggle('open',!open);}
+
+function stab(n){for(var i=1;i<=3;i++){document.getElementById('tb'+i).classList.toggle('on',i===n);document.getElementById('p'+i).classList.toggle('on',i===n);}setTimeout(drawAllCharts,80);}
+
+function setLang(lang){LANG=lang;document.getElementById('lang-ja').className='lang-btn'+(lang==='ja'?' on':'');document.getElementById('lang-zh').className='lang-btn'+(lang==='zh'?' on':'');document.documentElement.lang=lang==='ja'?'ja':'zh-TW';render();}
 
 function render(){
   var key=document.getElementById('msel').value;
-  var d=ALL[key], idx=KEYS.indexOf(key);
+  var d=ALL[key],idx=KEYS.indexOf(key);
   var prev=KEYS[idx+1]?ALL[KEYS[idx+1]]:null;
   activeKey=null;
   document.getElementById('dp').classList.remove('on');
   applyTexts();
   renderVerdicts(d);
-  renderAchBar(d);
-  renderAchSummary(d);
-  renderKPIs(d,prev);
+  renderSummaryBanner(d,key);
+  renderTopActions(d,prev);
+  renderExecKpis(d,prev);
+  renderDetailKpis(d,prev);
   renderHealth(d);
-  renderActions(d,prev);
   setTimeout(drawAllCharts,100);
 }
 
