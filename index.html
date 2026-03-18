@@ -958,7 +958,7 @@ function initAiConsole(key) {
   document.getElementById('ai-notice-body').textContent = notice.body;
 }
 
-async function sendAiMsg() {
+function sendAiMsg() {
   var input = document.getElementById('aiInput');
   var text = input.value.trim();
   if(!text || aiLoading) return;
@@ -969,23 +969,22 @@ async function sendAiMsg() {
   document.getElementById('aiSendBtn').disabled = true;
   var key = document.getElementById('msel').value;
   var systemPrompt = buildAiSystemPrompt(key);
-  try {
-    var messages = [];
-    for(var i=0;i<aiHistory.length-1;i++){
-      if(aiHistory[i].role !== 'system') messages.push({role:aiHistory[i].role, content:aiHistory[i].content});
-    }
-    messages.push({role:'user', content:text});
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system: systemPrompt,
-        messages: messages
-      })
-    });
-    var data = await res.json();
+  var messages = [];
+  for(var i=0;i<aiHistory.length-1;i++){
+    if(aiHistory[i].role !== 'system') messages.push({role:aiHistory[i].role, content:aiHistory[i].content});
+  }
+  messages.push({role:'user', content:text});
+  fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1000,
+      system: systemPrompt,
+      messages: messages
+    })
+  }).then(function(res){ return res.json(); })
+  .then(function(data){
     var reply = '';
     if(data.content && data.content.length > 0){
       for(var i=0;i<data.content.length;i++){
@@ -994,24 +993,19 @@ async function sendAiMsg() {
     }
     if(!reply) reply = LANG==='ja' ? '（応答を取得できませんでした）' : '（無法取得回應）';
     aiHistory.push({role:'assistant', content:reply});
-  } catch(e) {
+    aiLoading = false;
+    document.getElementById('aiSendBtn').disabled = false;
+    renderAiMsgs();
+  }).catch(function(e){
     var errMsg = LANG==='ja' ? '接続エラーが発生しました。しばらくしてから再試行してください。' : '連線錯誤，請稍後再試。';
     aiHistory.push({role:'assistant', content:errMsg});
-  }
-  aiLoading = false;
-  document.getElementById('aiSendBtn').disabled = false;
-  renderAiMsgs();
+    aiLoading = false;
+    document.getElementById('aiSendBtn').disabled = false;
+    renderAiMsgs();
+  });
 }
 
-// Enterキー送信対応
-document.addEventListener('DOMContentLoaded', function(){
-  var inp = document.getElementById('aiInput');
-  if(inp){
-    inp.addEventListener('keydown', function(e){
-      if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendAiMsg(); }
-    });
-  }
-});
+
 function renderVerdicts(d){
   var q1ok=d.gmv>=TGT.gmv&&d.orders>=TGT.orders;
   setV('v1',q1ok?tx('v1hit'):tx('v1miss'),q1ok?'vg':'vw');
@@ -1122,7 +1116,15 @@ function render(){
   setTimeout(drawAllCharts,100);
 }
 
-window.addEventListener('load',render);
+window.addEventListener('load', function(){
+  render();
+  var inp = document.getElementById('aiInput');
+  if(inp){
+    inp.addEventListener('keydown', function(e){
+      if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendAiMsg(); }
+    });
+  }
+});
 </script>
 </body>
 </html>
