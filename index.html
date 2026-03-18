@@ -77,7 +77,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .action-toggle-btn{font-size:10px;color:#aaa;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:3px;}
 .action-toggle-btn svg{width:11px;height:11px;transition:transform .2s;}
 .action-toggle-btn.open svg{transform:rotate(180deg);}
-.action-always-body{display:none;padding:10px 12px;display:flex;flex-direction:column;gap:8px;}
+.action-always-body{display:none;padding:10px 12px;flex-direction:column;gap:8px;}
 .action-always-body.on{display:flex;}
 .ac-sm{border:1px solid #f0f0ec;border-radius:10px;padding:10px 14px;display:flex;gap:10px;background:#fafaf8;}
 .ap{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;flex-shrink:0;margin-top:1px;white-space:nowrap;}
@@ -179,6 +179,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .fnl{font-size:10px;color:#888;}
 .fa{font-size:16px;color:#ccc;padding:0 6px;flex-shrink:0;}
 .frt{font-size:9px;color:#aaa;text-align:center;}
+
+/* ── AI対話コンソール ── */
+.ai-console{border:1.5px solid #EEEDFE;border-radius:14px;background:#fff;overflow:hidden;margin-bottom:16px;}
+.ai-console-hdr{background:linear-gradient(135deg,#EEEDFE,#E6F1FB);padding:14px 16px;display:flex;align-items:center;gap:10px;}
+.ai-console-icon{width:28px;height:28px;border-radius:8px;background:#534AB7;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ai-console-icon svg{width:15px;height:15px;}
+.ai-console-title{font-size:13px;font-weight:700;color:#2c2c2a;}
+.ai-console-sub{font-size:10px;color:#534AB7;margin-top:2px;}
+.ai-console-notice{margin:12px 16px;padding:10px 12px;background:#FFF8EC;border:1px solid #F5C07A;border-radius:8px;font-size:11px;color:#854F0B;line-height:1.6;}
+.ai-console-notice strong{font-weight:700;}
+.ai-msgs{padding:0 16px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:4px;}
+.ai-msg{display:flex;gap:8px;align-items:flex-start;}
+.ai-msg.user{flex-direction:row-reverse;}
+.ai-msg-bubble{max-width:80%;padding:9px 13px;border-radius:12px;font-size:12px;line-height:1.65;}
+.ai-msg.ai .ai-msg-bubble{background:#f4f3fd;color:#2c2c2a;border-radius:4px 12px 12px 12px;}
+.ai-msg.user .ai-msg-bubble{background:#534AB7;color:#fff;border-radius:12px 4px 12px 12px;}
+.ai-msg-avatar{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:2px;}
+.ai-msg.ai .ai-msg-avatar{background:#EEEDFE;color:#534AB7;}
+.ai-msg.user .ai-msg-avatar{background:#2c2c2a;color:#fff;}
+.ai-typing{padding:8px 13px;font-size:11px;color:#aaa;display:flex;align-items:center;gap:6px;}
+.ai-typing-dots{display:flex;gap:3px;}
+.ai-typing-dot{width:5px;height:5px;border-radius:50%;background:#ccc;animation:dotPulse 1.2s infinite;}
+.ai-typing-dot:nth-child(2){animation-delay:.2s;}
+.ai-typing-dot:nth-child(3){animation-delay:.4s;}
+@keyframes dotPulse{0%,80%,100%{opacity:.3;}40%{opacity:1;}}
+.ai-quick-btns{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px 0;}
+.ai-quick-btn{font-size:10px;padding:5px 10px;border-radius:20px;border:1px solid #EEEDFE;background:#f4f3fd;color:#534AB7;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.ai-quick-btn:hover{background:#EEEDFE;}
+.ai-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #f0f0ec;margin-top:10px;}
+.ai-input{flex:1;font-size:12px;padding:8px 12px;border:1px solid #e0e0dc;border-radius:10px;background:#f8f8f6;color:#2c2c2a;font-family:inherit;resize:none;min-height:36px;}
+.ai-input:focus{outline:none;border-color:#534AB7;background:#fff;}
+.ai-send-btn{padding:8px 14px;background:#534AB7;color:#fff;border:none;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s;white-space:nowrap;}
+.ai-send-btn:hover{background:#3e3696;}
+.ai-send-btn:disabled{background:#ccc;cursor:not-allowed;}
 
 /* ── Actions (tab3) ── */
 .alist{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
@@ -346,8 +380,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 <div class="panel" id="p3">
   <p class="slabel" id="lbl-action-rec">當月施策記錄（L3-2）</p>
   <div class="me" id="action-empty">本月施策尚未記錄。<br>請將執行的行銷活動補入 L3-2 施策日曆，建立行動→KPI因果關係資料庫。</div>
+
   <p class="slabel" id="lbl-next">⭐ 基於診斷的下一步行動（全件）</p>
+  <div class="ai-console-notice" id="ai-notice">
+    <strong id="ai-notice-title">⚠️ AIによる仮説提示について</strong><br>
+    <span id="ai-notice-body">以下のアクション提案は、数字から自動検知した「課題の仮説」です。正解ではありません。担当者が下のAI対話コンソールで深掘りし、自分たちで因果関係を理解・納得した上でアクションを決定してください。</span>
+  </div>
   <div class="alist" id="alist"></div>
+
+  <!-- AI対話コンソール -->
+  <div class="ai-console" id="aiConsole">
+    <div class="ai-console-hdr">
+      <div class="ai-console-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 16v-4M12 8h.01"/></svg>
+      </div>
+      <div>
+        <div class="ai-console-title" id="ai-console-title">Claude と深掘り分析</div>
+        <div class="ai-console-sub" id="ai-console-sub">KPIの因果関係・アクション理由をここで壁打ちしてください</div>
+      </div>
+    </div>
+    <div class="ai-msgs" id="aiMsgs"></div>
+    <div class="ai-quick-btns" id="aiQuickBtns"></div>
+    <div class="ai-input-row">
+      <textarea class="ai-input" id="aiInput" rows="1" placeholder="例：なぜ電銷転換率が下がっているのか？"></textarea>
+      <button class="ai-send-btn" id="aiSendBtn" onclick="sendAiMsg()">送信</button>
+    </div>
+  </div>
 </div>
 
 </div><!-- /wrap -->
@@ -406,8 +464,8 @@ var TX = {
     listT:'⑨ 顧客名單數', listS:'T段供給（件，虛線=目標4,000）',
     trT:'⑩ 電銷轉化率', trS:'%（虛線=目標10%）',
     cvT:'⑦ EC轉化率', cvS:'%（虛線=目標10%）',
-    top3names:['GMV 總成交金額','總簽約數','電銷轉化率'],
-    top3tgts:['目標 NT$300萬','目標 700件','目標 10%'],
+    top3names:['GMV 總成交金額','總簽約數','AOV 平均客單價'],
+    top3tgts:['目標 NT$300萬','目標 700件','目標 NT$4,000'],
     segLabels:['L段｜LINE名單入口','C段｜社群互動・標籤','8段｜Super8自動化','T段｜TEL電話銷售'],
     fAdd:'新增ID', fTag:'標籤人數', fCv:'EC CV率', fTel:'電銷轉化率', fGmv:'總成交',
     fNurture:'育成', fSeg:'分眾', fConvert:'成交', fResult:'結果',
@@ -462,8 +520,8 @@ var TX = {
     listT:'⑨ 顧客名簿数', listS:'T段供給（件、破線=目標4,000）',
     trT:'⑩ 電話転換率', trS:'%（破線=目標10%）',
     cvT:'⑦ EC転換率', cvS:'%（破線=目標10%）',
-    top3names:['GMV 総成約金額','総成約数','電話転換率'],
-    top3tgts:['目標 NT$300万','目標 700件','目標 10%'],
+    top3names:['GMV 総成約金額','総成約数','AOV 平均客単価'],
+    top3tgts:['目標 NT$300万','目標 700件','目標 NT$4,000'],
     segLabels:['L段｜LINE名簿入口','C段｜SNS交流・タグ','8段｜Super8自動化','T段｜TEL電話営業'],
     fAdd:'新規ID', fTag:'タグ人数', fCv:'EC CV率', fTel:'電話転換率', fGmv:'総成約',
     fNurture:'育成', fSeg:'セグメント', fConvert:'成約', fResult:'結果',
@@ -597,13 +655,13 @@ function renderActionAlways(acts) {
 
 // ── Top3 KPI ──
 function renderTop3(d, prev) {
-  var keys = ['gmv','orders','telRate'];
-  var nos = ['①','②','⑩'];
-  var tgts = [TGT.gmv, TGT.orders, TGT.telRate];
+  var keys = ['gmv','orders','aov'];
+  var nos = ['①','②','③'];
+  var tgts = [TGT.gmv, TGT.orders, TGT.aov];
   var fmts = [
     function(v){return 'NT$'+(v/10000).toFixed(1)+'万';},
     function(v){return v.toLocaleString()+'件';},
-    function(v){return v+'%';}
+    function(v){return 'NT$'+v.toLocaleString();}
   ];
   var names = tx('top3names');
   var tgtLabels = tx('top3tgts');
@@ -730,12 +788,30 @@ function renderHealth(d){
 // ── Actions ──
 function buildActions(d, prev) {
   var acts=[];
-  if(d.telRate<TGT.telRate) acts.push({p:'high',t:tx('act1t'),r:LANG==='zh'?'電銷轉化率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。確認DB疲勞狀況，聚焦高意圖名單。':'電話転換率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。DBファティーグを確認し高意向名簿に集中。',s:'T段'});
-  if(d.list<TGT.list) acts.push({p:'high',t:tx('act2t'),r:LANG==='zh'?'顧客名單數 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。確認旅程進入數vs完成數。':'顧客名簿数 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。旅程の進入数vs完了数を確認。',s:'8段→T段'});
-  if(d.newLine<TGT.newLine) acts.push({p:'mid',t:tx('act3t'),r:LANG==='zh'?'新增LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。確認異業合作・SNS活動是否中斷。':'新規LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。異業種提携・SNS施策の継続状況を確認。',s:'L段'});
-  if(d.cvRate!=null&&d.cvRate>=15) acts.push({p:'mid',t:tx('act4t')+'（'+d.cvRate+'%）',r:LANG==='zh'?'轉化率高但觸及人數有限。擴大Super8廣播配信對象。':'転換率高水準だがリーチ人数が限定的。Super8配信対象を拡大。',s:'8段→EC'});
-  if(d.aov<TGT.aov) acts.push({p:'low',t:tx('act5t'),r:LANG==='zh'?'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。確認高單價商品旅程訴求月齡是否精準。':'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。高単価商品旅程の月齢訴求精度を確認。',s:'8段・T段'});
-  acts.push({p:'low',t:tx('act6t'),r:tx('act6r'),s:LANG==='zh'?'全段':'全段'});
+  if(d.telRate<TGT.telRate) acts.push({p:'high',
+    t:LANG==='ja'?'【T段】電話営業名簿品質改善・転換率向上':'【T段】改善電銷名單品質・提升轉化率',
+    r:LANG==='ja'?'電話転換率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。DBファティーグを確認し高意向名簿に集中。':'電銷轉化率 '+d.telRate+'%（目標 '+TGT.telRate+'%）。確認DB疲勞狀況，聚焦高意圖名單。',
+    s:'T段'});
+  if(d.list<TGT.list) acts.push({p:'high',
+    t:LANG==='ja'?'【8段】Super8タグ蓄積加速・名簿供給補強':'【8段】加速Super8標籤積累・補強名單供給',
+    r:LANG==='ja'?'顧客名簿数 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。旅程の進入数vs完了数を確認。':'顧客名單數 '+d.list.toLocaleString()+'件（目標 '+TGT.list.toLocaleString()+'件）。確認旅程進入數vs完成數。',
+    s:'8段→T段'});
+  if(d.newLine<TGT.newLine) acts.push({p:'mid',
+    t:LANG==='ja'?'【L段】名簿獲得施策の再投入':'【L段】重新投入名單獲取施策',
+    r:LANG==='ja'?'新規LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。異業種提携・SNS施策の継続状況を確認。':'新增LINE-ID '+d.newLine.toLocaleString()+'件（目標 '+TGT.newLine.toLocaleString()+'件）。確認異業合作・SNS活動是否中斷。',
+    s:'L段'});
+  if(d.cvRate!=null&&d.cvRate>=15) acts.push({p:'mid',
+    t:(LANG==='ja'?'【8段】EC転換率高・リーチ人数を拡大':'【8段】EC轉化率高・擴大觸及人數')+'（'+d.cvRate+'%）',
+    r:LANG==='ja'?'転換率高水準だがリーチ人数が限定的。Super8配信対象を拡大。':'轉化率高但觸及人數有限。擴大Super8廣播配信對象。',
+    s:'8段→EC'});
+  if(d.aov<TGT.aov) acts.push({p:'low',
+    t:LANG==='ja'?'【T/8段】高単価商品訴求の強化':'【T/8段】強化高單價商品訴求',
+    r:LANG==='ja'?'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。高単価商品旅程の月齢訴求精度を確認。':'AOV NT$'+d.aov.toLocaleString()+'（目標 NT$'+TGT.aov.toLocaleString()+'）。確認高單價商品旅程訴求月齡是否精準。',
+    s:'8段・T段'});
+  acts.push({p:'low',
+    t:LANG==='ja'?'【全段】今月の施策をL3-2施策カレンダーに記録':'【全段】將本月施策記錄至 L3-2 施策日曆',
+    r:LANG==='ja'?'今月実施した施策を記録し、「行動→KPI因果関係」データベースを構築することで、AIによる分析精度が向上します。':'記錄本月執行的施策，建立「行動→KPI因果關係」資料庫，讓未來AI分析更精準。',
+    s:LANG==='ja'?'全段':'全段'});
   return acts;
 }
 
@@ -750,7 +826,191 @@ function renderActions(acts) {
   document.getElementById('alist').innerHTML=html;
 }
 
-function setV(id,txt,cls){var el=document.getElementById(id);el.textContent=txt;el.className='vd '+cls;}
+// ── AI対話コンソール ──
+var aiHistory = [];
+var aiLoading = false;
+
+var AI_QUICK = {
+  ja: [
+    '電銷転換率が下がっている原因は？',
+    'EC転換率が高いのにGMVが未達の理由は？',
+    '名簿数が不足している構造的な問題を教えて',
+    '今月の最重要アクションを1つ選ぶなら？'
+  ],
+  zh: [
+    '電銷轉化率下降的原因是什麼？',
+    'EC轉化率高但GMV未達的原因？',
+    '名單供給不足的結構性問題是什麼？',
+    '本月最重要的行動只選一個的話？'
+  ]
+};
+
+var AI_NOTICE = {
+  ja: {
+    title: '⚠️ AIによる仮説提示について',
+    body: '以下のアクション提案は、数字から自動検知した「課題の仮説」です。正解ではありません。担当者が下のAI対話コンソールで深掘りし、自分たちで因果関係を理解・納得した上でアクションを決定してください。'
+  },
+  zh: {
+    title: '⚠️ 關於AI的假說提示',
+    body: '以下行動建議是從數字自動偵測出的「課題假說」，並非正確答案。請由各擔當者在下方AI對話介面中深入討論，在自行理解因果關係、充分認同後，再決定下一步行動。'
+  }
+};
+
+var AI_CONSOLE_TEXT = {
+  ja: {
+    title: 'Claude と深掘り分析',
+    sub: 'KPIの因果関係・アクション理由をここで壁打ちしてください',
+    placeholder: '例：なぜ電銷転換率が下がっているのか？',
+    send: '送信',
+    welcome: 'こんにちは。KPIデータを確認しました。\n\n上の提案は数字から検知した仮説に過ぎません。ここでは**なぜそうなっているのか**、**何が本当の原因なのか**を一緒に深掘りしましょう。\n\n何でも聞いてください。'
+  },
+  zh: {
+    title: 'Claude 深度分析對話',
+    sub: '在這裡深入討論KPI因果關係與行動原因',
+    placeholder: '例：為什麼電銷轉化率在下降？',
+    send: '傳送',
+    welcome: '您好。我已確認KPI數據。\n\n上方的建議只是從數字偵測出的假說。讓我們在這裡一起深入探討**為什麼會這樣**、**真正的原因是什麼**。\n\n歡迎提出任何問題。'
+  }
+};
+
+function buildAiSystemPrompt(key) {
+  var d = ALL[key];
+  var mo = key.slice(0,4)+'年'+parseInt(key.slice(4),10)+'月';
+  var lang = LANG==='ja' ? '日本語' : '繁體中文';
+  return (LANG==='ja' ? [
+    'あなたはBenesse Taiwan（台北支社）のLC8TダッシュボードPJにおける分析AIです。',
+    '【重要な姿勢】あなたの役割は「正解を教える」ことではなく、担当者が自分で因果関係を理解し、納得してアクションを決定できるよう支援することです。',
+    '数字から見える仮説を提示し、担当者の現場知識と組み合わせて一緒に考えてください。',
+    '',
+    '【'+mo+'の主要KPI】',
+    'GMV: NT$'+(d.gmv/10000).toFixed(1)+'万（目標比'+Math.round(d.gmv/TGT.gmv*100)+'%）',
+    '総成約数: '+d.orders+'件（目標比'+Math.round(d.orders/TGT.orders*100)+'%）',
+    'AOV: NT$'+d.aov.toLocaleString()+'（目標比'+Math.round(d.aov/TGT.aov*100)+'%）',
+    '電話転換率: '+d.telRate+'%（目標比'+Math.round(d.telRate/TGT.telRate*100)+'%）',
+    '顧客名簿数: '+d.list.toLocaleString()+'件（目標比'+Math.round(d.list/TGT.list*100)+'%）',
+    '新規LINE-ID: '+d.newLine.toLocaleString()+'件（目標比'+Math.round(d.newLine/TGT.newLine*100)+'%）',
+    'EC成約数: '+d.ec+'件、EC転換率: '+(d.cvRate!=null?d.cvRate+'%':'未入力'),
+    '',
+    '回答は'+lang+'で。簡潔に、担当者が次のアクションを自分で考えられるよう問いかけを含めてください。'
+  ] : [
+    '您是Benesse Taiwan（台北分公司）LC8T儀表板PJ的分析AI。',
+    '【重要態度】您的角色不是「給出正確答案」，而是協助擔當者自行理解因果關係，充分認同後決定行動。',
+    '請提出從數字看到的假說，結合擔當者的現場知識一起思考。',
+    '',
+    '【'+mo+'主要KPI】',
+    'GMV: NT$'+(d.gmv/10000).toFixed(1)+'万（目標比'+Math.round(d.gmv/TGT.gmv*100)+'%）',
+    '總簽約數: '+d.orders+'件（目標比'+Math.round(d.orders/TGT.orders*100)+'%）',
+    'AOV: NT$'+d.aov.toLocaleString()+'（目標比'+Math.round(d.aov/TGT.aov*100)+'%）',
+    '電銷轉化率: '+d.telRate+'%（目標比'+Math.round(d.telRate/TGT.telRate*100)+'%）',
+    '顧客名單數: '+d.list.toLocaleString()+'件（目標比'+Math.round(d.list/TGT.list*100)+'%）',
+    '新增LINE-ID: '+d.newLine.toLocaleString()+'件（目標比'+Math.round(d.newLine/TGT.newLine*100)+'%）',
+    'EC簽約數: '+d.ec+'件、EC轉化率: '+(d.cvRate!=null?d.cvRate+'%':'待補入'),
+    '',
+    '請用'+lang+'回答。簡潔明確，並包含讓擔當者自行思考下一步行動的提問。'
+  ]).join('\n');
+}
+
+function renderAiMsgs() {
+  var msgsEl = document.getElementById('aiMsgs');
+  var html = '';
+  for(var i=0;i<aiHistory.length;i++){
+    var m = aiHistory[i];
+    var isUser = m.role==='user';
+    html += '<div class="ai-msg '+(isUser?'user':'ai')+'">';
+    html += '<div class="ai-msg-avatar">'+(isUser?'You':'AI')+'</div>';
+    html += '<div class="ai-msg-bubble">'+m.content.replace(/\n/g,'<br>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')+'</div>';
+    html += '</div>';
+  }
+  if(aiLoading){
+    html += '<div class="ai-msg ai"><div class="ai-msg-avatar">AI</div><div class="ai-typing"><div class="ai-typing-dots"><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div></div></div></div>';
+  }
+  msgsEl.innerHTML = html;
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+}
+
+function renderQuickBtns() {
+  var btns = AI_QUICK[LANG] || AI_QUICK.ja;
+  var html = '';
+  for(var i=0;i<btns.length;i++){
+    html += '<button class="ai-quick-btn" onclick="sendQuick(this.textContent)">'+btns[i]+'</button>';
+  }
+  document.getElementById('aiQuickBtns').innerHTML = html;
+}
+
+function sendQuick(text){
+  document.getElementById('aiInput').value = text;
+  sendAiMsg();
+}
+
+function initAiConsole(key) {
+  aiHistory = [];
+  var ct = AI_CONSOLE_TEXT[LANG] || AI_CONSOLE_TEXT.ja;
+  aiHistory.push({role:'assistant', content: ct.welcome});
+  renderAiMsgs();
+  renderQuickBtns();
+  document.getElementById('aiInput').placeholder = ct.placeholder;
+  document.getElementById('aiSendBtn').textContent = ct.send;
+  document.getElementById('ai-console-title').textContent = ct.title;
+  document.getElementById('ai-console-sub').textContent = ct.sub;
+  var notice = AI_NOTICE[LANG] || AI_NOTICE.ja;
+  document.getElementById('ai-notice-title').textContent = notice.title;
+  document.getElementById('ai-notice-body').textContent = notice.body;
+}
+
+async function sendAiMsg() {
+  var input = document.getElementById('aiInput');
+  var text = input.value.trim();
+  if(!text || aiLoading) return;
+  input.value = '';
+  aiHistory.push({role:'user', content:text});
+  aiLoading = true;
+  renderAiMsgs();
+  document.getElementById('aiSendBtn').disabled = true;
+  var key = document.getElementById('msel').value;
+  var systemPrompt = buildAiSystemPrompt(key);
+  try {
+    var messages = [];
+    for(var i=0;i<aiHistory.length-1;i++){
+      if(aiHistory[i].role !== 'system') messages.push({role:aiHistory[i].role, content:aiHistory[i].content});
+    }
+    messages.push({role:'user', content:text});
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system: systemPrompt,
+        messages: messages
+      })
+    });
+    var data = await res.json();
+    var reply = '';
+    if(data.content && data.content.length > 0){
+      for(var i=0;i<data.content.length;i++){
+        if(data.content[i].type==='text') reply += data.content[i].text;
+      }
+    }
+    if(!reply) reply = LANG==='ja' ? '（応答を取得できませんでした）' : '（無法取得回應）';
+    aiHistory.push({role:'assistant', content:reply});
+  } catch(e) {
+    var errMsg = LANG==='ja' ? '接続エラーが発生しました。しばらくしてから再試行してください。' : '連線錯誤，請稍後再試。';
+    aiHistory.push({role:'assistant', content:errMsg});
+  }
+  aiLoading = false;
+  document.getElementById('aiSendBtn').disabled = false;
+  renderAiMsgs();
+}
+
+// Enterキー送信対応
+document.addEventListener('DOMContentLoaded', function(){
+  var inp = document.getElementById('aiInput');
+  if(inp){
+    inp.addEventListener('keydown', function(e){
+      if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendAiMsg(); }
+    });
+  }
+});
 function renderVerdicts(d){
   var q1ok=d.gmv>=TGT.gmv&&d.orders>=TGT.orders;
   setV('v1',q1ok?tx('v1hit'):tx('v1miss'),q1ok?'vg':'vw');
@@ -857,6 +1117,7 @@ function render(){
   renderDetailKPIs(d, prev);
   renderHealth(d);
   renderActions(acts);
+  initAiConsole(key);
   setTimeout(drawAllCharts,100);
 }
 
