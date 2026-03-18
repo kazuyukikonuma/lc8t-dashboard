@@ -1007,6 +1007,7 @@ function sendAiMsg() {
 }
 
 
+function setV(id,txt,cls){var el=document.getElementById(id);el.textContent=txt;el.className='vd '+cls;}
 function renderVerdicts(d){
   var q1ok=d.gmv>=TGT.gmv&&d.orders>=TGT.orders;
   setV('v1',q1ok?tx('v1hit'):tx('v1miss'),q1ok?'vg':'vw');
