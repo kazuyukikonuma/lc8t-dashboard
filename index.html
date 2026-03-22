@@ -390,6 +390,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 
 <!-- ③ 経営3大KPI -->
 <div class="top3-grid" id="top3Grid"></div>
+<div class="prod-rank-wrap" id="prodRankWrap">
+  <div class="prod-rank-title">🏆 商品別売上ランキング <span style="font-weight:400;color:#bbb;font-size:9px;letter-spacing:0">（示範データ・当月推計）</span></div>
+  <div class="prod-rank-list" id="prodRankList"></div>
+  <div class="prod-rank-note">※ 実際の商品別データはERP連携後に自動更新。現在は参考値（L1商品構成比から按分推計）。</div>
+</div>
 
 <!-- 詳細KPI（折りたたみ） -->
 <div class="detail-kpi-wrap">
@@ -899,7 +904,8 @@ function renderTop3(d, prev) {
     var pctCls = over?'over':hit?'hit':'miss';
     var momP = pv!=null?Math.round((v-pv)/pv*100):null;
     var momStr = momP!=null?(momP>0?'+':'')+momP+'%':'—';
-    html += '<div class="top3-card '+(hit?'hit':'miss')+'">';
+    var clickAttr = (i===0) ? ' onclick="toggleProdRank(event)" style="cursor:pointer"' : '';
+    html += '<div class="top3-card '+(hit?'hit':'miss')+'"'+clickAttr+'>';
     html += '<div class="top3-no">'+nos[i]+'</div>';
     html += '<div class="top3-name">'+names[i]+'</div>';
     html += '<div class="top3-val">'+fmts[i](v)+'</div>';
@@ -909,6 +915,9 @@ function renderTop3(d, prev) {
     html += '</div>';
   }
   document.getElementById('top3Grid').innerHTML = html;
+  // ランキングエリアが閉じていたら内容だけ更新（開閉状態はそのまま）
+  var wrap = document.getElementById('prodRankWrap');
+  if(wrap && wrap.classList.contains('on')) renderProdRank();
 }
 
 // ── Detail KPI ──
