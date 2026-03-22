@@ -136,7 +136,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .dnn{font-size:11px;color:#888;line-height:1.6;padding-top:8px;border-top:1px solid #e0e0dc;}
 
 /* ── Tabs ── */
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #e0e0dc;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#f1efe8;}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #e0e0dc;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#f1efe8;}
 .tab{padding:0;cursor:pointer;background:transparent;border:none;border-right:1px solid #e0e0dc;transition:background .15s;}
 .tab:last-child{border-right:none;}
 .tab.on{background:#fff;}
@@ -230,6 +230,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
   .tab{border-right:none;border-bottom:1px solid #e0e0dc;}
   .tab:last-child{border-bottom:none;}
 }
+
+/* ── Panel 4: 施策記録 × 因果分析 ── */
+.act-timeline{margin-bottom:20px;}
+.act-month-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.act-month-label{font-size:12px;font-weight:800;color:#2c2c2a;letter-spacing:.04em;}
+.act-month-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:#E6F1FB;color:#185FA5;font-weight:700;}
+.act-items{display:flex;flex-direction:column;gap:8px;margin-bottom:0;}
+.act-item{border:1px solid #e0e0dc;border-radius:10px;padding:12px 14px;background:#fff;display:flex;gap:12px;align-items:flex-start;}
+.act-item.high{border-left:3px solid #E24B4A;}
+.act-item.mid{border-left:3px solid #E8A020;}
+.act-item.low{border-left:3px solid #378ADD;}
+.act-type{font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;flex-shrink:0;margin-top:2px;}
+.act-type.L{background:#EAF3DE;color:#3B6D11;}
+.act-type.C{background:#FEF6E4;color:#9B6200;}
+.act-type.T8{background:#E6F1FB;color:#185FA5;}
+.act-type.ALL{background:#F0EEFF;color:#534AB7;}
+.act-content{flex:1;}
+.act-title{font-size:12px;font-weight:700;margin-bottom:3px;}
+.act-detail{font-size:11px;color:#666;line-height:1.55;}
+.act-kpi-impact{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+.act-kpi-tag{font-size:10px;padding:2px 7px;border-radius:5px;background:#F8F8F6;border:1px solid #e0e0dc;color:#555;}
+.act-kpi-tag.up{background:#EAF3DE;color:#3B6D11;border-color:#B7D9A0;}
+.act-kpi-tag.down{background:#FCEBEB;color:#A32D2D;border-color:#F5B5B5;}
+.act-add-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:2px dashed #e0e0dc;border-radius:10px;font-size:11px;color:#aaa;cursor:pointer;background:#f8f8f6;transition:all .15s;margin-bottom:16px;}
+.act-add-btn:hover{border-color:#888;color:#555;background:#f0f0ec;}
+.corr-section{margin-bottom:20px;}
+.corr-label{font-size:12px;font-weight:700;color:#555;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
+.corr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.corr-card{background:#fff;border:1px solid #e0e0dc;border-radius:10px;padding:12px 14px;}
+.corr-card-title{font-size:11px;font-weight:700;margin-bottom:6px;color:#2c2c2a;}
+.corr-arrow{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;}
+.corr-arrow.up{background:#EAF3DE;color:#3B6D11;}
+.corr-arrow.down{background:#FCEBEB;color:#A32D2D;}
+.corr-arrow.neutral{background:#F1EFE8;color:#888;}
+.corr-desc{font-size:10px;color:#666;line-height:1.55;margin-top:4px;}
+.future-input-section{background:#FFFBEA;border:1px solid #F5E080;border-radius:12px;padding:16px;margin-bottom:16px;}
+.future-input-title{font-size:12px;font-weight:800;color:#7A5F00;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.future-input-desc{font-size:11px;color:#9A7A00;line-height:1.6;margin-bottom:12px;}
+.future-input-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.fut-field{display:flex;flex-direction:column;gap:4px;}
+.fut-label{font-size:10px;color:#888;font-weight:600;}
+.fut-select,.fut-textarea{font-size:11px;padding:6px 10px;border:1px solid #F5C842;border-radius:8px;background:#fff;color:#2c2c2a;font-family:inherit;}
+.fut-textarea{resize:none;height:56px;grid-column:1/-1;}
+.fut-btn{padding:7px 14px;background:#F5C842;color:#2c2c2a;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s;}
+.fut-btn:hover{background:#E8B800;}
+
 </style>
 </head>
 <body>
@@ -342,7 +388,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 </div>
 
 <!-- Tabs -->
-<div class="tabs">
+<div class="tabs" id="tabsContainer">
   <button class="tab on" id="tb1" onclick="stab(1)">
     <div class="ti"><div class="tq" id="tab1q">問題 ①</div><div class="tl" id="tab1l">LC8T 有沒有在成長？</div><span class="vd" id="v1">—</span></div>
   </button>
@@ -351,6 +397,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
   </button>
   <button class="tab" id="tb3" onclick="stab(3)">
     <div class="ti"><div class="tq" id="tab3q">問題 ③</div><div class="tl" id="tab3l">下一步該做什麼？</div><span class="vd" id="v3">—</span></div>
+  </button>
+  <button class="tab" id="tb4" onclick="stab(4)">
+    <div class="ti"><div class="tq" id="tab4q">問題 ④</div><div class="tl" id="tab4l">施策紀錄 × 因果分析</div><span class="vd" id="v4" style="background:#FEF6E4;color:#9B6200;">記錄中</span></div>
   </button>
 </div>
 
@@ -410,6 +459,152 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
     <div class="ai-input-row">
       <textarea class="ai-input" id="aiInput" rows="1" placeholder="例：なぜ電銷転換率が下がっているのか？"></textarea>
       <button class="ai-send-btn" id="aiSendBtn" onclick="sendAiMsg()">送信</button>
+    </div>
+  </div>
+
+<!-- Panel 4: 施策記録 × 因果分析 -->
+<div class="panel" id="p4">
+  <!-- 将来データ連携の告知 -->
+  <div class="future-input-section">
+    <div class="future-input-title">📋 施策記錄（L3-2 連動預定）</div>
+    <div class="future-input-desc">
+      這裡記錄每月執行的行銷施策。未來將與 Confluence L3-2 自動同步。<br>
+      <strong>目標：建立「施策→KPI變化」的因果資料庫，讓 AI 分析更精準。</strong>
+    </div>
+    <div class="future-input-fields">
+      <div class="fut-field">
+        <div class="fut-label">施策段位</div>
+        <select class="fut-select" id="futStage">
+          <option>L段（LINE入口）</option>
+          <option>C段（社群培育）</option>
+          <option>8段（Super8自動化）</option>
+          <option>T段（TEL電銷）</option>
+          <option>全段</option>
+        </select>
+      </div>
+      <div class="fut-field">
+        <div class="fut-label">預期影響 KPI</div>
+        <select class="fut-select" id="futKpi">
+          <option>GMV 總成交金額</option>
+          <option>新增LINE-ID</option>
+          <option>電銷轉化率</option>
+          <option>EC轉化率</option>
+          <option>顧客名單數</option>
+        </select>
+      </div>
+      <div class="fut-field" style="grid-column:1/-1">
+        <div class="fut-label">施策內容（簡述）</div>
+        <textarea class="fut-textarea" id="futContent" placeholder="例：針對0-24月齡媽媽名單，發送英語早期介入特刊，搭配Super8自動回覆流程..."></textarea>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:8px;">
+      <button class="fut-btn" onclick="addDummyAct()">＋ 記錄此施策（示範）</button>
+    </div>
+  </div>
+
+  <!-- 施策タイムライン（HTML直書きで確実に表示） -->
+  <p class="slabel">📌 施策記錄 Timeline（示範資料）</p>
+  <div id="actTimeline" class="act-timeline">
+    <div class="act-month-header">
+      <div class="act-month-label">2026年2月</div>
+      <div class="act-month-badge">2件施策</div>
+    </div>
+    <div class="act-items">
+      <div class="act-item high">
+        <span class="act-type T8">T段</span>
+        <div class="act-content">
+          <div class="act-title">電銷名單品質篩選強化</div>
+          <div class="act-detail">針對DB疲勞名單進行清洗，鎖定6個月內新增且有互動紀錄的名單優先外撥。</div>
+          <div class="act-kpi-impact">
+            <span class="act-kpi-tag up">↑ 電銷轉化率</span>
+            <span class="act-kpi-tag down">↓ 名單數</span>
+          </div>
+        </div>
+      </div>
+      <div class="act-item mid">
+        <span class="act-type L">L段</span>
+        <div class="act-content">
+          <div class="act-title">異業合作導入新LINE-ID</div>
+          <div class="act-detail">與0-3歲媽媽社群合作，LINE好友限時優惠活動，目標新增1,000 ID。</div>
+          <div class="act-kpi-impact">
+            <span class="act-kpi-tag up">↑ 新增LINE-ID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height:16px;"></div>
+    <div class="act-month-header">
+      <div class="act-month-label">2026年1月</div>
+      <div class="act-month-badge">2件施策</div>
+    </div>
+    <div class="act-items">
+      <div class="act-item high">
+        <span class="act-type ALL">全段</span>
+        <div class="act-content">
+          <div class="act-title">年初促銷：早鳥方案</div>
+          <div class="act-detail">1月前兩週推出年度最低價早鳥方案，EC + TEL雙管道同步。</div>
+          <div class="act-kpi-impact">
+            <span class="act-kpi-tag up">↑ GMV</span>
+            <span class="act-kpi-tag up">↑ EC簽約數</span>
+            <span class="act-kpi-tag down">↓ AOV（注意）</span>
+          </div>
+        </div>
+      </div>
+      <div class="act-item mid">
+        <span class="act-type C">C段</span>
+        <div class="act-content">
+          <div class="act-title">Super8 標籤重新分眾</div>
+          <div class="act-detail">依照顧客月齡重新設定Super8標籤，0-12M / 13-24M / 25-36M 三段分開推播。</div>
+          <div class="act-kpi-impact">
+            <span class="act-kpi-tag up">↑ EC轉化率</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height:16px;"></div>
+    <div class="act-month-header">
+      <div class="act-month-label">2025年12月</div>
+      <div class="act-month-badge">1件施策</div>
+    </div>
+    <div class="act-items">
+      <div class="act-item mid">
+        <span class="act-type L">L段</span>
+        <div class="act-content">
+          <div class="act-title">聖誕節LINE推播活動</div>
+          <div class="act-detail">節日主題推播，搭配限時禮品包裝優惠，吸引新名單加入及回購。</div>
+          <div class="act-kpi-impact">
+            <span class="act-kpi-tag up">↑ 新增LINE-ID</span>
+            <span class="act-kpi-tag up">↑ GMV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 因果相関セクション（HTML直書き） -->
+  <p class="slabel">🔗 施策 × KPI 因果相關分析（AI 假說）</p>
+  <div id="corrSection" class="corr-section">
+    <div class="corr-grid" id="corrGrid">
+      <div class="corr-card">
+        <div class="corr-card-title">異業合作 × 新增LINE-ID</div>
+        <span class="corr-arrow up">↑ +23%</span>
+        <div class="corr-desc">2月異業合作導入後，新增LINE-ID較前月回升19%，但與目標2,000件仍有差距（達成92%）。因果路徑：合作觸及→掃碼加入→LINE名單。</div>
+      </div>
+      <div class="corr-card">
+        <div class="corr-card-title">名單清洗 × 電銷轉化率</div>
+        <span class="corr-arrow down">↓ -0.9%</span>
+        <div class="corr-desc">2月雖執行名單品質篩選，但轉化率仍從9.4%降至8.5%。名單清洗後供給量縮減（4,110→2,471），外撥機會減少影響成約數。</div>
+      </div>
+      <div class="corr-card">
+        <div class="corr-card-title">早鳥方案 × AOV（注意）</div>
+        <span class="corr-arrow down">↓ -18%</span>
+        <div class="corr-desc">1月早鳥促銷推高GMV與訂單數，但AOV從NT$4,702下滑至NT$3,845。低價策略稀釋單價，需評估是否長期執行。</div>
+      </div>
+      <div class="corr-card">
+        <div class="corr-card-title">Super8分眾 × EC轉化率</div>
+        <span class="corr-arrow up">↑ +8.3%</span>
+        <div class="corr-desc">1月重新分眾後，EC轉化率從4.2%（12月）回升至11.9%（1月）。推播精準度提升是主要因果驅動。</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1103,7 +1298,7 @@ function drawAllCharts(){
   lineChart('cCV',130,CL,[{values:CK.map(function(k){return ALL[k].cvRate;}),color:'#1D9E75',dotColor:function(v){return v!=null?(v>=TGT.cvRate?'#1D9E75':'#E24B4A'):'#ccc';}}],TGT.cvRate);
 }
 
-function stab(n){for(var i=1;i<=3;i++){document.getElementById('tb'+i).classList.toggle('on',i===n);document.getElementById('p'+i).classList.toggle('on',i===n);}setTimeout(drawAllCharts,80);}
+function stab(n){for(var i=1;i<=4;i++){document.getElementById('tb'+i).classList.toggle('on',i===n);document.getElementById('p'+i).classList.toggle('on',i===n);}if(n===4){renderPanel4();}setTimeout(drawAllCharts,80);}
 
 function render(){
   var key=document.getElementById('msel').value;
@@ -1124,8 +1319,93 @@ function render(){
   setTimeout(drawAllCharts,100);
 }
 
+
+// ── Panel 4: 施策記録 × 因果分析 ──
+var DUMMY_ACTS = [
+  {month:'202602', stage:'T', priority:'high', title:'電銷名單品質篩選強化', detail:'針對DB疲勞名單進行清洗，鎖定6個月內新增且有互動紀錄的名單優先外撥。', kpi:[{label:'電銷轉化率',dir:'up'},{label:'名單數',dir:'down'}]},
+  {month:'202602', stage:'L', priority:'mid', title:'異業合作導入新LINE-ID', detail:'與0-3歲媽媽社群合作，LINE好友限時優惠活動，目標新增1,000 ID。', kpi:[{label:'新增LINE-ID',dir:'up'}]},
+  {month:'202601', stage:'ALL', priority:'high', title:'年初促銷：早鳥方案', detail:'1月前兩週推出年度最低價早鳥方案，EC + TEL雙管道同步。', kpi:[{label:'GMV',dir:'up'},{label:'EC簽約數',dir:'up'},{label:'AOV',dir:'down'}]},
+  {month:'202601', stage:'C', priority:'mid', title:'Super8 標籤重新分眾', detail:'依照顧客月齡重新設定Super8標籤，0-12M / 13-24M / 25-36M 三段分開推播。', kpi:[{label:'EC轉化率',dir:'up'}]},
+  {month:'202512', stage:'L', priority:'high', title:'聖誕節LINE推播活動', detail:'節日主題推播，搭配限時禮品包裝優惠，吸引新名單加入及回購。', kpi:[{label:'新增LINE-ID',dir:'up'},{label:'GMV',dir:'up'}]},
+  {month:'202511', stage:'T', priority:'mid', title:'外撥腳本A/B測試', detail:'比較訴求「語言發展里程碑」vs「競品差異化」兩種切入點的轉化率差異。', kpi:[{label:'電銷轉化率',dir:'up'}]},
+];
+
+var DUMMY_CORR = [
+  {title:'異業合作 × 新增LINE-ID', arrow:'up', arrow_text:'+23%', desc:'2月異業合作導入後，新增LINE-ID較前月回升19%，但與目標2,000件仍有差距（達成92%）。因果路徑：合作觸及→掃碼加入→LINE名單。'},
+  {title:'名單清洗 × 電銷轉化率', arrow:'down', arrow_text:'-0.9%', desc:'2月雖執行名單品質篩選，但轉化率仍從9.4%降至8.5%。推測名單清洗後供給量縮減（4,110→2,471），外撥機會減少影響成約數。'},
+  {title:'早鳥方案 × AOV（注意）', arrow:'down', arrow_text:'-1.8%', desc:'1月早鳥促銷推高GMV與訂單數，但AOV從NT$4,702下滑至NT$3,845（-18%）。低價策略稀釋單價，需評估是否長期執行。'},
+  {title:'Super8分眾 × EC轉化率', arrow:'up', arrow_text:'+8.3%', desc:'1月重新分眾後，EC轉化率從4.2%（12月）回升至11.9%（1月）。推播精準度提升是主要因果驅動。但需排除早鳥促銷的混淆效果。'},
+];
+
+function renderPanel4(){
+  renderActTimeline();
+  renderCorrSection();
+}
+
+function renderActTimeline(){
+  var container = document.getElementById('actTimeline');
+  if(!container) return;
+  var months = [];
+  DUMMY_ACTS.forEach(function(a){ if(months.indexOf(a.month)<0) months.push(a.month); });
+  months.sort(function(a,b){ return b.localeCompare(a); });
+  var html = '';
+  months.forEach(function(m){
+    var acts = DUMMY_ACTS.filter(function(a){ return a.month===m; });
+    var mLabel = m.slice(0,4)+'年'+parseInt(m.slice(4))+'月';
+    html += '<div class="act-month-header">';
+    html += '<div class="act-month-label">'+mLabel+'</div>';
+    html += '<div class="act-month-badge">'+acts.length+'件施策</div>';
+    html += '</div>';
+    html += '<div class="act-items">';
+    acts.forEach(function(a){
+      var stageMap={L:'L段',C:'C段',T:'T段',ALL:'全段'};
+      var stageClass={L:'L',C:'C',T:'T8',ALL:'ALL'};
+      var kpiHtml = a.kpi.map(function(k){ return '<span class="act-kpi-tag '+k.dir+'">'+(k.dir==='up'?'↑':'↓')+' '+k.label+'</span>'; }).join('');
+      html += '<div class="act-item '+a.priority+'">';
+      html += '<span class="act-type '+stageClass[a.stage]+'">'+stageMap[a.stage]+'</span>';
+      html += '<div class="act-content">';
+      html += '<div class="act-title">'+a.title+'</div>';
+      html += '<div class="act-detail">'+a.detail+'</div>';
+      html += '<div class="act-kpi-impact">'+kpiHtml+'</div>';
+      html += '</div></div>';
+    });
+    html += '</div><div style="height:16px;"></div>';
+  });
+  container.innerHTML = html;
+}
+
+function renderCorrSection(){
+  var grid = document.getElementById('corrGrid');
+  if(!grid) return;
+  var html = '';
+  DUMMY_CORR.forEach(function(c){
+    var arrowClass = c.arrow==='up'?'up':(c.arrow==='down'?'down':'neutral');
+    html += '<div class="corr-card">';
+    html += '<div class="corr-card-title">'+c.title+'</div>';
+    html += '<span class="corr-arrow '+arrowClass+'">'+c.arrow_text+'</span>';
+    html += '<div class="corr-desc">'+c.desc+'</div>';
+    html += '</div>';
+  });
+  grid.innerHTML = html;
+}
+
+function addDummyAct(){
+  var stage = document.getElementById('futStage').value;
+  var kpi = document.getElementById('futKpi').value;
+  var content = document.getElementById('futContent').value;
+  if(!content.trim()){alert('請輸入施策內容');return;}
+  var stageCode = stage.indexOf('L段')>=0?'L':stage.indexOf('C段')>=0?'C':stage.indexOf('T段')>=0?'T':'ALL';
+  var kpiCode = kpi.indexOf('GMV')>=0?'GMV':kpi.indexOf('LINE')>=0?'新增LINE-ID':kpi;
+  var key = document.getElementById('msel').value;
+  DUMMY_ACTS.unshift({month:key,stage:stageCode,priority:'mid',title:'【新追加】'+content.substring(0,20)+'...',detail:content,kpi:[{label:kpiCode,dir:'up'}]});
+  document.getElementById('futContent').value='';
+  renderActTimeline();
+  alert('施策記錄已追加！（示範模式）');
+}
+
 window.addEventListener('load', function(){
   render();
+  renderPanel4();
   var inp = document.getElementById('aiInput');
   if(inp){
     inp.addEventListener('keydown', function(e){
