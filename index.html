@@ -276,6 +276,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 .fut-btn{padding:7px 14px;background:#F5C842;color:#2c2c2a;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s;}
 .fut-btn:hover{background:#E8B800;}
 
+
+/* ── 商品別売上ランキング（GMVドリルダウン） ── */
+.prod-rank-wrap{display:none;border-top:1px solid #e8e8e4;padding:14px 16px 4px;background:#fafaf8;}
+.prod-rank-wrap.on{display:block;}
+.prod-rank-title{font-size:11px;font-weight:700;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.prod-rank-list{display:flex;flex-direction:column;gap:6px;}
+.prod-rank-item{display:flex;align-items:center;gap:8px;}
+.prod-rank-no{font-size:11px;font-weight:800;color:#aaa;width:16px;text-align:center;flex-shrink:0;}
+.prod-rank-no.gold{color:#C9941A;}
+.prod-rank-no.silver{color:#888;}
+.prod-rank-no.bronze{color:#B87333;}
+.prod-rank-bar-wrap{flex:1;display:flex;align-items:center;gap:8px;}
+.prod-rank-name{font-size:10px;color:#2c2c2a;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;flex-shrink:0;}
+.prod-rank-bar-bg{flex:1;height:5px;background:#eee;border-radius:3px;overflow:hidden;}
+.prod-rank-bar-fill{height:100%;border-radius:3px;background:#378ADD;transition:width .4s ease;}
+.prod-rank-val{font-size:10px;color:#555;font-weight:600;white-space:nowrap;flex-shrink:0;}
+.prod-rank-note{font-size:9px;color:#bbb;margin-top:8px;padding-top:8px;border-top:1px dashed #eee;}
+
 </style>
 </head>
 <body>
@@ -1404,6 +1422,63 @@ function addDummyAct(){
   document.getElementById('futContent').value='';
   renderActTimeline();
   alert('施策記錄已追加！（示範模式）');
+}
+
+
+// ── 商品別売上ランキング ──
+// L1の商品リストと推計売上比率（ダミー、AOV×想定件数比で按分）
+var PRODUCTS = [
+  {name:'語彙表達・智育學習套組',    price:4900, share:0.19},
+  {name:'和巧虎一起說英語PLUS⁺【初階版】', price:4800, share:0.17},
+  {name:'寶寶生活好習慣套組',        price:4299, share:0.14},
+  {name:'和巧虎一起說英語【進階版】', price:4500, share:0.12},
+  {name:'和巧虎一起學拼音套組',      price:3200, share:0.10},
+  {name:'和巧虎一起學數學套組',      price:3200, share:0.09},
+  {name:'聰明左右腦 點讀大冒險套組', price:2999, share:0.08},
+  {name:'巧虎雙語點讀圖鑑套組',     price:2399, share:0.06},
+  {name:'好情緒EQ × 品格人際套組',  price:2199, share:0.05},
+];
+
+function toggleProdRank(e) {
+  e.stopPropagation();
+  var wrap = document.getElementById('prodRankWrap');
+  if (!wrap) return;
+  var isOn = wrap.classList.contains('on');
+  wrap.classList.toggle('on', !isOn);
+  if (!isOn) renderProdRank();
+}
+
+function renderProdRank() {
+  var key = document.getElementById('msel').value;
+  var gmv = ALL[key] ? ALL[key].gmv : 2258293;
+  var list = document.getElementById('prodRankList');
+  if (!list) return;
+
+  // sharesを元に売上を計算してソート
+  var items = PRODUCTS.map(function(p) {
+    return { name: p.name, val: Math.round(gmv * p.share) };
+  }).sort(function(a, b) { return b.val - a.val; });
+
+  var max = items[0].val;
+  var noClass = ['gold','silver','bronze'];
+
+  var html = '';
+  items.forEach(function(item, i) {
+    var pct = Math.round(item.val / max * 100);
+    var rank = i + 1;
+    var nc = noClass[i] || '';
+    var valStr = 'NT$' + (item.val >= 10000
+      ? (item.val / 10000).toFixed(1) + '萬'
+      : item.val.toLocaleString());
+    html += '<div class="prod-rank-item">';
+    html += '<div class="prod-rank-no ' + nc + '">' + rank + '</div>';
+    html += '<div class="prod-rank-bar-wrap">';
+    html += '<div class="prod-rank-name" title="' + item.name + '">' + item.name + '</div>';
+    html += '<div class="prod-rank-bar-bg"><div class="prod-rank-bar-fill" style="width:' + pct + '%;background:' + (i===0?'#C9941A':i===1?'#888':i===2?'#B87333':'#378ADD') + '"></div></div>';
+    html += '<div class="prod-rank-val">' + valStr + '</div>';
+    html += '</div></div>';
+  });
+  list.innerHTML = html;
 }
 
 window.addEventListener('load', function(){
