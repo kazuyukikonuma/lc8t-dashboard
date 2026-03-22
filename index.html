@@ -329,7 +329,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 <!-- Version bar -->
 <div class="ver-bar">
   <div class="ver-info">
-    <span class="ver-badge">v0.5</span>
+    <span class="ver-badge">v0.6</span>
     <span class="ver-proto">prototype</span>
     <span class="ver-sep">|</span>
     <span class="ver-date" id="ver-date-label">最終更新：2026-03-18</span>
@@ -342,6 +342,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Ar
 <div class="changelog" id="changelog">
   <div class="chg-header" id="chg-header-label">CHANGELOG</div>
   <div class="chg-list">
+    <div class="chg-item"><span class="chg-ver">v0.6</span><span class="chg-dt">2026-03-22</span><span class="chg-desc"><span class="chg-tag new">NEW</span>問題④「施策記錄×因果分析」標籤頁追加。施策Timeline・因果相關分析卡片・施策記錄輸入UI実装。<span class="chg-tag fix">FIX</span>Panel3閉合タグ不足によるPanel4ネスト問題を修正。</span></div>
     <div class="chg-item"><span class="chg-ver">v0.5</span><span class="chg-dt">2026-03-18</span><span class="chg-desc"><span class="chg-tag new">NEW</span>AIチャットUI刷新（黄色テーマ・キャラクター画像）。<span class="chg-tag upd">UPD</span>グラフ時間軸を古→新に修正。<span class="chg-tag new">NEW</span>免責注記を常時表示に追加。<span class="chg-tag upd">UPD</span>文字サイズ・ウェイト再設計。</span></div>
     <div class="chg-item"><span class="chg-ver">v0.4</span><span class="chg-dt">2026-03-18</span><span class="chg-desc"><span class="chg-tag new">NEW</span>今月の総括バナー（自動生成＋手動上書き）追加。<span class="chg-tag new">NEW</span>次のアクションを常時表示に格上げ。<span class="chg-tag upd">UPD</span>経営3大KPIを大きく表示、残り7KPIを折りたたみ式に変更。</span></div>
     <div class="chg-item"><span class="chg-ver">v0.3</span><span class="chg-dt">2026-03-18</span><span class="chg-desc"><span class="chg-tag new">NEW</span>バージョン表示・変更履歴追加。ダッシュボード名称をprototype表記に変更。</span></div>
@@ -646,7 +647,7 @@ var TX = {
     v3ok:'維持現況', v3iss:'項待改善',
     hit:'達標', miss:'未達', pending:'待補入',
     mom:'前月比', vsTarget:'目標比', over:'超標',
-    verDate:'最後更新：2026-03-18', chgLog:'更新記錄',
+    verDate:'最後更新：2026-03-22', chgLog:'更新記錄',
     aaTitle:'⭐ 下一步該做什麼', aaCollapse:'收起', aaExpand:'展開',
     dkLabel:'詳細KPI（其餘7項）', dkHintOpen:'點擊展開', dkHintClose:'點擊收起',
     sbEditLabel:'手動編輯', sbManualLabel:'手動輸入（覆蓋自動）',
@@ -702,7 +703,7 @@ var TX = {
     v3ok:'現状維持', v3iss:'項目要改善',
     hit:'達成', miss:'未達', pending:'未入力',
     mom:'前月比', vsTarget:'目標比', over:'超過達成',
-    verDate:'最終更新：2026-03-18', chgLog:'変更履歴',
+    verDate:'最終更新：2026-03-22', chgLog:'変更履歴',
     aaTitle:'⭐ 次に何をすべきか', aaCollapse:'折りたたむ', aaExpand:'展開する',
     dkLabel:'詳細KPI（残り7項目）', dkHintOpen:'クリックで展開', dkHintClose:'クリックで閉じる',
     sbEditLabel:'手動編集', sbManualLabel:'手動コメント（自動生成を上書き）',
